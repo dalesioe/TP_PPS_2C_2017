@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {CursadasPage} from '../cursadas/cursadas';
 
 /**
  * Generated class for the AsistenciaPage page.
@@ -15,11 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AsistenciaPage {
 
+  usuario:string;
+  pass:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.usuario = this.navParams.get('usuario');
+    this.pass = this.navParams.get('pass');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AsistenciaPage');
+  Volver()
+  {
+    this.navCtrl.setRoot(CursadasPage, { "usuario": this.usuario, "pass": this.pass })
   }
 
 }

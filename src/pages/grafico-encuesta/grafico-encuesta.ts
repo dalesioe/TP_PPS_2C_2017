@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {EncuestaPage} from '../encuesta/encuesta';
 
 /**
  * Generated class for the GraficoEncuestaPage page.
@@ -15,11 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class GraficoEncuestaPage {
 
+  usuario:string;
+  pass:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.usuario = this.navParams.get('usuario');
+    this.pass = this.navParams.get('pass');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GraficoEncuestaPage');
+  Volver()
+  {
+    this.navCtrl.setRoot(EncuestaPage, { "usuario": this.usuario, "pass": this.pass })
   }
 
 }
