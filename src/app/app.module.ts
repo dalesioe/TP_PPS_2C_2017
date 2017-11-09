@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
 import { AbmPage } from '../pages/abm/abm';
 import { AdmPerfilPage } from '../pages/adm-perfil/adm-perfil';
@@ -15,6 +14,7 @@ import { GraficoEncuestaPage } from '../pages/grafico-encuesta/grafico-encuesta'
 import { MainPage } from '../pages/main/main';
 import { QRsPage } from '../pages/q-rs/q-rs';
 import { HomePage } from '../pages/home/home';
+import { ApiabmProvider } from '../providers/apiabm/apiabm';
 @NgModule({
   declarations: [
     MyApp,
@@ -50,7 +50,8 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiabmProvider
   ]
 })
 export class AppModule {}
