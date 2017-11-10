@@ -9,13 +9,14 @@ import { ApiabmProvider } from '../../providers/apiabm/apiabm';
   providers: [ApiabmProvider]
 })
 export class HomePage {
+  esUsuario=true;
   usuario: string;
   pass: string;
   constructor(public navCtrl: NavController) {
 
   }
   login() {
-    if (this.usuario == "admin" && this.pass == "123" || this.usuario == "alumno" && this.pass == "11") {
+    if (this.usuario == "admin" && this.pass == "123" || this.usuario == "alumno" && this.pass == "11"|| this.usuario == "profe" && this.pass == "22") {
       this.navCtrl.setRoot(MainPage, { "usuario": this.usuario, "pass": this.pass });
     }
   }
@@ -24,27 +25,22 @@ export class HomePage {
     switch (tipo) {
       case "admin": {
         this.usuario = "admin";
+        this.pass = "123";
+        break;
+      }
+      case "alumno": {
+        this.usuario = "alumno";
         this.pass = "11";
         break;
       }
-      case "invitado": {
-        this.usuario = "invitado";
+      case "profesor": {
+        this.usuario = "profe";
         this.pass = "22";
         break;
       }
-      case "usuario": {
-        this.usuario = "usuario";
-        this.pass = "33";
-        break;
-      }
-      case "j1": {
-        this.usuario = "j1";
+      case "administrativo": {
+        this.usuario = "administrativo";
         this.pass = "44";
-        break;
-      }
-      case "j2": {
-        this.usuario = "j2";
-        this.pass = "55";
         break;
       }
     }

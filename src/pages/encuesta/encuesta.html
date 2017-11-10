@@ -15,6 +15,15 @@
 
 <ion-content padding>
 
+  <div style="display: block">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+
 </ion-content>
 <ion-footer>
     <button ion-button full color="primary" icon-end (click)="Volver()">

@@ -15,6 +15,7 @@ import { MainPage } from '../pages/main/main';
 import { QRsPage } from '../pages/q-rs/q-rs';
 import { HomePage } from '../pages/home/home';
 import { ApiabmProvider } from '../providers/apiabm/apiabm';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     MyApp,
@@ -31,6 +32,7 @@ import { ApiabmProvider } from '../providers/apiabm/apiabm';
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
