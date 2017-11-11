@@ -10,6 +10,8 @@ import { GraficoEncuestaPage } from '../grafico-encuesta/grafico-encuesta';
 import { QRsPage } from '../q-rs/q-rs';
 import { HomePage } from '../home/home';
 import { MenuController } from 'ionic-angular';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 /**
  * Generated class for the MainPage page.
@@ -27,9 +29,16 @@ export class MainPage {
   usuario: string;
   pass: string;
   abm: boolean;
-  constructor(public menu: MenuController,public navCtrl: NavController, public navParams: NavParams) {
+  posts: any;
+  constructor(public menu: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.usuario = this.navParams.get('usuario');
     this.pass = this.navParams.get('pass');
+
+      this.http.get('http://www.estacionamiento.16mb.com/git/api/todoslosAlumnos').map(res => res.json()).subscribe(data => {
+      this.posts = data;
+
+      console.log(this.posts);
+    });
   }
 
   openPage(pagina: string) {
@@ -55,12 +64,10 @@ export class MainPage {
     }
 
   }
-  closeMenu()
-  {
+  closeMenu() {
     this.menu.close();
   }
-  Volver()
-  {
+  Volver() {
     this.navCtrl.setRoot(HomePage, { "usuario": this.usuario, "pass": this.pass })
   }
 
