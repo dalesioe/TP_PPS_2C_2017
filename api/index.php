@@ -5,6 +5,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require_once './vendor/autoload.php';
 require_once './clases/AccesoDatos.php';
 require_once './clases/persona.php';
+require_once './clases/usuario.php';
+require_once './clases/cursada.php';
+require_once './clases/comision.php';
+require_once './clases/materia.php';
+require_once './clases/curso.php';
+
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -20,17 +26,49 @@ desarrollo para obtener información sobre los errores
   La segunda línea permite al servidor web establecer el encabezado Content-Length, 
   lo que hace que Slim se comporte de manera más predecible.
 */
-
+//echo usuario::TraerAlumnos();
+//echo usuario::UltimoAlumno();
+//echo materia::AltaDeMateria("MATEMATICA II","17/5/17","403");
+/*echo materia::TraerTodasLasMaterias();
+echo materia::ModificarMateria(2,"MATEMATICA II",201);
+echo "<br>";
+echo materia::TraerTodasLasMaterias();*/
 $app = new \Slim\App(["settings" => $config]);
+
+//GET PARA DISTINTOS TIPOS DE USUARIOS
+$app->get('/todoslosAlumnos',function ($reuqest,$response){
+    $response->write(usuario::TraerAlumnos());
+    return $response;
+});
+$app->get('/todoslosProfes',function ($reuqest,$response){
+    $response->write(usuario::TraerProfesores());
+    return $response;
+});
+$app->get('/todoslosAdmins',function ($reuqest,$response){
+    $response->write(usuario::TraerAdmins());
+    return $response;
+});
+$app->get('/todoslosAdministrativos',function ($reuqest,$response){
+    $response->write(usuario::TraerAdminsistrativos());
+    return $response;
+});
+
+//POST PARA OBTENER UN USUARIO POR ID
+$app->post('/traerUsuarioPorId',function ($request,$response){
+    $datos = $request->getParsedBody();
+    $id = $datos['id'];
+    $response->write(usuario::TraerUnUsuario($id));
+    return $response;
+});
 //ALTA PROFESOR*******************/
 $app->post('/altaProfesor',function($request,$response){
     $datos = $request->getParsedBody();
     $nombre = $datos['nombre'];
     $apellido = $datos['apellido'];
-    $password = $datos['dni'];
+    $dni = $datos['dni'];
     $mail = $datos['mail'];
     $sexo = $datos['sexo'];
-    $response->write(usuario::AgregarProfesor($nombre,$apellido,$password,$mail,$sexo));
+    $response->write(usuario::AgregarProfesor($nombre,$apellido,$dni,$mail,$sexo));
 });
 //********************************/
 //ALTA ADMINISTRATIVO*******************/
@@ -38,26 +76,73 @@ $app->post('/altaAdministrativo',function($request,$response){
     $datos = $request->getParsedBody();
     $nombre = $datos['nombre'];
     $apellido = $datos['apellido'];
-    $password = $datos['dni'];
+    $dni = $datos['dni'];
     $mail = $datos['mail'];
     $sexo = $datos['sexo'];
-    $response->write(usuario::AgregarAdministrativo($nombre,$apellido,$password,$mail,$sexo));
+    $response->write(usuario::AgregarAdministrativo($nombre,$apellido,$dni,$mail,$sexo));
 });
 //*************************************/
 //ALTA ALUMNO*******************/
-$app->post('/altaAdministrativo',function($request,$response){
+$app->post('/altaAlumno',function($request,$response){
     $datos = $request->getParsedBody();
     $nombre = $datos['nombre'];
     $apellido = $datos['apellido'];
-    $password = $datos['dni'];
+    $dni = $datos['dni'];
     $mail = $datos['mail'];
     $sexo = $datos['sexo'];
-    $response->write(usuario::AgregarAlumno($nombre,$apellido,$password,$mail,$sexo));
+    $response->write(usuario::AgregarAlumno($nombre,$apellido,$dni,$mail,$sexo));
+});
+/******************************
+*************************************
+ALTA ADMIN*******************/
+$app->post('/altaAdmin',function($request,$response){
+    $datos = $request->getParsedBody();
+    $nombre = $datos['nombre'];
+    $apellido = $datos['apellido'];
+    $dni = $datos['dni'];
+    $mail = $datos['mail'];
+    $sexo = $datos['sexo'];
+    $response->write(usuario::AgregarAdmin($nombre,$apellido,$dni,$mail,$sexo));
 });
 //******************************/
 
+/*
+****************************************************************************************************************************************************************
+****************************************  MATERIAS ****************************************
+*/
+$app->post('/altaMateria',function($request,$response){
+    $datos = $request->getParsedBody();
+    $nombre = $datos['nombre'];
+    $aula = $datos['aula'];
+    $response->write(materia::AltaDeMateria($nombre,$aula));
+});
+$app->post('/modiMateria',function($request,$response){
+    $datos = $request->getParsedBody();
+    $nombre = $datos['nombre'];
+    $aula = $datos['aula'];
+    $id = $datos['id'];
+    $response->write(materia::ModificarMateria($id,$nombre,$aula));
+});
+$app->get('/traerTodasLasMaterias',function($request,$response){
+    $response->write(materia::TraerTodasLasMaterias());
+});
 
-
+/*
+****************************************************************************************************************************************************************
+****************************************  CURSOS ****************************************
+*/
+$app->get('/traerCursos',function($request,$response){
+    $response->write(curso::TraerTodosLosCursos());
+});
+$app->post('/agregarCurso',function($request,$response){
+    $datos = $request->getParsedBody();
+    $comision = $datos['comision'];
+    $profesor = $datos['profesor'];
+    $materia = $datos['materia'];
+    $dia = $datos['dia'];
+    $aula = $datos['aula'];
+    $response->write(curso::AgregarCurso($comision,$profesor,$materia,$dia,$aula));
+});
 
 
 
