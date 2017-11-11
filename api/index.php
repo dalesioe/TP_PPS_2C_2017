@@ -131,8 +131,16 @@ $app->get('/traerTodasLasMaterias',function($request,$response){
 ****************************************************************************************************************************************************************
 ****************************************  CURSOS ****************************************
 */
+$app->get('/traerCursosPorDia',function($request,$response){
+    $fecha = date('N');
+    $response->write(curso::TraerCursosPorFecha($fecha));
+
+    return $response;
+});
 $app->get('/traerCursos',function($request,$response){
     $response->write(curso::TraerTodosLosCursos());
+
+    return $response;
 });
 $app->post('/agregarCurso',function($request,$response){
     $datos = $request->getParsedBody();
@@ -142,8 +150,16 @@ $app->post('/agregarCurso',function($request,$response){
     $dia = $datos['dia'];
     $aula = $datos['aula'];
     $response->write(curso::AgregarCurso($comision,$profesor,$materia,$dia,$aula));
-});
 
+    return $response;
+});
+$app->post('/traerListaPorCurso',function($request,$response){
+    $datos= $request->getParsedBody();
+    $idCurso = $datos['idCurso'];
+    $response->write(curso::TraerListaPorCurso($idCurso));
+
+    return $response;
+});
 
 
 //require_once "saludo.php";

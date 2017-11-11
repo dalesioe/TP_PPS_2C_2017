@@ -23,6 +23,32 @@ class curso{
         }
         return $rta;
     }
+    public static function TraerListaPorCurso($idCurso){
+        $rta = false;
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT usuarios.legajo,usuarios.nombre, usuarios.apellido
+                                                        FROM usuarios, curso, detalle_curso
+                                                        WHERE detalle_curso.id_alumno = usuarios.id AND curso.id_curso = detalle_curso.id_curso AND curso.id_curso = :id_curso");
+        $consulta->bindValue(':id_curso',$idCurso);
+        if ($consulta->execute()){
+            $rta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $rta = json_encode($rta);
+        }
+        return $rta;
+    }
+    public static function TraerCursosPorFecha($dia){
+        $rta = false;
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT curso.id_curso, comisiones.nombre AS Comision,materias.nombre AS Materia,usuarios.nombre AS nombre_prof,usuarios.apellido ape_prof
+                                                         FROM comisiones,materias,usuarios,curso
+                                                         WHERE curso.id_comision = comisiones.id_comision AND materias.id = curso.id_materia AND curso.id_profesor = usuarios.id AND curso.dia = :dia ");
+        $consulta->bindValue(':dia',$dia);
+        if ($consulta->execute()){
+            $rta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $rta = json_encode($rta);
+        }
+        return $rta;
+    }
     public static function TraerTodosLosCursos(){
         $rta = false;
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
