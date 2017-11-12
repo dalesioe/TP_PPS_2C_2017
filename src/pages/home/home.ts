@@ -16,7 +16,7 @@ export class HomePage {
 
   }
   login() {
-    if (this.usuario == "admin" && this.pass == "123" || this.usuario == "alumno" && this.pass == "11"|| this.usuario == "profe" && this.pass == "22") {
+    if (this.usuario == "admin" && this.pass == "123" || this.usuario == "alumno" && this.pass == "11"|| this.usuario == "profe" && this.pass == "22" ||this.usuario == "administrativo") {
       this.navCtrl.setRoot(MainPage, { "usuario": this.usuario, "pass": this.pass });
     }
   }

@@ -14,7 +14,51 @@
 
 
 <ion-content padding>
-    
+    <ion-item no-lines>
+      <ion-label>
+        E-Mail: 
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="mail"></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label>
+        Nombre: 
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label>
+        Apellido: 
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="apellido"></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label>
+        DNI: 
+      </ion-label>
+      <ion-input type="number" [(ngModel)]="dni"></ion-input>
+    </ion-item >
+    <ion-item no-lines>
+      <ion-label>Sexo:</ion-label>
+      <ion-select [(ngModel)]="sexo">
+        <ion-option value="f">Femenino</ion-option>
+        <ion-option value="m">Masculino</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item  no-lines>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="tipo">
+        <ion-option *ngIf="usuario=='admin'" value="adm">Administrador</ion-option>
+        <ion-option *ngIf="usuario=='admin'" value="administrativo">Administrativo</ion-option>
+        <ion-option *ngIf="usuario=='admin'" value="profe">Profesor</ion-option>
+        <ion-option *ngIf="usuario=='administrativo'" value="alumno">Alumno</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item no-lines>
+      <button ion-button round color="secondary" style="width:10vh;height: 6vh;left: 40%;" (click)="Alta()">
+        Alta
+      </button>
+    </ion-item>
 </ion-content>
 <ion-footer>
     <button ion-button full color="primary" icon-end (click)="Volver()">
