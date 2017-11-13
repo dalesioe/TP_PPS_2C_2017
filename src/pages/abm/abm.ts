@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MainPage } from '../main/main';
-import { Http } from '@angular/http'
-
+import { Http } from '@angular/http';
+//import 'rxjs/add/operator/map';
 /**
  * Generated class for the AbmPage page.
  *
@@ -25,7 +25,7 @@ export class AbmPage {
   tipo: string;
   usuario: string;
   pass: string;
-  constructor(public http: Http, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.usuario = this.navParams.get('usuario');
     this.pass = this.navParams.get('pass');
   }
@@ -35,18 +35,41 @@ export class AbmPage {
     body = { "nombre": this.nombre, "apellido": this.apellido, "mail": this.mail, "dni": this.dni, "sexo": this.sexo };
     switch (this.tipo) {
       case 'adm':
-        this.http.post("http://www.estacionamiento.16mb.com/git/api/altaAdmin", body);
-        console.log(body);
+        this.http.post("http://www.estacionamiento.16mb.com/git/api/altaAdmin", body)
+          .subscribe(data => {
+            console.log(data['_body']);
+          }, error => {
+            console.log(error);// Error getting the data
+          });
         break;
+
       case 'administrativo':
-        this.http.post("http://www.estacionamiento.16mb.com/git/api/altaAdministrativo", body);
+        this.http.post('http://www.estacionamiento.16mb.com/git/api/altaAdministrativo', body)
+          .subscribe(data => {
+            console.log(data['_body']);
+          }, error => {
+            console.log(error);// Error getting the data
+          });
         break;
+
       case 'profe':
-        this.http.post("http://www.estacionamiento.16mb.com/git/api/altaProfesor", body);
+        this.http.post("http://www.estacionamiento.16mb.com/git/api/altaProfesor", body)
+          .subscribe(data => {
+            console.log(data['_body']);
+          }, error => {
+            console.log(error);// Error getting the data
+          });
         break;
+
       case 'alumno':
-        this.http.post("http://www.estacionamiento.16mb.com/git/api/altaAlumno", body);
+        this.http.post("http://www.estacionamiento.16mb.com/git/api/altaAlumno", body)
+          .subscribe(data => {
+            console.log(data['_body']);
+          }, error => {
+            console.log(error);// Error getting the data
+          });
         break;
+
       default:
         console.log("error");
     }
