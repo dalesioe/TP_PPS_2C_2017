@@ -12,10 +12,10 @@
 
 <ion-content padding>
 
-  <ion-item *ngFor="let curso of cursos">
+  <ion-item *ngFor="let aux of profesores">
     <ion-label>Profesor</ion-label>
     <ion-select [(ngModel)]="ape_prof" interface="popover">
-      <ion-option value='curso.ape_prof'>{{curso.ape_prof}}</ion-option>
+      <ion-option value='aux.apellido'>{{aux.apellido}}</ion-option>
     </ion-select>
   </ion-item>
 
@@ -26,10 +26,17 @@
     </ion-select>
   </ion-item>
 
-  <ion-item *ngFor="let curso of cursos">
-    <ion-label>Materia</ion-label>
+  <ion-item>
+    <ion-label>Materias</ion-label>
     <ion-select [(ngModel)]="Materia" interface="popover">
-      <ion-option value='curso.Materia'>{{curso.Materia}}</ion-option>
+      <ion-option *ngFor="let aux of materias" value='aux.nombre'>{{aux.nombre}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Aulas</ion-label>
+    <ion-select [(ngModel)]="Aula" interface="popover">
+      <ion-option *ngFor="let aux of materias" value='aux.id'>{{aux.aula}}</ion-option>
     </ion-select>
   </ion-item>
 

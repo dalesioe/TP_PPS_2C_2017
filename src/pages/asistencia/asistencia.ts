@@ -23,6 +23,10 @@ export class AsistenciaPage {
   Comision: string;
   Materia: string;
   Dia: string;
+  Aula: string;
+
+  materias: any;
+  profesores: any;
   lista: any;
   cursos: any;
 
@@ -37,8 +41,22 @@ export class AsistenciaPage {
       }, error => {
         console.log(error);// Error getting the data
       });
-    ///////////////////////////////////////
-
+    /////////////TRAER MATERIAS///////////////
+    this.http.get("http://www.estacionamiento.16mb.com/git/api/traerTodasLasMaterias")
+      .subscribe(data => {
+        this.materias = data.json();
+        console.log(data['_body']);
+      }, error => {
+        console.log(error);// Error getting the data
+      });
+    /////////////TRAER PROFESORES///////////////
+    this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosProfes")
+      .subscribe(data => {
+        this.profesores = data.json();
+        console.log(data['_body']);
+      }, error => {
+        console.log(error);// Error getting the data
+      });
   }
 
 
