@@ -27,7 +27,7 @@ export class MainPage {
   usuario: string;
   pass: string;
   abm: boolean;
-  constructor(public menu: MenuController,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public menu: MenuController, public navCtrl: NavController, public navParams: NavParams) {
     this.usuario = this.navParams.get('usuario');
     this.pass = this.navParams.get('pass');
   }
@@ -36,6 +36,9 @@ export class MainPage {
     switch (pagina) {
       case "abm":
         this.navCtrl.setRoot(AbmPage, { "usuario": this.usuario, "pass": this.pass })
+        break;
+      case "asistencia":
+        this.navCtrl.setRoot(AsistenciaPage, { "usuario": this.usuario, "pass": this.pass })
         break;
       case "cursadas":
         this.navCtrl.setRoot(CursadasPage, { "usuario": this.usuario, "pass": this.pass })
@@ -55,12 +58,10 @@ export class MainPage {
     }
 
   }
-  closeMenu()
-  {
+  closeMenu() {
     this.menu.close();
   }
-  Volver()
-  {
+  Volver() {
     this.navCtrl.setRoot(HomePage, { "usuario": this.usuario, "pass": this.pass })
   }
 
