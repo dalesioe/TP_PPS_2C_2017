@@ -12,19 +12,26 @@
 
 <ion-content padding>
 
-Dia: {{Dia}} - Aula: {{Aula}} -- Materia:{{Materia}} -- COmision: {{Comision}} -- Profesor: {{ape_prof}}
+Materia:{{Materia}}  -- Profesor: {{Profesor}} -- Aula: {{Aula}} -- Dia: {{Dia}} 
 
   <ion-item>
-    <ion-label>Materias {{Materia}} </ion-label>
+    <ion-label>Materia</ion-label>
     <ion-select [(ngModel)]="Materia" interface="popover">
       <ion-option *ngFor="let aux of materias" [value]='aux.id'>{{aux.nombre}}</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label>Aulas {{Aula}} </ion-label>
+    <ion-label>Profesor</ion-label>
+    <ion-select [(ngModel)]="Profesor" interface="popover">
+      <ion-option *ngFor="let aux of profesores" [value]='aux.id'>{{aux.nombre}} {{aux.apellido}} </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Aula</ion-label>
     <ion-select [(ngModel)]="Aula" interface="popover">
-      <ion-option *ngFor="let aux of materias" [value]='aux.id' >{{aux.aula}}</ion-option>
+      <ion-option *ngFor="let aux of materias" [value]='aux.id'>{{aux.aula}}</ion-option>
     </ion-select>
   </ion-item>
 
