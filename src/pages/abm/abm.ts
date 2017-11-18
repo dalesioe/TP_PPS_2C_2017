@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { Http } from '@angular/http';
+import { File } from '@ionic-native/file';
 //import 'rxjs/add/operator/map';
 /**
  * Generated class for the AbmPage page.
@@ -25,11 +26,15 @@ export class AbmPage {
   tipo: string;
   usuario: string;
   pass: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public file: File,public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.usuario = this.navParams.get('usuario');
     this.pass = this.navParams.get('pass');
-  }
 
+  }
+  AltaConArchivo()
+  {
+    this.file.checkDir(this.file.dataDirectory, 'mydir').then(_ => console.log('Directory exists')).catch(err => console.log('Directory doesnt exist'));
+  }
   Alta() {
     let body: any;
     body = { "nombre": this.nombre, "apellido": this.apellido, "mail": this.mail, "dni": this.dni, "sexo": this.sexo };
