@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CursadasPage } from '../cursadas/cursadas';
 import { Http } from '@angular/http';
 /**
@@ -26,8 +26,11 @@ export class AsistenciaPage {
 
   materias: any;
   profesores: any;
+  alumnos: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  verAsistencia: boolean = true;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public alertCtrl: AlertController) {
     this.usuario = this.navParams.get('usuario');
     this.pass = this.navParams.get('pass');
     /////////////TRAER MATERIAS Y AULAS///////////////
@@ -48,9 +51,49 @@ export class AsistenciaPage {
       });
   }
 
+  traer() {
+    this.verAsistencia = false;
+    /////////////TRAER ALUMNOS///////////////
+    this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosAlumnos")
+      .subscribe(data => {
+        this.alumnos = data.json();
+        console.log(data['_body']);
+      }, error => {
+        console.log(error);// Error getting the data
+      });
+  }
+
+  VolverEleccion() {
+    this.Materia = null;
+    this.Profesor = null;
+    this.Aula = null;
+    this.Dia = null;
+    this.verAsistencia = true;
+  }
+  ConfirmarAsistencia() {
+    let confirm = this.alertCtrl.create({
+      title: 'Confirmacion',
+      message: '¿Desea confirmar la asistencia marcada?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.VolverEleccion();
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
 
 
-
+  }
 
 
   Volver() {

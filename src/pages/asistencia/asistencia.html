@@ -12,49 +12,64 @@
 
 <ion-content padding>
 
-Materia:{{Materia}}  -- Profesor: {{Profesor}} -- Aula: {{Aula}} -- Dia: {{Dia}} 
+  Materia:{{Materia}} -- Profesor: {{Profesor}} -- Aula: {{Aula}} -- Dia: {{Dia}}
+  <ion-content *ngIf="verAsistencia">
 
-  <ion-item>
-    <ion-label>Materia</ion-label>
-    <ion-select [(ngModel)]="Materia" interface="popover">
-      <ion-option *ngFor="let aux of materias" [value]='aux.id'>{{aux.nombre}}</ion-option>
-    </ion-select>
-  </ion-item>
+    <h4>Elegir Dia</h4>
+    <ion-item>
+      <ion-label>Dia</ion-label>
+      <ion-select [(ngModel)]="Dia" interface="popover">
+        <ion-option value='0'>Lunes</ion-option>
+        <ion-option value='1'>Martes</ion-option>
+        <ion-option value='2'>Miercoles</ion-option>
+        <ion-option value='3'>Jueves</ion-option>
+        <ion-option value='4'>Viernes</ion-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Profesor</ion-label>
-    <ion-select [(ngModel)]="Profesor" interface="popover">
-      <ion-option *ngFor="let aux of profesores" [value]='aux.id'>{{aux.nombre}} {{aux.apellido}} </ion-option>
-    </ion-select>
-  </ion-item>
+    <h5>Elegir Criterio</h5>
+    <ion-item>
+      <ion-label>Materia</ion-label>
+      <ion-select [(ngModel)]="Materia" interface="popover">
+        <ion-option *ngFor="let aux of materias" [value]='aux.id'>{{aux.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button color="secondary" round (click)="traer()" *ngIf="Materia && Dia">Traer listado por Materia y Dia</button>
 
-  <ion-item>
-    <ion-label>Aula</ion-label>
-    <ion-select [(ngModel)]="Aula" interface="popover">
-      <ion-option *ngFor="let aux of materias" [value]='aux.id'>{{aux.aula}}</ion-option>
-    </ion-select>
-  </ion-item>
+    <ion-item>
+      <ion-label>Profesor</ion-label>
+      <ion-select [(ngModel)]="Profesor" interface="popover">
+        <ion-option *ngFor="let aux of profesores" [value]='aux.id'>{{aux.nombre}} {{aux.apellido}} </ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button color="secondary" round (click)="traer()" *ngIf="Profesor && Dia">Traer listado por Profesor y Dia</button>
 
-  <ion-item>
-    <ion-label>Dia</ion-label>
-    <ion-select [(ngModel)]="Dia" interface="popover">
-      <ion-option value='0'>Lunes</ion-option>
-      <ion-option value='1'>Martes</ion-option>
-      <ion-option value='2'>Miercoles</ion-option>
-      <ion-option value='3'>Jueves</ion-option>
-      <ion-option value='4'>Viernes</ion-option>
-    </ion-select>
-  </ion-item>
-  <br>
-  <br>
-  <ion-buttons end>
-    <button ion-button icon-only> Traer Listado
-      <ion-icon name="clipboard"></ion-icon>
+    <ion-item>
+      <ion-label>Aula</ion-label>
+      <ion-select [(ngModel)]="Aula" interface="popover">
+        <ion-option *ngFor="let aux of materias" [value]='aux.id'>{{aux.aula}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button color="secondary" round (click)="traer()" *ngIf="Aula && Dia">Traer listado por Aula y Dia</button>
+  </ion-content>
+
+
+  <ion-content *ngIf="!verAsistencia">
+    <h2>Listado de Alumnos</h2>
+    <ion-item *ngFor="let alumno of alumnos">
+      <ion-label>{{alumno.nombre}} {{alumno.apellido}} </ion-label>
+      <ion-checkbox color="secondary"></ion-checkbox>
+    </ion-item>
+    <button ion-button color="primary" icon-end (click)="ConfirmarAsistencia()">
+      Confirmar Asistencia
     </button>
-  </ion-buttons>
+  </ion-content>
 
 </ion-content>
 <ion-footer>
+  <button *ngIf="!verAsistencia" ion-button full color="secondary" icon-end (click)="VolverEleccion()">
+    Volver a Eleccion de curso
+  </button>
   <button ion-button full color="primary" icon-end (click)="Volver()">
     Volver
   </button>
