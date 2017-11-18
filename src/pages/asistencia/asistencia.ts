@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { CursadasPage } from '../cursadas/cursadas';
+import { MainPage } from '../main/main';
 import { Http } from '@angular/http';
 /**
  * Generated class for the AsistenciaPage page.
@@ -97,6 +97,6 @@ export class AsistenciaPage {
 
 
   Volver() {
-    this.navCtrl.setRoot(CursadasPage, { "usuario": this.usuario, "pass": this.pass })
+    this.navCtrl.setRoot(MainPage, { "usuario": this.usuario, "pass": this.pass })
   }
 }

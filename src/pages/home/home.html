@@ -20,11 +20,11 @@
 
   <div *ngIf="esUsuario">
     <ion-item class="fondo2">
-      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario"></ion-input>
+      <ion-input type="text" placeholder="Mail" [(ngModel)]="mail"></ion-input>
     </ion-item>
 
     <ion-item class="fondo2">
-      <ion-input type="password" placeholder="Password" [(ngModel)]="pass"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
     </ion-item>
     <br>
     <button ion-button color="primary" icon-end (click)="login()">

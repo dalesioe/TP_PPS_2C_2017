@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {MainPage} from '../main/main';
+import { MainPage } from '../main/main';
 
 /**
  * Generated class for the AdmPerfilPage page.
@@ -16,16 +16,26 @@ import {MainPage} from '../main/main';
 })
 export class AdmPerfilPage {
 
-  usuario:string;
-  pass:string;
+  id: number;
+  nombre: string;
+  apellido: string;
+  mail: string;
+  password: string;
+  legajo: number;
+  tipo: number;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.usuario = this.navParams.get('usuario');
-    this.pass = this.navParams.get('pass');
+    this.id = this.navParams.get('id');
+    this.nombre = this.navParams.get('nombre');
+    this.apellido = this.navParams.get('apellido');
+    this.mail = this.navParams.get('mail');
+    this.password = this.navParams.get('password');
+    this.legajo = this.navParams.get('legajo');
+    this.tipo = this.navParams.get('tipo');
   }
 
-  Volver()
-  {
-    this.navCtrl.setRoot(MainPage, { "usuario": this.usuario, "pass": this.pass })
+  Volver() {
+    this.navCtrl.setRoot(MainPage)
   }
 
 }

@@ -24,36 +24,56 @@ import { MenuController } from 'ionic-angular';
   templateUrl: 'main.html',
 })
 export class MainPage {
-  usuario: string;
-  pass: string;
+  id: number;
+  nombre: string;
+  apellido: string;
+  mail: string;
+  password: string;
+  legajo: number;
+  tipo: number;
+
   abm: boolean;
   constructor(public menu: MenuController, public navCtrl: NavController, public navParams: NavParams) {
-    this.usuario = this.navParams.get('usuario');
-    this.pass = this.navParams.get('pass');
+    this.id = this.navParams.get('id');
+    this.nombre = this.navParams.get('nombre');
+    this.apellido = this.navParams.get('apellido');
+    this.mail = this.navParams.get('mail');
+    this.password = this.navParams.get('password');
+    this.legajo = this.navParams.get('legajo');
+    this.tipo = this.navParams.get('tipo');
+
   }
 
   openPage(pagina: string) {
     switch (pagina) {
       case "abm":
-        this.navCtrl.setRoot(AbmPage, { "usuario": this.usuario, "pass": this.pass })
+        this.navCtrl.setRoot(AbmPage)
         break;
       case "asistencia":
-        this.navCtrl.setRoot(AsistenciaPage, { "usuario": this.usuario, "pass": this.pass })
+        this.navCtrl.setRoot(AsistenciaPage)
         break;
       case "cursadas":
-        this.navCtrl.setRoot(CursadasPage, { "usuario": this.usuario, "pass": this.pass })
+        this.navCtrl.setRoot(CursadasPage)
         break;
       case "encuesta":
-        this.navCtrl.setRoot(EncuestaPage, { "usuario": this.usuario, "pass": this.pass })
+        this.navCtrl.setRoot(EncuestaPage)
         break;
       case "qrs":
-        this.navCtrl.setRoot(QRsPage, { "usuario": this.usuario, "pass": this.pass })
+        this.navCtrl.setRoot(QRsPage)
         break;
       case "descarga":
-        this.navCtrl.setRoot(DescargasPage, { "usuario": this.usuario, "pass": this.pass })
+        this.navCtrl.setRoot(DescargasPage)
         break;
       case "perfil":
-        this.navCtrl.setRoot(AdmPerfilPage, { "usuario": this.usuario, "pass": this.pass })
+        this.navCtrl.setRoot(AdmPerfilPage, {
+          "id": this.id,
+          "nombre": this.nombre,
+          "apellido": this.apellido,
+          "mail": this.mail,
+          "password": this.password,
+          "legajo": this.legajo,
+          "tipo": this.tipo
+        })
         break;
     }
 
@@ -62,7 +82,7 @@ export class MainPage {
     this.menu.close();
   }
   Volver() {
-    this.navCtrl.setRoot(HomePage, { "usuario": this.usuario, "pass": this.pass })
+    this.navCtrl.setRoot(HomePage)
   }
 
 }
