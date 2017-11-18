@@ -14,10 +14,43 @@
 
 
 <ion-content padding>
-{{id}}..{{nombre}}..{{apellido}}..{{mail}}..{{password}}..{{legajo}}..{{tipo}}
+
+  <ion-card>
+
+    <img src="assets/img/perfil.jpg" width="500" height="200" />
+
+    <ion-card-content>
+      <ion-card-title>
+        {{nombre}} {{apellido}}
+      </ion-card-title>
+      <p>
+        Datos Perfil
+      </p>
+    </ion-card-content>
+
+    <ion-item>
+      <ion-icon name='mail' item-start style="color: #d12020"></ion-icon>
+      Mail: {{mail}}
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='attach' item-start style="color: #55acee"></ion-icon>
+      Legajo: {{legajo}}
+    </ion-item>
+
+    <ion-item>
+      <ion-buttons end>
+        <button ion-button outline icon-only>Cambiar Contraseña
+          <ion-icon name='body' style="color: #43d120"></ion-icon>
+        </button>
+        </ion-buttons>
+    </ion-item>
+
+  </ion-card>
+
 </ion-content>
 <ion-footer>
-    <button ion-button full color="primary" icon-end (click)="Volver()">
-        Volver        
-      </button>
+  <button ion-button full color="primary" icon-end (click)="Volver()">
+    Volver
+  </button>
 </ion-footer>
