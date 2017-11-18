@@ -44,10 +44,10 @@ export class MainPage {
 
   }
 
-  openPage(pagina: string) {
+  openPage(pagina: string, tipo?: number) {
     switch (pagina) {
       case "abm":
-        this.navCtrl.setRoot(AbmPage)
+        this.navCtrl.setRoot(AbmPage, { "tipo": tipo })
         break;
       case "asistencia":
         this.navCtrl.setRoot(AsistenciaPage)

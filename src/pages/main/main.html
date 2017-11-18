@@ -13,8 +13,14 @@
 <ion-content padding>
   <ion-list>
 
-    <button *ngIf="usuario=='admin' || usuario=='administrativo'" ion-item (click)="openPage('abm')">
-      Altas
+    <button *ngIf="tipo =='1' || tipo =='3'" ion-item (click)="openPage('abm','4')">
+      Alta Alumno
+    </button>
+    <button *ngIf="tipo =='1'" ion-item (click)="openPage('abm','2')">
+      Alta Profesor
+    </button>
+    <button *ngIf="tipo  =='1' " ion-item (click)="openPage('abm','3')">
+      Alta Administrativo
     </button>
     <button ion-item (click)="openPage('asistencia')">
       Asistencia

@@ -17,7 +17,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public http: Http) {
     /////////////TRAER USUARIOS///////////////
-    this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosProfes")
+    this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosUsuarios")
       .subscribe(data => {
         this.usuarios = data.json();
         console.log(data['_body']);
