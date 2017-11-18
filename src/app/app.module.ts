@@ -17,6 +17,8 @@ import { HomePage } from '../pages/home/home';
 import { ApiabmProvider } from '../providers/apiabm/apiabm';
 import { ChartsModule } from 'ng2-charts';
 import { HttpModule } from '@angular/http';
+import {File} from '@ionic-native/file';
+
 @NgModule({
   declarations: [
     MyApp,
