@@ -46,13 +46,13 @@ export class HomePage {
   asignarUsuario(tipo) {
     switch (tipo) {
       case "admin": {
-        this.mail = "jm@gmail.com";
-        this.password = "28745365";
+        this.mail = "guillermo_fink@hotmail.com";
+        this.password = "321321321";
         break;
       }
       case "alumno": {
         this.mail = "asd@hotmail.com";
-        this.password = "3641598611";
+        this.password = "36415986";
         break;
       }
       case "profesor": {
@@ -61,8 +61,8 @@ export class HomePage {
         break;
       }
       case "administrativo": {
-        this.mail = "guillermo_fink@hotmail.com";
-        this.password = "321321321";
+        this.mail = "jm@gmail.com";
+        this.password = "28745365";
         break;
       }
     }

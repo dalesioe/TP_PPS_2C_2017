@@ -16,33 +16,43 @@
     <button *ngIf="tipo =='1' || tipo =='3'" ion-item (click)="openPage('abm','4')">
       Alta Alumno
     </button>
+
     <button *ngIf="tipo =='1'" ion-item (click)="openPage('abm','2')">
       Alta Profesor
     </button>
+
     <button *ngIf="tipo  =='1' " ion-item (click)="openPage('abm','3')">
       Alta Administrativo
     </button>
-    <button ion-item (click)="openPage('asistencia')">
+
+    <button *ngIf="tipo  =='3' " ion-item (click)="openPage('asistencia')">
       Asistencia
     </button>
+
     <button ion-item (click)="openPage('cursadas')">
       Cursadas
     </button>
-    <button *ngIf="usuario=='profe'" ion-item (click)="openPage('encuesta')">
+
+    <button *ngIf="tipo=='2'" ion-item (click)="openPage('encuesta')">
       Encuesta
     </button>
+
     <button ion-item (click)="openPage('qrs')">
       Lector QR
     </button>
+
     <button ion-item (click)="openPage('descarga')">
       Descarga
     </button>
+
     <button ion-item (click)="openPage('perfil')">
       Perfil
     </button>
+
     <button ion-item (click)="closeMenu()">
       Close Menu
     </button>
+
   </ion-list>
 </ion-content>
 
