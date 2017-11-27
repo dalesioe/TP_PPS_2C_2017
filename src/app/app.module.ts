@@ -18,6 +18,8 @@ import { ApiabmProvider } from '../providers/apiabm/apiabm';
 import { ChartsModule } from 'ng2-charts';
 import { HttpModule } from '@angular/http';
 import {File} from '@ionic-native/file';
+import { BarcodeScanner }from '@ionic-native/barcode-scanner';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import {File} from '@ionic-native/file';
   imports: [
     BrowserModule,
     ChartsModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp),
     HttpModule
   ],
@@ -56,6 +59,7 @@ import {File} from '@ionic-native/file';
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiabmProvider
   ]

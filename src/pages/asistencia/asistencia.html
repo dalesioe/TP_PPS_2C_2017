@@ -9,7 +9,7 @@
     <ion-title>Asistencia</ion-title>
   </ion-navbar>
 </ion-header>
-
+<!--
 <ion-content padding>
 
   Materia:{{Materia}} -- Profesor: {{Profesor}} -- Aula: {{Aula}} -- Dia: {{Dia}}
@@ -66,6 +66,45 @@
   </ion-content>
 
 </ion-content>
+-->
+
+  <ion-content>
+    <h2>TEST PROFESOR</h2>
+    
+      <h2>TEST</h2>
+      <button ion-button round color="dark" (click)="traerInformacion(21)">Lista del día</button>
+      <!--<input type="number" [(ngModel)]="test_aula">-->
+      <ion-grid *ngFor ="let aux of test_data">
+        <ion-row>
+          <ion-col>
+              Comision:{{aux.Comision}}
+          </ion-col>
+          <ion-col>
+              Materia: {{aux.Materia}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Profesor:{{aux.nombre_prof}}{{aux.ape_prof}}
+          </ion-col>
+          <ion-col>
+            Aula: {{aux.aula}}
+          </ion-col>
+        </ion-row>
+        
+        
+      </ion-grid>
+      <h2>Listado de Alumnos</h2>
+      <ion-item *ngFor="let alumno of alumnos">
+        <ion-label>{{alumno.nombre}} {{alumno.apellido}} </ion-label>
+        <ion-checkbox color="secondary"></ion-checkbox>
+      </ion-item>
+      <button ion-button color="primary" icon-end (click)="ConfirmarAsistencia()">
+        Confirmar Asistencia
+      </button>
+    </ion-content>
+  
+
 <ion-footer>
   <button *ngIf="!verAsistencia" ion-button full color="secondary" icon-end (click)="VolverEleccion()">
     Volver a Eleccion de curso
