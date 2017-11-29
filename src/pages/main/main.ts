@@ -50,7 +50,15 @@ export class MainPage {
         this.navCtrl.setRoot(AbmPage, { "tipo": tipo })
         break;
       case "asistencia":
-        this.navCtrl.setRoot(AsistenciaPage)
+        this.navCtrl.setRoot(AsistenciaPage, {
+          "id": this.id,
+          "nombre": this.nombre,
+          "apellido": this.apellido,
+          "mail": this.mail,
+          "password": this.password,
+          "legajo": this.legajo,
+          "tipo": this.tipo
+        });
         break;
       case "cursadas":
         this.navCtrl.setRoot(CursadasPage)

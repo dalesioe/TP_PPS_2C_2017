@@ -6,8 +6,9 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Asistencia</ion-title>
+    <ion-title>Asistencia</ion-title><h4 (click)="modificarPerfil(id)"><ion-icon name="contact"></ion-icon> {{nombre}} {{apellido}}</h4>
   </ion-navbar>
+  
 </ion-header>
 <!--
 <ion-content padding>
@@ -69,10 +70,8 @@
 -->
 
   <ion-content>
-    <h2>TEST PROFESOR</h2>
-    
-      <h2>TEST</h2>
-      <button ion-button round color="dark" (click)="traerInformacion(21)">Lista del día</button>
+    <div *ngIf= "tipo == 3">
+      <button ion-button full color="dark" (click)="traerInformacion(205)">Escanear QR Aula para tomar asistencia</button>
       <!--<input type="number" [(ngModel)]="test_aula">-->
       <ion-grid *ngFor ="let aux of test_data">
         <ion-row>
@@ -91,24 +90,57 @@
             Aula: {{aux.aula}}
           </ion-col>
         </ion-row>
-        
-        
       </ion-grid>
+  <div *ngIf="verAsistencia">
       <h2>Listado de Alumnos</h2>
-      <ion-item *ngFor="let alumno of alumnos">
-        <ion-label>{{alumno.nombre}} {{alumno.apellido}} </ion-label>
-        <ion-checkbox color="secondary"></ion-checkbox>
-      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            Legajo
+          </ion-col>
+          <ion-col>
+            Apellido
+          </ion-col>
+          <ion-col>
+            Nombre
+          </ion-col>
+          <ion-col>
+            Presente
+          </ion-col>
+        </ion-row>
+      <div *ngFor="let alumno of alumnos">
+        <ion-row>
+          <ion-col>
+              {{alumno.legajo}}
+          </ion-col>
+          <ion-col>
+              {{alumno.apellido}}
+          </ion-col>
+          <ion-col>
+              {{alumno.nombre}}
+          </ion-col>
+          <ion-col>
+              <ion-checkbox color="secondary" (ionChange)='presente(alumno.id)'></ion-checkbox>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
       <button ion-button color="primary" icon-end (click)="ConfirmarAsistencia()">
         Confirmar Asistencia
       </button>
+      <button ion-button color="danger" icon-end (click)="CancelarAsistencia()">
+        Cancelar Asistencia
+      </button>
+    </button>
+    <button ion-button color="secondary" icon-end (click)="tomarFoto()">
+      Sacar Foto
+    </button>
+    </div>
+  </div>
     </ion-content>
   
 
 <ion-footer>
-  <button *ngIf="!verAsistencia" ion-button full color="secondary" icon-end (click)="VolverEleccion()">
-    Volver a Eleccion de curso
-  </button>
   <button ion-button full color="primary" icon-end (click)="Volver()">
     Volver
   </button>

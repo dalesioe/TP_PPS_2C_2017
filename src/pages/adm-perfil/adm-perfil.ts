@@ -35,7 +35,15 @@ export class AdmPerfilPage {
   }
 
   Volver() {
-    this.navCtrl.setRoot(MainPage)
+    this.navCtrl.setRoot(MainPage, {
+      "id": this.id,
+      "nombre": this.nombre,
+      "apellido": this.apellido,
+      "mail": this.mail,
+      "password": this.password,
+      "legajo": this.legajo,
+      "tipo": this.tipo
+    });
   }
 
 }
