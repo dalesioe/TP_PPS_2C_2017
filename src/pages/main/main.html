@@ -13,27 +13,31 @@
 <ion-content padding>
   <ion-list>
 
-    <button *ngIf="tipo =='1' || tipo =='3'" ion-item (click)="openPage('abm','4')">
+    <button *ngIf="tipoUsuario =='1' || tipoUsuario =='3'" ion-item (click)="openPage('abm','4')">
       Alta Alumno
     </button>
 
-    <button *ngIf="tipo =='1'" ion-item (click)="openPage('abm','2')">
+    <button *ngIf="tipoUsuario =='1'" ion-item (click)="openPage('abm','2')">
       Alta Profesor
     </button>
 
-    <button *ngIf="tipo  =='1' " ion-item (click)="openPage('abm','3')">
+    <button *ngIf="tipoUsuario  =='1' " ion-item (click)="openPage('abm','3')">
       Alta Administrativo
     </button>
 
-    <button *ngIf="tipo  =='3' " ion-item (click)="openPage('asistencia')">
+    <button *ngIf="tipoUsuario  =='3' " ion-item (click)="openPage('asistencia')">
       Asistencia
+    </button>
+
+    <button *ngIf="tipoUsuario =='1' || tipoUsuario =='3'" ion-item (click)="openPage('excel')">
+      Importar/Descargar Excel
     </button>
 
     <button ion-item (click)="openPage('cursadas')">
       Cursadas
     </button>
 
-    <button *ngIf="tipo=='2' || tipo =='4'" ion-item (click)="openPage('encuesta')">
+    <button *ngIf="tipoUsuario=='2' || tipoUsuario =='4'" ion-item (click)="openPage('encuesta')">
       Encuesta
     </button>
 

@@ -12,6 +12,7 @@ import { HomePage } from '../home/home';
 import { MenuController, AlertController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { ExcelPage } from '../excel/excel';
 /**
  * Generated class for the MainPage page.
  *
@@ -31,7 +32,7 @@ export class MainPage {
   mail: string;
   password: string;
   legajo: number;
-  tipo: number;
+  tipoUsuario: number;
 
   abm: boolean;
   //mensajes push
@@ -47,11 +48,11 @@ export class MainPage {
     this.mail = this.navParams.get('mail');
     this.password = this.navParams.get('password');
     this.legajo = this.navParams.get('legajo');
-    this.tipo = this.navParams.get('tipo');
+    this.tipoUsuario = this.navParams.get('tipo');
 
     this.itemsRef = afDB.list('/mensajes');
     //mensaje push
-    if (this.tipo == 4) {
+    if (this.tipoUsuario == 4) {
 
       this.mensaje = afDB.list('/mensajes').valueChanges();
       this.mensaje.forEach(element => {
@@ -75,7 +76,7 @@ export class MainPage {
   openPage(pagina: string, tipo?: number) {
     switch (pagina) {
       case "abm":
-        this.navCtrl.setRoot(AbmPage, { "tipo": tipo })
+        this.navCtrl.setRoot(AbmPage, { "tipo": tipo, 'tipoUsuario': this.tipoUsuario })
         break;
       case "asistencia":
         this.navCtrl.setRoot(AsistenciaPage, {
@@ -85,7 +86,7 @@ export class MainPage {
           "mail": this.mail,
           "password": this.password,
           "legajo": this.legajo,
-          "tipo": this.tipo
+          "tipo": this.tipoUsuario
         });
         break;
       case "cursadas":
@@ -99,7 +100,7 @@ export class MainPage {
           "mail": this.mail,
           "password": this.password,
           "legajo": this.legajo,
-          "tipo": this.tipo
+          "tipo": this.tipoUsuario
         })
         break;
       case "qrs":
@@ -107,6 +108,9 @@ export class MainPage {
         break;
       case "descarga":
         this.navCtrl.setRoot(DescargasPage)
+        break;
+      case "excel":
+        this.navCtrl.setRoot(ExcelPage, { "nombre": this.nombre, "tipoUsuario": this.tipoUsuario })
         break;
       case "perfil":
         this.navCtrl.setRoot(AdmPerfilPage, {
@@ -116,7 +120,7 @@ export class MainPage {
           "mail": this.mail,
           "password": this.password,
           "legajo": this.legajo,
-          "tipo": this.tipo
+          "tipo": this.tipoUsuario
         })
         break;
     }

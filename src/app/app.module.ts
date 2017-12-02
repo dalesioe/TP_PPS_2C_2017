@@ -10,6 +10,7 @@ import { AsistenciaPage } from '../pages/asistencia/asistencia';
 import { CursadasPage } from '../pages/cursadas/cursadas';
 import { DescargasPage } from '../pages/descargas/descargas';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
+import {ExcelPage} from '../pages/excel/excel';
 import { GraficoEncuestaPage } from '../pages/grafico-encuesta/grafico-encuesta';
 import { MainPage } from '../pages/main/main';
 import { QRsPage } from '../pages/q-rs/q-rs';
@@ -46,7 +47,8 @@ firebase.initializeApp(config)
     EncuestaPage,
     GraficoEncuestaPage,
     MainPage,
-    QRsPage
+    QRsPage,
+    ExcelPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ firebase.initializeApp(config)
     EncuestaPage,
     GraficoEncuestaPage,
     MainPage,
-    QRsPage
+    QRsPage,
+    ExcelPage
   ],
   providers: [
     StatusBar,
