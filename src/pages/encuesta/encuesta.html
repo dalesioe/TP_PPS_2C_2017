@@ -14,19 +14,51 @@
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-label>Crear Encuesta</ion-label>
+    <ion-checkbox color="dark" checked="true" [(ngModel)]="CrearEncuestaSiNO"></ion-checkbox>
+  </ion-item>
 
-  <div style="display: block">
-    <canvas baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-  </div>
+  <button *ngIf="tipo =='2'" ion-button color="dark" icon-end (click)="VerResultado()">
+    Ver Resultado
+  </button>
+  <button *ngIf="tipo =='4'" ion-button color="danger" icon-end (click)="CrearEncuesta()">
+    Responder Encuesta (QR)
+  </button>
 
-</ion-content>
-<ion-footer>
+  <ion-list *ngIf="tipo =='2' && CrearEncuestaSiNO==true" inset>
+    <ion-item>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Opcion 1</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Opcion 2</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Tipo</ion-label>
+      <ion-select>
+        <ion-option value="nes">Radio</ion-option>
+        <ion-option value="n64">Check</ion-option>
+        <ion-option value="ps">Opciones</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button ion-button color="danger" icon-end (click)="CrearEncuesta()">
+      Crear Encuesta
+    </button>
+
+  </ion-list>
+
+  <ion-footer>
     <button ion-button full color="primary" icon-end (click)="Volver()">
-        Volver        
-      </button>
-</ion-footer>
+      Volver
+    </button>
+  </ion-footer>

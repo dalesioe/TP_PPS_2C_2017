@@ -21,6 +21,9 @@ import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/Camera';
 import { BarcodeScanner }from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import firebase from 'firebase';
 export var config={
   apiKey: "AIzaSyATWFegAdRiCzbOFNGncu53dG21hjP0US8",
@@ -50,7 +53,10 @@ firebase.initializeApp(config)
     ChartsModule,
     NgxQRCodeModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,6 +78,7 @@ firebase.initializeApp(config)
     File,
     SplashScreen,
     BarcodeScanner,
+    AngularFireDatabase,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiabmProvider
   ]

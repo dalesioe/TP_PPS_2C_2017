@@ -33,7 +33,7 @@
       Cursadas
     </button>
 
-    <button *ngIf="tipo=='2'" ion-item (click)="openPage('encuesta')">
+    <button *ngIf="tipo=='2' || tipo =='4'" ion-item (click)="openPage('encuesta')">
       Encuesta
     </button>
 
@@ -57,6 +57,9 @@
 </ion-content>
 
 <ion-footer>
+  <button *ngIf="tipo=='2'" ion-button full color="secondary" icon-end (click)="EnviarMensaje()">
+    Mensaje de Importancia
+  </button>
   <button ion-button full color="primary" icon-end (click)="Volver()">
     Salir
   </button>
