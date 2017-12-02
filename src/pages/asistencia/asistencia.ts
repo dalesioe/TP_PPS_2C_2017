@@ -50,6 +50,8 @@ export class AsistenciaPage {
   materias: any;
   profesores: any;
   alumnos: any;
+  principioURL: string = "https://firebasestorage.googleapis.com/v0/b/fotos-aula.appspot.com/o/";
+  finURL: string ;
 
   imagenes: string[] = [];
   verimagen: boolean = false;
@@ -102,21 +104,23 @@ export class AsistenciaPage {
       console.log(error);// Error getting the data
     });
   }
-  fotoDeAula(){
+  fotoDeAula(id_asist){
     this.camara.getPicture({
       correctOrientation: true,
       quality: 50,
+      targetHeight: 500,
+      targetWidth: 500,
       destinationType: this.camara.DestinationType.DATA_URL,
       sourceType: this.camara.PictureSourceType.CAMERA,
       encodingType: this.camara.EncodingType.JPEG,
       saveToPhotoAlbum: true
     }).then(imagedata =>{
       this.picdata = imagedata;
-      this.upload()
+      this.upload(id_asist)
     })
   }
-  upload(){
-    this.mypicref.child('img').child('pic.jpeg')
+  upload(id_asist){
+    this.mypicref.child('img').child(id_asist+'.jpeg')
     .putString(this.picdata,'base64',{contentType:'image/jpeg'})
     .then(savepic=>{
       this.picurl=savepic.downloadURL
@@ -142,6 +146,27 @@ export class AsistenciaPage {
     this.verAsistencia = true;
   }
   ConfirmarAsistencia() {
+    let body: any;
+    var lastPart = this.picurl.split("/").pop();
+    lastPart = lastPart.replace('&','&amp;');
+    body = { "urlFoto": lastPart };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/updateFotoAsistencia", body)
+      .subscribe(data => {
+        console.log(data['_body']);
+        alert("Asistencia guardada");
+        this.navCtrl.setRoot(AsistenciaPage, {
+          "id": this.id,
+          "nombre": this.nombre,
+          "apellido": this.apellido,
+          "mail": this.mail,
+          "password": this.password,
+          "legajo": this.legajo,
+          "tipo": this.tipo
+        })
+      }, error => {
+        console.log(error);// Error getting the data
+      });
+    /*
     let confirm = this.alertCtrl.create({
       title: 'Confirmacion',
       message: '¿Desea confirmar la asistencia marcada?',
@@ -162,7 +187,7 @@ export class AsistenciaPage {
       ]
     });
     confirm.present();
-
+*/
 
   }
 
@@ -294,6 +319,7 @@ export class AsistenciaPage {
       });
   }
   asistenciaPorId(asistencia) {
+    this.fotoAsistenciaRecuperada(asistencia);
     let body: any;
     body = { "idAsist": asistencia };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/asistenciaPorId", body)
@@ -301,6 +327,17 @@ export class AsistenciaPage {
         this.alumnosHistorico = data.json();
         this.mostrarHistorico = false;
         this.listadoHistorico = true;
+        console.log(data['_body']);
+      }, error => {
+        console.log(error);// Error getting the data
+      });
+  }
+  fotoAsistenciaRecuperada(asistencia){
+    let body: any;
+    body = { "idAsist": asistencia };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/fotoAsistenciaRecuperada", body)
+      .subscribe(data => {
+        this.finURL = data['_body'];
         console.log(data['_body']);
       }, error => {
         console.log(error);// Error getting the data
