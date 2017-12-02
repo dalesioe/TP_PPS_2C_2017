@@ -17,10 +17,20 @@ import { HomePage } from '../pages/home/home';
 import { ApiabmProvider } from '../providers/apiabm/apiabm';
 import { ChartsModule } from 'ng2-charts';
 import { HttpModule } from '@angular/http';
-import {File} from '@ionic-native/file';
+import { File } from '@ionic-native/file';
+import { Camera } from '@ionic-native/Camera';
 import { BarcodeScanner }from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
-
+import firebase from 'firebase';
+export var config={
+  apiKey: "AIzaSyATWFegAdRiCzbOFNGncu53dG21hjP0US8",
+  authDomain: "fotos-aula.firebaseapp.com",
+  databaseURL: "https://fotos-aula.firebaseio.com",
+  projectId: "fotos-aula",
+  storageBucket: "fotos-aula.appspot.com",
+  messagingSenderId: "803546377331"
+}
+firebase.initializeApp(config)
 @NgModule({
   declarations: [
     MyApp,
@@ -58,6 +68,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
   ],
   providers: [
     StatusBar,
+    Camera,
+    File,
     SplashScreen,
     BarcodeScanner,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

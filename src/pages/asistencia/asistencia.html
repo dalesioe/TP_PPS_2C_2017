@@ -71,8 +71,54 @@
 
   <ion-content>
     <div *ngIf= "tipo == 3">
-      <button ion-button full color="dark" (click)="traerInformacion(205)">Escanear QR Aula para tomar asistencia</button>
-      <!--<input type="number" [(ngModel)]="test_aula">-->
+      <button ion-button full color="dark" (click)="listaAula()">Escanear QR Aula para tomar asistencia</button>
+      <button ion-button full color="primary" (click)="traerInformacionAsistencias()">Revisar asistencias</button>
+      <img src="{{picurl}}"/>
+      <div *ngIf= "mostrarHistorico == true">
+          <div *ngFor= "let aux of historicoAsistencia">
+              <button ion-button full (click)="asistenciaPorId(aux.id_asistencia)">{{aux.fecha}} - {{aux.nombre}} - {{aux.comision}}</button>
+            </div>
+      </div>
+      <div *ngIf= "listadoHistorico == true">
+          <ion-grid>
+              <ion-row>
+                <ion-col>
+                  Legajo
+                </ion-col>
+                <ion-col>
+                  Apellido
+                </ion-col>
+                <ion-col>
+                  Nombre
+                </ion-col>
+                <ion-col>
+                  Presente
+                </ion-col>
+              </ion-row>
+              <div  *ngFor="let aux of alumnosHistorico">
+                  <ion-row>
+                      <ion-col>
+                          {{aux.legajo}}
+                      </ion-col>
+                      <ion-col>
+                          {{aux.apellido}}
+                      </ion-col>
+                      <ion-col>
+                          {{aux.nombre}}
+                      </ion-col>
+                      <ion-col>
+                        <div *ngIf="aux.presente > 0  && tipo == 3">
+                            <ion-checkbox color="secondary" (ionChange)='presente(aux.id)' checked ></ion-checkbox>
+                        </div>
+                        <div *ngIf="aux.presente < 0 && tipo == 3">
+                            <ion-checkbox color="secondary" (ionChange)='presente(aux.id)' ></ion-checkbox>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+              </div>
+              </ion-grid>
+              <button ion-button full (click)="mostrarprincipal()">Volver</button>
+      </div>
       <ion-grid *ngFor ="let aux of test_data">
         <ion-row>
           <ion-col>
@@ -84,7 +130,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            Profesor:{{aux.nombre_prof}}{{aux.ape_prof}}
+            Profesor:{{aux.nombre_prof}} {{aux.ape_prof}}
           </ion-col>
           <ion-col>
             Aula: {{aux.aula}}
@@ -93,6 +139,15 @@
       </ion-grid>
   <div *ngIf="verAsistencia">
       <h2>Listado de Alumnos</h2>
+      <button ion-button color="primary" icon-end (click)="ConfirmarAsistencia()">
+        Confirmar Asistencia
+      </button>
+      <button ion-button color="danger" icon-end (click)="CancelarAsistencia()">
+        Cancelar Asistencia
+      </button>
+      <button ion-button color="secondary" icon-end (click)="fotoDeAula()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -125,23 +180,22 @@
         </ion-row>
       </div>
     </ion-grid>
-      <button ion-button color="primary" icon-end (click)="ConfirmarAsistencia()">
-        Confirmar Asistencia
-      </button>
-      <button ion-button color="danger" icon-end (click)="CancelarAsistencia()">
-        Cancelar Asistencia
-      </button>
-    </button>
-    <button ion-button color="secondary" icon-end (click)="tomarFoto()">
-      Sacar Foto
-    </button>
     </div>
   </div>
     </ion-content>
   
-
 <ion-footer>
   <button ion-button full color="primary" icon-end (click)="Volver()">
     Volver
   </button>
 </ion-footer>
+
+
+
+<!--
+   <ion-slides>
+        <ion-slide *ngFor="let imagen of imagenes">
+          <img [src]='imagen'>
+        </ion-slide>
+      </ion-slides>
+-->
