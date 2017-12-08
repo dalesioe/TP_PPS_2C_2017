@@ -9,7 +9,7 @@ import { EncuestaPage } from '../encuesta/encuesta';
 import { GraficoEncuestaPage } from '../grafico-encuesta/grafico-encuesta';
 import { QRsPage } from '../q-rs/q-rs';
 import { HomePage } from '../home/home';
-import { MenuController, AlertController } from 'ionic-angular';
+import { MenuController, AlertController, ActionSheetController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 /**
@@ -32,6 +32,8 @@ export class MainPage {
   password: string;
   legajo: number;
   tipo: number;
+  foto: string;
+  libre: number;
 
   abm: boolean;
   //mensajes push
@@ -39,7 +41,8 @@ export class MainPage {
   mensaje: Observable<any[]>;
 
   constructor(public menu: MenuController, public navCtrl: NavController, public navParams: NavParams,
-    public afDB: AngularFireDatabase, private toastCtrl: ToastController, public alertCtrl: AlertController) {
+    public afDB: AngularFireDatabase, private toastCtrl: ToastController, public alertCtrl: AlertController,
+    public actionSheetCtrl: ActionSheetController) {
 
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
@@ -48,6 +51,9 @@ export class MainPage {
     this.password = this.navParams.get('password');
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
+    this.foto = this.navParams.get('foto');
+    this.libre = this.navParams.get('libre');
+    this.mensaje = this.navParams.get('mensaje');
 
     this.itemsRef = afDB.list('/mensajes');
     //mensaje push
@@ -103,7 +109,15 @@ export class MainPage {
         })
         break;
       case "qrs":
-        this.navCtrl.setRoot(QRsPage)
+        this.navCtrl.setRoot(QRsPage, {
+          "id": this.id,
+          "nombre": this.nombre,
+          "apellido": this.apellido,
+          "mail": this.mail,
+          "password": this.password,
+          "legajo": this.legajo,
+          "tipo": this.tipo
+        })
         break;
       case "descarga":
         this.navCtrl.setRoot(DescargasPage)
@@ -116,7 +130,8 @@ export class MainPage {
           "mail": this.mail,
           "password": this.password,
           "legajo": this.legajo,
-          "tipo": this.tipo
+          "tipo": this.tipo,
+          "foto": this.foto
         })
         break;
     }
@@ -158,5 +173,28 @@ export class MainPage {
       ]
     });
     prompt.present();
+  }
+  
+  opciones() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Dejar de recibir aviso',
+      buttons: [
+        {
+          text: 'Ocultar',
+          role: 'destructive',
+          handler: () => {
+            ///cambiar en la base 
+            this.libre = 12;
+          }
+        }, {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }
