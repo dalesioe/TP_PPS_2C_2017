@@ -18,7 +18,7 @@
       <ion-label>
         E-Mail: 
       </ion-label>
-      <ion-input type="text" [(ngModel)]="mail"></ion-input>
+      <ion-input type="email" [(ngModel)]="mail"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label>
@@ -43,15 +43,6 @@
       <ion-select [(ngModel)]="sexo">
         <ion-option value="f">Femenino</ion-option>
         <ion-option value="m">Masculino</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item  no-lines>
-      <ion-label>Tipo</ion-label>
-      <ion-select [(ngModel)]="tipo">
-        <ion-option *ngIf="usuario=='admin'" value="adm">Administrador</ion-option>
-        <ion-option *ngIf="usuario=='admin'" value="administrativo">Administrativo</ion-option>
-        <ion-option *ngIf="usuario=='admin'" value="profe">Profesor</ion-option>
-        <ion-option *ngIf="usuario=='administrativo'" value="alumno">Alumno</ion-option>
       </ion-select>
     </ion-item>
     <ion-item no-lines>

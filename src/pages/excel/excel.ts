@@ -27,6 +27,7 @@ import { MainPage } from '../main/main';
   templateUrl: 'excel.html',
 })
 export class ExcelPage {
+  test_data: any;
   archivos: any;
   lista: any;
   Importacion: any;
@@ -153,6 +154,7 @@ export class ExcelPage {
     this.http.post("http://www.estacionamiento.16mb.com/git/api/altaCurso", body).subscribe(
       res => this.guardarAlumnos()
     );
+    this.traerInformacion(aula);
     //guardamos los Alumnos importados
   }
   alertDescarga()
@@ -223,8 +225,20 @@ export class ExcelPage {
     return index;
   }
 
+  traerInformacion(numeroAula) {
+    let body: any;
+    body = { "aula": numeroAula };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/traerCursoPorDiaAula", body)
+      .subscribe(data => {
+        this.test_data = data.json();
+        }
+      , error => {
+        console.log(error);// Error getting the data
+      });
+  }
   guardarAlumnos()
   {
+
     for (var index = 0; index < this.csvData.length - 1; index++) {
       var element = this.csvData[index];
       var element2 = element[0];
@@ -238,7 +252,12 @@ export class ExcelPage {
     }
     this.existe = false;
     this.AlertMensaje("La lista fue agregada exitosamente!", "Proceso finalizado");
-    this.Volver();
+    this.http.get("http://www.estacionamiento.16mb.com/git/api/traerArchivos")
+    .subscribe(data => {
+      this.archivos = data.json();
+    }, error => {
+      console.log(error);
+    });
   }
   
   AlertMensaje(titulo: string, mens: string) {
