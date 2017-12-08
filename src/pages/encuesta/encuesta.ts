@@ -4,7 +4,7 @@ import { MainPage } from '../main/main';
 import { GraficoEncuestaPage } from '../grafico-encuesta/grafico-encuesta';
 import { Http } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
-
+import { DatePicker } from '@ionic-native/date-picker';
 /**
  * Generated class for the EncuestaPage page.
  *
@@ -37,9 +37,10 @@ export class EncuestaPage {
   tipoEncuesta: string;
   op1Nombre: string = "examen escrito";
   op2Nombre: string = "examen oral";
+  duracion:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-    public http: Http) {
+    public http: Http, private datePicker: DatePicker) {
 
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
@@ -48,6 +49,7 @@ export class EncuestaPage {
     this.password = this.navParams.get('password');
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
+
 
     /*let body: any = { "idProfesor": this.id };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/cursosPorProfesor", body)
@@ -77,10 +79,26 @@ export class EncuestaPage {
     })
 
   }
-
+  LeerQr() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => alert('fecha: ' +
+        date.getFullYear() + "-" +
+        date.getMonth() + "-" +
+        date.getDay() + "-" +
+        date.getHours() + "-" +
+        date.getMinutes() + "-"),
+      err => alert('Error occurred while getting date: ' + err)
+      );
+  }
   CrearEncuesta() {
     console.log(this.nombreEncuesta + this.op1Nombre + this.op2Nombre + this.curso)
   }
+
+
 
   Volver() {
     this.navCtrl.setRoot(MainPage, {

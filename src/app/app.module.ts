@@ -22,6 +22,7 @@ import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/Camera';
 import { BarcodeScanner }from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { DatePicker } from '@ionic-native/date-picker';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -81,6 +82,7 @@ firebase.initializeApp(config)
     File,
     SplashScreen,
     BarcodeScanner,
+    DatePicker,
     AngularFireDatabase,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiabmProvider

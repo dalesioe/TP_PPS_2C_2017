@@ -21,7 +21,7 @@
   <button *ngIf="tipo =='2'" ion-button color="dark" icon-end (click)="VerResultado()">
     Ver Resultados
   </button>
-  <button ion-button color="danger" icon-end (click)="CrearEncuesta()">
+  <button ion-button color="danger" icon-end (click)="LeerQr()">
     Leer QR
   </button>
 
@@ -49,6 +49,11 @@
       <ion-label floating>Opcion 2</ion-label>
       <ion-input type="text" [(ngModel)]="op2Nombre"></ion-input>
     </ion-item>
+
+    <ion-item>
+        <ion-label floating>Duracion</ion-label>
+        <ion-input type="number" [(ngModel)]="duracion"></ion-input>
+      </ion-item>
 
     <ion-item>
       <ion-label floating>Tipo</ion-label>
