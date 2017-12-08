@@ -13,6 +13,10 @@
 <ion-content padding>
   <ion-list>
 
+    <ion-list *ngIf="libre==1 && tipoUsuario==4" class="libre" (click)="opciones()">
+      ADVERTENCIA {{nombre}} {{apellido}}, estas a punto de quedar libre
+    </ion-list>
+
     <button *ngIf="tipoUsuario =='1' || tipoUsuario =='3'" ion-item (click)="openPage('abm','4')">
       Alta Alumno
     </button>

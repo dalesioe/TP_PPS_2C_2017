@@ -17,7 +17,10 @@ export class HomePage {
   mail: string;
   password: string;
 
+  correcto: boolean;
+
   constructor(public navCtrl: NavController, public http: Http) {
+    this.correcto = false;
     /////////////TRAER USUARIOS///////////////
     this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosUsuarios")
       .subscribe(data => {
@@ -31,6 +34,7 @@ export class HomePage {
   login() {
     this.usuarios.forEach(element => {
       if (element.mail == this.mail && element.password == this.password) {
+        this.correcto = true;
         console.log("registro ok" + element);
         this.navCtrl.setRoot(MainPage, {
           "id": element.id,
@@ -39,10 +43,15 @@ export class HomePage {
           "mail": element.mail,
           "password": element.password,
           "legajo": element.legajo,
-          "tipo": element.tipo
+          "tipo": element.tipo,
+          "foto": element.foto,
+          "libre": element.libre
         });
       }
     });
+    if (this.correcto == false){
+      alert("Usuario o Password incorrecto");
+    }
   }
 
   asignarUsuario(tipo) {

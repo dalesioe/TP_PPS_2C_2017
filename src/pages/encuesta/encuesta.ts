@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { GraficoEncuestaPage } from '../grafico-encuesta/grafico-encuesta';
+import { Http } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
 
 /**
@@ -26,13 +27,18 @@ export class EncuestaPage {
   legajo: number;
   tipo: number;
 
+  cursos: any;
   CrearEncuestaSiNO: boolean = false;
+  curso: string;
   op1: number = 5;
   op2: number = 11;
+  nombreEncuesta: string;
   op1Nombre: string = "examen escrito";
   op2Nombre: string = "examen oral";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
+    public http: Http) {
+
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
     this.apellido = this.navParams.get('apellido');
@@ -40,6 +46,15 @@ export class EncuestaPage {
     this.password = this.navParams.get('password');
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
+
+    let body: any = { "idProfesor": this.id };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/cursosPorProfesor", body)
+      .subscribe(data => {
+        this.cursos = data.json();
+        console.log(data['_body']);
+      }, error => {
+        console.log(error);
+      });
   }
 
   VerResultado() {
@@ -61,7 +76,7 @@ export class EncuestaPage {
   }
 
   CrearEncuesta() {
-
+    console.log(this.nombreEncuesta + this.op1Nombre + this.op2Nombre + this.curso)
   }
 
   Volver() {

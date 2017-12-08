@@ -295,7 +295,15 @@ export class AsistenciaPage {
       }, error => {
         console.log(error);// Error getting the data
       });
-    this.navCtrl.setRoot(MainPage);
+    this.navCtrl.setRoot(AsistenciaPage, {
+      "id": this.id,
+      "nombre": this.nombre,
+      "apellido": this.apellido,
+      "mail": this.mail,
+      "password": this.password,
+      "legajo": this.legajo,
+      "tipo": this.tipo
+    });
   }
   modificarPerfil() {
     this.navCtrl.setRoot(AdmPerfilPage, {
@@ -346,6 +354,15 @@ export class AsistenciaPage {
   mostrarprincipal() {
     this.listadoHistorico = false;
     this.mostrarHistorico = false;
+    this.navCtrl.setRoot(MainPage, {
+      "id": this.id,
+      "nombre": this.nombre,
+      "apellido": this.apellido,
+      "mail": this.mail,
+      "password": this.password,
+      "legajo": this.legajo,
+      "tipo": this.tipo
+    })
   }
   tomarFoto() {
     this.camara.getPicture({

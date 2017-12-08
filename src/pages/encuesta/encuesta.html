@@ -5,60 +5,68 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Encuesta</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-  <ion-item>
-    <ion-label>Crear Encuesta</ion-label>
-    <ion-checkbox color="dark" checked="true" [(ngModel)]="CrearEncuestaSiNO"></ion-checkbox>
-  </ion-item>
-
-  <button *ngIf="tipo =='2'" ion-button color="dark" icon-end (click)="VerResultado()">
-    Ver Resultado
-  </button>
-  <button *ngIf="tipo =='4'" ion-button color="danger" icon-end (click)="CrearEncuesta()">
-    Responder Encuesta (QR)
-  </button>
-
-  <ion-list *ngIf="tipo =='2' && CrearEncuestaSiNO==true" inset>
-    <ion-item>
-      <ion-label floating>Nombre</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Opcion 1</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Opcion 2</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Tipo</ion-label>
-      <ion-select>
-        <ion-option value="nes">Radio</ion-option>
-        <ion-option value="n64">Check</ion-option>
-        <ion-option value="ps">Opciones</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <button ion-button color="danger" icon-end (click)="CrearEncuesta()">
-      Crear Encuesta
-    </button>
-
-  </ion-list>
-
-  <ion-footer>
-    <button ion-button full color="primary" icon-end (click)="Volver()">
-      Volver
-    </button>
-  </ion-footer>
+    
+      <ion-navbar>
+        <ion-title>Encuesta</ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content padding>
+      <ion-item *ngIf="tipo =='2'">
+        <ion-label>Crear Encuesta</ion-label>
+        <ion-checkbox color="dark" checked="true" [(ngModel)]="CrearEncuestaSiNO"></ion-checkbox>
+      </ion-item>
+    
+      <button *ngIf="tipo =='2'" ion-button color="dark" icon-end (click)="VerResultado()">
+        Ver Resultado
+      </button>
+      <button *ngIf="tipo =='4'" ion-button color="danger" icon-end (click)="CrearEncuesta()">
+        Responder Encuesta (QR)
+      </button>
+    
+      <ion-list *ngIf="tipo =='2' && CrearEncuestaSiNO==true" inset>
+    
+        <ion-item>
+          <ion-label floating>Cursos</ion-label>
+          <ion-select [(ngModel)]="curso" interface="popover">
+            <ion-option *ngFor="let aux of cursos" [value]='aux.id_curso'>{{aux.nombre}}</ion-option>
+          </ion-select>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="nombreEncuesta"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Opcion 1</ion-label>
+          <ion-input type="text" [(ngModel)]="op1Nombre"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Opcion 2</ion-label>
+          <ion-input type="text" [(ngModel)]="op2Nombre"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Tipo</ion-label>
+          <ion-select>
+            <ion-option value="nes">Radio</ion-option>
+            <ion-option value="n64">Check</ion-option>
+            <ion-option value="ps">Opciones</ion-option>
+          </ion-select>
+        </ion-item>
+    
+        <button ion-button color="danger" icon-end (click)="CrearEncuesta()">
+          Crear Encuesta
+        </button>
+    
+      </ion-list>
+    
+      <ion-footer>
+        <button ion-button full color="primary" icon-end (click)="Volver()">
+          Volver
+        </button>
+      </ion-footer>
