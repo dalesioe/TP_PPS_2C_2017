@@ -27,12 +27,14 @@ export class EncuestaPage {
   legajo: number;
   tipo: number;
 
+  idCurso: number;
   cursos: any;
   CrearEncuestaSiNO: boolean = false;
   curso: string;
   op1: number = 5;
   op2: number = 11;
   nombreEncuesta: string;
+  tipoEncuesta: string;
   op1Nombre: string = "examen escrito";
   op2Nombre: string = "examen oral";
 
@@ -47,14 +49,14 @@ export class EncuestaPage {
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
 
-    let body: any = { "idProfesor": this.id };
+    /*let body: any = { "idProfesor": this.id };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/cursosPorProfesor", body)
       .subscribe(data => {
         this.cursos = data.json();
         console.log(data['_body']);
       }, error => {
         console.log(error);
-      });
+      });*/
   }
 
   VerResultado() {
@@ -67,6 +69,7 @@ export class EncuestaPage {
       "legajo": this.legajo,
       "tipo": this.tipo,
 
+      "nombreEncuesta": this.nombreEncuesta,
       "op1": this.op1,
       "op2": this.op2,
       "op1Nombre": this.op1Nombre,

@@ -63,7 +63,7 @@ export class HomePage {
       }
       case "alumno": {
         this.mail = "asd@hotmail.com";
-        this.password = "36415986";
+        this.password = "0";
         break;
       }
       case "profesor": {

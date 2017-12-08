@@ -59,8 +59,8 @@ export class MainPage {
     this.mensaje = this.navParams.get('mensaje');
 
     this.itemsRef = afDB.list('/mensajes');
-    //mensaje push
-    if (this.tipoUsuario == 4) {
+    //MENSAJE DE IMPORTANCIA
+    /*if (this.tipoUsuario == 4) {
 
       this.mensaje = afDB.list('/mensajes').valueChanges();
       this.mensaje.forEach(element => {
@@ -77,7 +77,7 @@ export class MainPage {
         });
         toast.present();
       })
-    }
+    }*/
 
   }
 

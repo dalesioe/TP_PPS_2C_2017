@@ -32,6 +32,7 @@ export class GraficoEncuestaPage {
   legajo: number;
   tipo: number;
 
+  nombreEncuesta: string;
   op1: number;
   op2: number;
   op1Nombre: string;
@@ -50,6 +51,7 @@ export class GraficoEncuestaPage {
     this.op2 = this.navParams.get('op2');
     this.op1Nombre = this.navParams.get('op1Nombre');
     this.op2Nombre = this.navParams.get('op2Nombre');
+    this.nombreEncuesta = this.navParams.get('nombreEncuesta');
     console.log('op1: ' + this.op1 + 'op2: ' + this.op2 +
       'nombre1: ' + this.op1Nombre);
   }
