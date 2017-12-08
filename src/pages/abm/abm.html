@@ -51,6 +51,18 @@
       Alta
     </button>
   </ion-item>
+
+  <ion-item no-lines>
+    <button *ngIf="tipo==4" ion-button full color="primary"(click)=" AltaConArchivoAlumno()">
+      Alta con archivo
+    </button>
+    <button *ngIf="tipo==2" ion-button full color="primary" (click)=" AltaConArchivoProfesor()">
+    Alta con archivo
+  </button>
+  <button *ngIf="tipo==3" ion-button full color="primary" (click)=" AltaConArchivoAdminsitrativo()">
+  Alta con archivo
+</button>
+  </ion-item>
 </ion-content>
 <ion-footer>
   <button ion-button full color="primary" icon-end (click)="Volver()">
