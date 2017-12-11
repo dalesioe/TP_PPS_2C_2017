@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { Http } from '@angular/http';
 import { File } from '@ionic-native/file';
@@ -19,7 +19,7 @@ import * as papa from 'papaparse';
   templateUrl: 'abm.html',
 })
 export class AbmPage {
-  archivotitulo:string;
+  archivotitulo: string;
   archivos: any;
   lista: any;
   Importacion: any;
@@ -27,6 +27,7 @@ export class AbmPage {
   testRadioResult;
   csvData: any[] = [];
   headerRow: any[] = [];
+
   mail: string;
   nombre: string;
   apellido: string;
@@ -35,12 +36,17 @@ export class AbmPage {
   tipo: string;
   usuario: string;
   pass: string;
+  listatodos: any;
+
   archivo: string;
   Fecha: Date;
   existe: boolean;
   tipoUsuario: string;
   api: string;
-  constructor(private alertCtrl: AlertController, public file: File, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  AltaBaja: boolean = true;
+
+  constructor(private alertCtrl: AlertController, public file: File, public navCtrl: NavController, public navParams: NavParams
+    , public actionSheetCtrl: ActionSheetController, public http: Http) {
     this.usuario = this.navParams.get('usuario');
     this.pass = this.navParams.get('pass');
     this.tipo = this.navParams.get('tipo');
@@ -52,6 +58,35 @@ export class AbmPage {
       }, error => {
         console.log(error);
       });
+
+    switch (this.tipo) {
+      case "2":
+        this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosProfes")
+          .subscribe(data => {
+            this.listatodos = data.json();
+          }, error => {
+            console.log(error);
+          });
+        break;
+      case "3":
+        this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosAdministrativos")
+          .subscribe(data => {
+            this.listatodos = data.json();
+          }, error => {
+            console.log(error);
+          });
+        break;
+      case "4":
+        this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosAlumnos")
+          .subscribe(data => {
+            this.listatodos = data.json();
+          }, error => {
+            console.log(error);
+          });
+        break;
+
+    }
+
   }
   definirApi() {
     switch (this.tipo) {
@@ -120,12 +155,11 @@ export class AbmPage {
     });
   }
   ComprobarArchivo() {
-    if(this.archivo==this.archivotitulo)
-    {
-      this.existe=true;
+    if (this.archivo == this.archivotitulo) {
+      this.existe = true;
     }
     this.archivos.forEach(element => {
-      if (element.titulo == this.archivo){
+      if (element.titulo == this.archivo) {
         this.existe = true;
         return;
       }
@@ -170,7 +204,7 @@ export class AbmPage {
       var dni = element[3];
       var sexo = element[4];
       this.lista = {
-        "nombre": nombre, "apellido": apellido, "mail": mail, "dni":dni, "sexo": sexo
+        "nombre": nombre, "apellido": apellido, "mail": mail, "dni": dni, "sexo": sexo
       };
       this.http.post(this.api, this.lista).subscribe(
         data => console.log(data)
@@ -178,7 +212,7 @@ export class AbmPage {
     }
     this.existe = false;
     this.AlertMensaje("El archivo fue agregado exitosamente!", "Proceso finalizado");
-    this.archivotitulo= this.archivo;
+    this.archivotitulo = this.archivo;
     this.http.get("http://www.estacionamiento.16mb.com/git/api/traerArchivos")
       .subscribe(data => {
         this.archivos = data.json();
@@ -257,5 +291,30 @@ export class AbmPage {
 
     });
     ventana.present(ventana);
+  }
+
+  menu(id) {
+    console.log(id);
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Desea borrar el Usuario? ',
+      buttons: [
+        {
+          text: 'Borrar',
+          role: 'destructive',
+          handler: () => {
+            console.log("Se borro");
+            //aca va la logica del borradp
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }
