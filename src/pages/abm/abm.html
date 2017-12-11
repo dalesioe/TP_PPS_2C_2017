@@ -67,7 +67,18 @@
       </button>
     </ion-item>
   </div>
-
+  <table border="1" class="data-table" style="overflow-x:auto;">
+    <th *ngIf="archivo != null && !existe">Nombre</th>
+    <th *ngIf="archivo != null && !existe">Apellido</th>
+    <th *ngIf="archivo != null && !existe">Mail</th>
+    <th *ngIf="archivo != null && !existe">DNI</th>
+    <th *ngIf="archivo != null && !existe">Sexo</th>
+    <tr *ngFor="let row of csvData; let i = index">
+      <td *ngFor="let data of row; let j = index; trackBy: trackByFn">
+        <ion-input type="text" [(ngModel)]="csvData[i][j]"></ion-input>
+      </td>
+    </tr>
+  </table>
   <div *ngIf="AltaBaja==false">
       <ion-list *ngFor="let aux of listatodos">
           <ion-item (click)="menu(aux.id)"> {{aux.nombre}} {{aux.apellido}} </ion-item>
