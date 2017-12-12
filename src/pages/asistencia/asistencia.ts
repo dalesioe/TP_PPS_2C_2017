@@ -51,7 +51,7 @@ export class AsistenciaPage {
   profesores: any;
   alumnos: any;
   principioURL: string = "https://firebasestorage.googleapis.com/v0/b/fotos-aula.appspot.com/o/";
-  finURL: string ;
+  finURL: string;
 
   imagenes: string[] = [];
   verimagen: boolean = false;
@@ -68,7 +68,7 @@ export class AsistenciaPage {
   mypicref: any;
 
   constructor(public camara: Camera, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public http: Http, public alertCtrl: AlertController) {
-    this.mypicref=firebase.storage().ref('/');
+    this.mypicref = firebase.storage().ref('/');
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
     this.apellido = this.navParams.get('apellido');
@@ -95,16 +95,16 @@ export class AsistenciaPage {
         console.log(error);// Error getting the data
       });
   }
-  UltimaAsistenciaParaFoto(){
+  UltimaAsistenciaParaFoto() {
     this.http.get("http://www.estacionamiento.16mb.com/git/api/ultimaAsistencia")
-    .subscribe(data => {
-      this.ultimaAsist = data['_body'];
-      console.log(data['_body']);
-    }, error => {
-      console.log(error);// Error getting the data
-    });
+      .subscribe(data => {
+        this.ultimaAsist = data['_body'];
+        console.log(data['_body']);
+      }, error => {
+        console.log(error);// Error getting the data
+      });
   }
-  fotoDeAula(id_asist){
+  fotoDeAula(id_asist) {
     this.camara.getPicture({
       correctOrientation: true,
       quality: 50,
@@ -114,17 +114,17 @@ export class AsistenciaPage {
       sourceType: this.camara.PictureSourceType.CAMERA,
       encodingType: this.camara.EncodingType.JPEG,
       saveToPhotoAlbum: true
-    }).then(imagedata =>{
+    }).then(imagedata => {
       this.picdata = imagedata;
       this.upload(id_asist)
     })
   }
-  upload(id_asist){
-    this.mypicref.child('img').child(id_asist+'.jpeg')
-    .putString(this.picdata,'base64',{contentType:'image/jpeg'})
-    .then(savepic=>{
-      this.picurl=savepic.downloadURL
-    })
+  upload(id_asist) {
+    this.mypicref.child('img').child(id_asist + '.jpeg')
+      .putString(this.picdata, 'base64', { contentType: 'image/jpeg' })
+      .then(savepic => {
+        this.picurl = savepic.downloadURL
+      })
   }
   traer() {
     this.verAsistencia = false;
@@ -148,7 +148,7 @@ export class AsistenciaPage {
   ConfirmarAsistencia() {
     let body: any;
     var lastPart = this.picurl.split("/").pop();
-    lastPart = lastPart.replace('&','&amp;');
+    lastPart = lastPart.replace('&', '&amp;');
     body = { "urlFoto": lastPart };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/updateFotoAsistencia", body)
       .subscribe(data => {
@@ -195,7 +195,7 @@ export class AsistenciaPage {
     this.barcodeScanner.scan().then(barcodeData => {
       this.test_aula = barcodeData.text;
       this.traerInformacion(this.test_aula);
-    });
+    }); 
 
   }
   traerInformacion(numeroAula) {
@@ -340,7 +340,7 @@ export class AsistenciaPage {
         console.log(error);// Error getting the data
       });
   }
-  fotoAsistenciaRecuperada(asistencia){
+  fotoAsistenciaRecuperada(asistencia) {
     let body: any;
     body = { "idAsist": asistencia };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/fotoAsistenciaRecuperada", body)
@@ -386,5 +386,5 @@ export class AsistenciaPage {
 
       })
   }
-  
+
 }
