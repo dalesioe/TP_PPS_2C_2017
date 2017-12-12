@@ -24,6 +24,26 @@
   <button ion-button color="danger" icon-end (click)="LeerQr()">
     Leer QR
   </button>
+  <button *ngIf="tipo =='4'" ion-button color="dark" icon-end (click)="VerEncuestas()">
+    Ver Encuestas
+  </button>
+  <div *ngIf="tipo==4">
+    <ion-list *ngFor="let aux of encuestas">
+
+      <ion-item *ngIf="aux.activa==0" class="finalizada" (click)="VerResultado(aux.id_encuesta, aux.nombre_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Finalizada)
+        <ion-icon name="checkmark-circle" class="iconNo"></ion-icon>
+      </ion-item>
+
+      <ion-item *ngIf="aux.activa==1 && aux.voto==1" class="siVoto">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Ya voto)
+        <ion-icon name="close-circle" class="iconSi"></ion-icon>
+      </ion-item>
+
+      <ion-item *ngIf="aux.activa==1 && aux.voto==0" class="noVoto" (click)="Votar(aux.id_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Aun no voto)
+        <ion-icon name="checkmark-circle" class="iconNo"></ion-icon>
+      </ion-item>
+
+    </ion-list>
+  </div>
 
   <ion-list *ngIf="tipo =='2' && CrearEncuestaSiNO==true" inset>
 
@@ -51,9 +71,9 @@
     </ion-item>
 
     <ion-item>
-        <ion-label floating>Duracion</ion-label>
-        <ion-input type="number" [(ngModel)]="duracion"></ion-input>
-      </ion-item>
+      <ion-label floating>Duracion</ion-label>
+      <ion-input type="number" [(ngModel)]="duracion"></ion-input>
+    </ion-item>
 
     <ion-item>
       <ion-label floating>Tipo</ion-label>

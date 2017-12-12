@@ -34,13 +34,16 @@ export class EncuestaPage {
   curso: number;
 
   idEncuesta: string;
-  op1: number = 5;
-  op2: number = 11;
+  op1: number;
+  op2: number;
   nombreEncuesta: string;
   tipoEncuesta: string;
   op1Nombre: string = "examen escrito";
   op2Nombre: string = "examen oral";
   duracion: number;
+
+  encuestas: any;
+  resultados: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public http: Http, private datePicker: DatePicker, private barcodeScanner: BarcodeScanner) {
@@ -53,6 +56,12 @@ export class EncuestaPage {
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
 
+    let datos = { "idAlumno": this.id }
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/mostrarEncuestasPorAlumno", datos).subscribe(
+      data => {
+        this.encuestas = data.json()
+        console.log(this.encuestas)
+      });
 
     /*let body: any = { "idProfesor": this.id };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/cursosPorProfesor", body)
@@ -64,22 +73,60 @@ export class EncuestaPage {
       });*/
   }
 
-  VerResultado() {
-    this.navCtrl.setRoot(GraficoEncuestaPage, {
-      "id": this.id,
-      "nombre": this.nombre,
-      "apellido": this.apellido,
-      "mail": this.mail,
-      "password": this.password,
-      "legajo": this.legajo,
-      "tipo": this.tipo,
+  VerResultado(id_encuesta, nombre_encuesta, opcion1, opcion2) {
 
-      "nombreEncuesta": this.nombreEncuesta,
-      "op1": this.op1,
-      "op2": this.op2,
-      "op1Nombre": this.op1Nombre,
-      "op2Nombre": this.op2Nombre
-    })
+    let datos = { "idEncuesta": id_encuesta };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/mostrarDatosEncuestaPorId", datos).subscribe(
+      //data => console.log(data.json())
+      data => this.resultados = data.json()
+    );
+
+    /////////////
+    let confirm = this.alertCtrl.create({
+      title: 'Desea ver los resultados?',
+      message: '',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.resultados.forEach(element => {
+              //console.log('op2: ' + element.op2);
+              this.op1 = element.op1;
+              this.op2 = element.op2;
+            });
+            ////////////////
+            this.navCtrl.setRoot(GraficoEncuestaPage, {
+              "id": this.id,
+              "nombre": this.nombre,
+              "apellido": this.apellido,
+              "mail": this.mail,
+              "password": this.password,
+              "legajo": this.legajo,
+              "tipo": this.tipo,
+
+              "nombreEncuesta": nombre_encuesta,
+              "op1Nombre": opcion1,
+              "op2Nombre": opcion2,
+              "op1": this.op1,
+              "op2": this.op2
+            })
+            ////////////////////
+
+
+          }
+        }
+      ]
+    });
+    confirm.present();
+    ////////////////
+
+
 
   }
   LeerQr() {
@@ -114,6 +161,48 @@ export class EncuestaPage {
     this.CrearEncuestaSiNO = false;
   }
 
+  VerEncuestas() {
+
+  }
+  Votar(id_encuesta, opcion1, opcion2) {
+
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Elija su opcion');
+
+    alert.addInput({
+      type: 'radio',
+      label: opcion1,
+      value: '1',
+      checked: true
+    });
+    alert.addInput({
+      type: 'radio',
+      label: opcion2,
+      value: '2',
+      checked: false
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        this.ActualizarVotoAlumno(id_encuesta, data);
+      }
+    });
+    alert.present();
+  }
+  ActualizarVotoAlumno(id_encuesta, voto) {
+    let datos = {
+      "idEncuesta": id_encuesta,
+      "idAlumno": this.id,
+      "voto": voto
+    }
+    console.log(datos)
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/updateVotoAlumno", datos).subscribe(
+      data => {
+        this.Volver()
+      });
+  }
 
 
   Volver() {

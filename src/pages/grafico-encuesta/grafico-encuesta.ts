@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { Chart } from 'chart.js';
+import { NgModuleCompileResult } from '@angular/compiler/src/ng_module_compiler';
 /**
  * Generated class for the GraficoEncuestaPage page.
  *
@@ -52,8 +53,8 @@ export class GraficoEncuestaPage {
     this.op1Nombre = this.navParams.get('op1Nombre');
     this.op2Nombre = this.navParams.get('op2Nombre');
     this.nombreEncuesta = this.navParams.get('nombreEncuesta');
-    console.log('op1: ' + this.op1 + 'op2: ' + this.op2 +
-      'nombre1: ' + this.op1Nombre);
+
+    console.log('op1: ' + this.op1 + 'op2: ' + this.op2);
   }
 
   Volver() {

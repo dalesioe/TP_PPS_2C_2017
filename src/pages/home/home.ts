@@ -62,8 +62,8 @@ export class HomePage {
         break;
       }
       case "alumno": {
-        this.mail = "asd@hotmail.com";
-        this.password = "0";
+        this.mail = "rp@gmail.com";
+        this.password = "321321321";
         break;
       }
       case "profesor": {
