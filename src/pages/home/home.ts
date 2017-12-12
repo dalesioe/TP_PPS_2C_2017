@@ -29,7 +29,15 @@ export class HomePage {
       }, error => {
         console.log(error);
       });
-
+    //////////////////ACTUALIZACION ENCUESTAS/////////////
+    for (let i = 0; i < 40; i++) {
+      let datos = { "idEncuesta": i }
+      this.http.post("http://www.estacionamiento.16mb.com/git/api/updateEstadoEncuesta", datos).subscribe(
+        data => {
+          //console.log(data)
+        });
+    }
+    //////////////////////
   }
   login() {
     this.usuarios.forEach(element => {
@@ -49,7 +57,7 @@ export class HomePage {
         });
       }
     });
-    if (this.correcto == false){
+    if (this.correcto == false) {
       alert("Usuario o Password incorrecto");
     }
   }
