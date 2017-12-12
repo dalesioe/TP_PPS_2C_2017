@@ -39,8 +39,8 @@ export class EncuestaPage {
   cantidadVotantes: number;
   nombreEncuesta: string;
   tipoEncuesta: string;
-  op1Nombre: string = "examen escrito";
-  op2Nombre: string = "examen oral";
+  op1Nombre: string;
+  op2Nombre: string;
   duracion: number;
 
   encuestasAlumno: any;
@@ -210,7 +210,7 @@ export class EncuestaPage {
       ]
     });
     actionSheet.present();
-   
+
   }
 
   VerEncuestas() {

@@ -27,6 +27,7 @@
   <button *ngIf="tipo =='4'" ion-button color="dark" icon-end (click)="VerEncuestas()">
     Ver Encuestas
   </button>
+  
   <!-- VISUALIZA ENCUESTAS DEL ALUMNO -->
   <div *ngIf="tipo==4">
     <ion-list *ngFor="let aux of encuestasAlumno">
@@ -47,7 +48,7 @@
   </div>
 
   <!-- VISUALIZA ENCUESTAS DEL PROFESOR -->
-  <div *ngIf="tipo==2">
+  <div *ngIf="tipo==2 && CrearEncuestaSiNO==false">
 
     <ion-list *ngFor="let aux of encuestasProfesor">
 
