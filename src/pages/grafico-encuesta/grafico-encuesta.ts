@@ -36,6 +36,7 @@ export class GraficoEncuestaPage {
   nombreEncuesta: string;
   op1: number;
   op2: number;
+  cantidadVotantes: number;
   op1Nombre: string;
   op2Nombre: string;
 
@@ -52,9 +53,10 @@ export class GraficoEncuestaPage {
     this.op2 = this.navParams.get('op2');
     this.op1Nombre = this.navParams.get('op1Nombre');
     this.op2Nombre = this.navParams.get('op2Nombre');
+    this.cantidadVotantes = this.navParams.get('cantidadVotantes');
     this.nombreEncuesta = this.navParams.get('nombreEncuesta');
 
-    console.log('op1: ' + this.op1 + 'op2: ' + this.op2);
+    console.log('op1: ' + this.op1 + 'op2: ' + this.op2, "cant vot: " + this.cantidadVotantes);
   }
 
   Volver() {
@@ -75,17 +77,19 @@ export class GraficoEncuestaPage {
 
       type: 'bar',
       data: {
-        labels: [this.op1Nombre, this.op2Nombre],
+        labels: [this.op1Nombre, this.op2Nombre, 'NS/NC'],
         datasets: [{
           label: 'Total de votos',
-          data: [this.op1, this.op2],
+          data: [this.op1, this.op2, (this.cantidadVotantes - this.op1 - this.op2)],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)'
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(100, 200, 144, 0.2)'
           ],
           borderColor: [
             'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)'
+            'rgba(54, 162, 235, 1)',
+            'rgba(100, 200, 144, 0.2)'
           ],
           borderWidth: 1
         }]
@@ -105,17 +109,19 @@ export class GraficoEncuestaPage {
 
       type: 'doughnut',
       data: {
-        labels: [this.op1Nombre, this.op2Nombre],
+        labels: [this.op1Nombre, this.op2Nombre, 'NS/NC'],
         datasets: [{
           label: 'Total de votos',
-          data: [this.op1, this.op2],
+          data: [this.op1, this.op2, (this.cantidadVotantes - this.op1 - this.op2)],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)'
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(100, 200, 144, 0.2)'
           ],
           hoverBackgroundColor: [
             "#FF6384",
-            "#36A2EB"
+            "#36A2EB",
+            "#FF4232"
           ]
         }]
       }

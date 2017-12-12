@@ -36,6 +36,7 @@ export class EncuestaPage {
   idEncuesta: string;
   op1: number;
   op2: number;
+  cantidadVotantes: number;
   nombreEncuesta: string;
   tipoEncuesta: string;
   op1Nombre: string = "examen escrito";
@@ -99,6 +100,7 @@ export class EncuestaPage {
               //console.log('op2: ' + element.op2);
               this.op1 = element.op1;
               this.op2 = element.op2;
+              this.cantidadVotantes = element.TOTAL_VOTANTES
             });
             ////////////////
             this.navCtrl.setRoot(GraficoEncuestaPage, {
@@ -114,7 +116,8 @@ export class EncuestaPage {
               "op1Nombre": opcion1,
               "op2Nombre": opcion2,
               "op1": this.op1,
-              "op2": this.op2
+              "op2": this.op2,
+              "cantidadVotantes": this.cantidadVotantes
             })
             ////////////////////
 
