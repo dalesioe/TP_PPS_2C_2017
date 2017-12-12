@@ -27,8 +27,9 @@
   <button *ngIf="tipo =='4'" ion-button color="dark" icon-end (click)="VerEncuestas()">
     Ver Encuestas
   </button>
+  <!-- VISUALIZA ENCUESTAS DEL ALUMNO -->
   <div *ngIf="tipo==4">
-    <ion-list *ngFor="let aux of encuestas">
+    <ion-list *ngFor="let aux of encuestasAlumno">
 
       <ion-item *ngIf="aux.activa==0" class="finalizada" (click)="VerResultado(aux.id_encuesta, aux.nombre_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Finalizada)
         <ion-icon name="checkmark-circle" class="iconNo"></ion-icon>
@@ -45,6 +46,35 @@
     </ion-list>
   </div>
 
+  <!-- VISUALIZA ENCUESTAS DEL PROFESOR -->
+  <div *ngIf="tipo==2">
+
+    <ion-list *ngFor="let aux of encuestasProfesor">
+
+      <ion-item *ngIf="aux.activa==0 && id==aux.id_profesor" class="finalizada" (click)="VerResultado(aux.id_encuesta, aux.nombre_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Finalizada)
+        <ion-icon name="checkmark-circle" class="iconNo"></ion-icon>
+      </ion-item>
+
+      <ion-item *ngIf="aux.activa==0 && id!=aux.id_profesor" class="gris" (click)="VerResultado(aux.id_encuesta, aux.nombre_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Finalizada)
+        <ion-icon name="checkmark-circle" class="iconNo"></ion-icon>
+      </ion-item>
+
+      <ion-item *ngIf="aux.activa==1 && id==aux.id_profesor" class="siVoto" (click)="VerResultado(aux.id_encuesta, aux.nombre_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (En curso)
+        <ion-icon name="close-circle" class="iconSi"></ion-icon>
+      </ion-item>
+
+      <ion-item *ngIf="aux.activa==1 && id!=aux.id_profesor" class="gris" (click)="VerResultado(aux.id_encuesta, aux.nombre_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}}
+        <ion-icon name="checkmark-circle" class="iconNo"></ion-icon>
+      </ion-item>
+
+      <ion-item *ngIf="aux.activa==2 && id==aux.id_profesor" class="noVoto" (click)="ActivarEncuesta(aux.id_encuesta)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Activar)
+          <ion-icon name="close-circle" class="iconSi"></ion-icon>
+        </ion-item>
+
+    </ion-list>
+  </div>
+
+  <!-- CREACION DE ENCUESTAS PROFESOR -->
   <ion-list *ngIf="tipo =='2' && CrearEncuestaSiNO==true" inset>
 
     <ion-item>

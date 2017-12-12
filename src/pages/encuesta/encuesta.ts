@@ -43,7 +43,8 @@ export class EncuestaPage {
   op2Nombre: string = "examen oral";
   duracion: number;
 
-  encuestas: any;
+  encuestasAlumno: any;
+  encuestasProfesor: any;
   resultados: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
@@ -57,11 +58,20 @@ export class EncuestaPage {
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
 
+    //////////////TRER ENCUESTAS DE ALUMNOS/////
     let datos = { "idAlumno": this.id }
     this.http.post("http://www.estacionamiento.16mb.com/git/api/mostrarEncuestasPorAlumno", datos).subscribe(
       data => {
-        this.encuestas = data.json()
-        console.log(this.encuestas)
+        this.encuestasAlumno = data.json()
+        console.log(this.encuestasAlumno)
+      });
+
+    //////////////TRER ENCUESTAS DE PROFESOR/////
+    let datos1 = { "idProfesor": 7 }
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/mostrarEncuestasPorProf", datos1).subscribe(
+      data => {
+        this.encuestasProfesor = data.json()
+        console.log(this.encuestasProfesor)
       });
 
     /*let body: any = { "idProfesor": this.id };
@@ -162,6 +172,10 @@ export class EncuestaPage {
     this.op2Nombre = null;
     this.duracion = null;
     this.CrearEncuestaSiNO = false;
+  }
+
+  ActivarEncuesta(id_encuesta) {
+    alert("cambiar estado");
   }
 
   VerEncuestas() {
