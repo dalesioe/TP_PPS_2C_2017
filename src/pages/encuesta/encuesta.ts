@@ -163,8 +163,13 @@ export class EncuestaPage {
     this.http.post("http://www.estacionamiento.16mb.com/git/api/ingresarEncuesta", datos).subscribe(
       data => console.log(data)
     );
-    //poner un alert q avise
-    alert("encuesta creada exitosamente");
+    ///////////alert//////
+    let alert = this.alertCtrl.create({
+      title: 'Felicitaciones!',
+      subTitle: 'Su encuesta fue creada con exito!',
+      buttons: ['OK']
+    });
+    alert.present();
     //pongo todo en null
     this.curso = null;
     this.nombreEncuesta = null;
@@ -175,7 +180,31 @@ export class EncuestaPage {
   }
 
   ActivarEncuesta(id_encuesta) {
-    alert("cambiar estado");
+
+    let confirm = this.alertCtrl.create({
+      title: 'Desea activar la encuesta?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Activar',
+          handler: () => {
+            ////////activacion encuesta///////
+            let datos = { "idEncuesta": id_encuesta }
+            this.http.post("http://www.estacionamiento.16mb.com/git/api/activarEncuestaProfesor", datos).subscribe(
+              data => {
+                this.Volver()
+              });
+            //////////////////
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   VerEncuestas() {
