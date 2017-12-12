@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { GraficoEncuestaPage } from '../grafico-encuesta/grafico-encuesta';
 import { Http } from '@angular/http';
@@ -48,7 +48,7 @@ export class EncuestaPage {
   resultados: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-    public http: Http, private datePicker: DatePicker, private barcodeScanner: BarcodeScanner) {
+    public http: Http, private datePicker: DatePicker, private barcodeScanner: BarcodeScanner, public actionSheetCtrl: ActionSheetController) {
 
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
@@ -180,18 +180,12 @@ export class EncuestaPage {
   }
 
   ActivarEncuesta(id_encuesta) {
-
-    let confirm = this.alertCtrl.create({
-      title: 'Desea activar la encuesta?',
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Acciones de encuesta',
       buttons: [
         {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
           text: 'Activar',
+          role: 'destructive',
           handler: () => {
             ////////activacion encuesta///////
             let datos = { "idEncuesta": id_encuesta }
@@ -201,10 +195,22 @@ export class EncuestaPage {
               });
             //////////////////
           }
+        }, {
+          text: 'Modificar',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        }, {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
         }
       ]
     });
-    confirm.present();
+    actionSheet.present();
+   
   }
 
   VerEncuestas() {
