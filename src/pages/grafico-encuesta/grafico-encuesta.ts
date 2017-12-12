@@ -82,14 +82,14 @@ export class GraficoEncuestaPage {
           label: 'Total de votos',
           data: [this.op1, this.op2, (this.cantidadVotantes - this.op1 - this.op2)],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
+            'rgba(100, 200, 144, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(100, 200, 144, 0.2)'
+            'rgba(255, 99, 132, 0.2)'
           ],
           borderColor: [
-            'rgba(255,99,132,1)',
+            'rgba(100, 200, 144, 1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(100, 200, 144, 0.2)'
+            'rgba(255,99,132,1)'
           ],
           borderWidth: 1
         }]
@@ -114,14 +114,14 @@ export class GraficoEncuestaPage {
           label: 'Total de votos',
           data: [this.op1, this.op2, (this.cantidadVotantes - this.op1 - this.op2)],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
+            'rgba(100, 200, 144, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(100, 200, 144, 0.2)'
+            'rgba(255, 99, 132, 0.2)'
           ],
           hoverBackgroundColor: [
-            "#FF6384",
+            "#FF4232",
             "#36A2EB",
-            "#FF4232"
+            "#FF6384"
           ]
         }]
       }
