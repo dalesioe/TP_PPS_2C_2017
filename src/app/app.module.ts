@@ -10,24 +10,25 @@ import { AsistenciaPage } from '../pages/asistencia/asistencia';
 import { CursadasPage } from '../pages/cursadas/cursadas';
 import { DescargasPage } from '../pages/descargas/descargas';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
-import {ExcelPage} from '../pages/excel/excel';
+import { ExcelPage } from '../pages/excel/excel';
 import { GraficoEncuestaPage } from '../pages/grafico-encuesta/grafico-encuesta';
 import { MainPage } from '../pages/main/main';
 import { QRsPage } from '../pages/q-rs/q-rs';
 import { HomePage } from '../pages/home/home';
+import { ModificacionPage } from '../pages/modificacion/modificacion';
 import { ApiabmProvider } from '../providers/apiabm/apiabm';
 import { ChartsModule } from 'ng2-charts';
 import { HttpModule } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/Camera';
-import { BarcodeScanner }from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { DatePicker } from '@ionic-native/date-picker';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import firebase from 'firebase';
-export var config={
+export var config = {
   apiKey: "AIzaSyATWFegAdRiCzbOFNGncu53dG21hjP0US8",
   authDomain: "fotos-aula.firebaseapp.com",
   databaseURL: "https://fotos-aula.firebaseio.com",
@@ -49,7 +50,8 @@ firebase.initializeApp(config)
     GraficoEncuestaPage,
     MainPage,
     QRsPage,
-    ExcelPage
+    ExcelPage,
+    ModificacionPage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ firebase.initializeApp(config)
     GraficoEncuestaPage,
     MainPage,
     QRsPage,
-    ExcelPage
+    ExcelPage,
+    ModificacionPage
   ],
   providers: [
     StatusBar,

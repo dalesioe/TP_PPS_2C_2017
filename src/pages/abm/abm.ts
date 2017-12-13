@@ -4,6 +4,7 @@ import { MainPage } from '../main/main';
 import { Http } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { AlertController } from 'ionic-angular';
+import { ModificacionPage } from '../modificacion/modificacion';
 import * as papa from 'papaparse';
 //import 'rxjs/add/operator/map';
 /**
@@ -295,13 +296,19 @@ export class AbmPage {
   menu(id) {
     console.log(id);
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Desea borrar el Usuario? ',
+      title: 'Acciones de Usuario ',
       buttons: [
         {
           text: 'Borrar',
           role: 'destructive',
           handler: () => {
             this.eliminarUsuario(id);
+          }
+        },
+        {
+          text: 'Modificar',
+          handler: () => {
+            this.modificarUsuario(id);
           }
         },
         {
@@ -329,5 +336,17 @@ export class AbmPage {
 
         this.Volver()
       });
+  }
+  modificarUsuario(id) {
+    this.listatodos.forEach(element => {
+      if (element.id == id) {
+        this.navCtrl.push(ModificacionPage, {
+          "id": element.id,
+          "nombre": element.nombre,
+          "apellido": element.apellido,
+          "mail": element.mail
+        })
+      }
+    });
   }
 }

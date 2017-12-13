@@ -12,7 +12,7 @@
 
 <ion-content padding>
   <ion-item color="danger">
-    <ion-label>Alta/Baja</ion-label>
+    <ion-label>Alta/Baja-Modificacion</ion-label>
     <ion-toggle value="foo" checked="true" [(ngModel)]="AltaBaja"></ion-toggle>
   </ion-item>
 
@@ -49,8 +49,8 @@
       </ion-select>
     </ion-item>
     <ion-item no-lines>
-      <button ion-button full color="secondary"
-        style="width:10vh;height: 6vh;left: 40%;" (click)="Alta()">
+      <button ion-button full color="secondary" icon-start (click)="Alta()">
+        <ion-icon name='people'></ion-icon>
         Alta
       </button>
     </ion-item>
@@ -80,9 +80,9 @@
     </tr>
   </table>
   <div *ngIf="AltaBaja==false">
-      <ion-list *ngFor="let aux of listatodos">
-          <ion-item (click)="menu(aux.id)"> {{aux.nombre}} {{aux.apellido}} </ion-item>
-      </ion-list>
+    <ion-list *ngFor="let aux of listatodos">
+      <ion-item (click)="menu(aux.id)"> {{aux.nombre}} {{aux.apellido}} </ion-item>
+    </ion-list>
   </div>
 
 </ion-content>

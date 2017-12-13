@@ -18,15 +18,15 @@
     </ion-list>
 
     <button *ngIf="tipoUsuario =='1' || tipoUsuario =='3'" ion-item (click)="openPage('abm','4')">
-      Alta Alumno
+      ABM Alumno
     </button>
 
     <button *ngIf="tipoUsuario =='1'" ion-item (click)="openPage('abm','2')">
-      Alta Profesor
+      ABM Profesor
     </button>
 
     <button *ngIf="tipoUsuario  =='1' " ion-item (click)="openPage('abm','3')">
-      Alta Administrativo
+      ABM Administrativo
     </button>
 
     <button *ngIf="tipoUsuario  =='3' " ion-item (click)="openPage('asistencia')">
