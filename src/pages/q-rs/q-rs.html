@@ -14,12 +14,40 @@
 
 
 <ion-content padding>
-<div *ngIf="tipo == 4|| tipo==2">
-  <button ion-button full (click)="QrAula()">Escanear Aula</button>
-</div>
+  <div *ngIf="tipo == 4|| tipo==2">
+    <button ion-button full (click)="QrAula()">Escanear Aula</button>
+  </div>
+  <div *ngIf="this.alumnos!=null">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          Legajo
+        </ion-col>
+        <ion-col>
+          Apellido
+        </ion-col>
+        <ion-col>
+          Nombre
+        </ion-col>
+      </ion-row>
+      <div *ngFor="let aux of alumnos">
+        <ion-row>
+          <ion-col>
+            {{aux.legajo}}
+          </ion-col>
+          <ion-col>
+            {{aux.apellido}}
+          </ion-col>
+          <ion-col>
+            {{aux.nombre}}
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+  </div>
 </ion-content>
 <ion-footer>
-    <button ion-button full color="primary" icon-end (click)="Volver()">
-      Volver        
-    </button>
+  <button ion-button full color="primary" icon-end (click)="Volver()">
+    Volver
+  </button>
 </ion-footer>
