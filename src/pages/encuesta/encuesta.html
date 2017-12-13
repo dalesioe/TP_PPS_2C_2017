@@ -68,7 +68,7 @@
         <ion-icon name="checkmark-circle" class="iconNo"></ion-icon>
       </ion-item>
 
-      <ion-item *ngIf="aux.activa==2 && id==aux.id_profesor" class="noVoto" (click)="MenuEncuesta(aux.id_encuesta)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Activar)
+      <ion-item *ngIf="aux.activa==2 && id==aux.id_profesor" class="noVoto" (click)="MenuEncuesta(aux.id_encuesta, aux.nombre_encuesta, aux.opcion1, aux.opcion2)">{{aux.id_encuesta}} {{aux.nombre_encuesta}} (Activar)
           <ion-icon name="close-circle" class="iconSi"></ion-icon>
         </ion-item>
 

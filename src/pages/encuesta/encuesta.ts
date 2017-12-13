@@ -140,7 +140,7 @@ export class EncuestaPage {
     actionSheet.present();
   }
 
-  MenuEncuesta(id_encuesta) {
+  MenuEncuesta(id_encuesta, nombre_encuesta, opcion1, opcion2) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Acciones de encuesta',
       buttons: [
@@ -152,7 +152,7 @@ export class EncuestaPage {
         }, {
           text: 'Modificar',
           handler: () => {
-            this.ModificarEncuesta(id_encuesta)
+            this.ModificarEncuesta(id_encuesta, nombre_encuesta, opcion1, opcion2)
           }
         }, {
           text: 'Eliminar',
@@ -176,16 +176,82 @@ export class EncuestaPage {
     let datos = { "idEncuesta": id_encuesta }
     this.http.post("http://www.estacionamiento.16mb.com/git/api/activarEncuestaProfesor", datos).subscribe(
       data => {
+        ///////////alert//////
+        let alert = this.alertCtrl.create({
+          title: 'Felicitaciones!',
+          subTitle: 'Su encuesta fue activada con exito!',
+          buttons: ['OK']
+        });
+        alert.present();
+
         this.Volver()
       });
   }
-  ModificarEncuesta(id_encuesta) {
+  ModificarEncuesta(id_encuesta, nombre_encuesta, opcion1, opcion2) {
+    let prompt = this.alertCtrl.create({
+      title: 'Modificacion',
+      message: "Ingrese las nuevas opciones",
+      inputs: [
+        {
+          name: 'opcion1',
+          placeholder: 'OP1: ' + opcion1
+        },
+        {
+          name: 'opcion2',
+          placeholder: 'OP2: ' + opcion2
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Modificar',
+          handler: data => {
+            this.CambiarOpcionesEncuesta(id_encuesta, data.opcion1, data.opcion2)
+            //console.log("op1: " + data.opcion1 + " -op2: " + data.opcion2);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+  CambiarOpcionesEncuesta(id_encuesta, opcion1, opcion2) {
+    let datos = {
+      "idEncuesta": id_encuesta,
+      "opcion1": opcion1,
+      "opcion2": opcion2
+    }
+    console.log(datos)
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/modificarEncuesta", datos).subscribe(
+      data => {
+        this.Volver()
+      });
+    ///////////alert//////
+    let alert = this.alertCtrl.create({
+      title: 'Felicitaciones!',
+      subTitle: 'Su encuesta fue modificada con exito!',
+      buttons: ['OK']
+    });
+    alert.present();
 
+    this.Volver()
   }
   EliminarEncuesta(id_encuesta) {
     let datos = { "idEncuesta": id_encuesta }
     this.http.post("http://www.estacionamiento.16mb.com/git/api/eliminarEncuesta", datos).subscribe(
       data => {
+        ///////////alert//////
+        let alert = this.alertCtrl.create({
+          title: 'Felicitaciones!',
+          subTitle: 'Su encuesta fue eliminada con exito!',
+          buttons: ['OK']
+        });
+        alert.present();
+
         this.Volver()
       });
   }
