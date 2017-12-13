@@ -183,7 +183,11 @@ export class EncuestaPage {
 
   }
   EliminarEncuesta(id_encuesta) {
-
+    let datos = { "idEncuesta": id_encuesta }
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/eliminarEncuesta", datos).subscribe(
+      data => {
+        this.Volver()
+      });
   }
   VerResultado(id_encuesta, nombre_encuesta, opcion1, opcion2) {
 
