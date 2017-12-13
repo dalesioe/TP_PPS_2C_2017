@@ -301,8 +301,7 @@ export class AbmPage {
           text: 'Borrar',
           role: 'destructive',
           handler: () => {
-            console.log("Se borro");
-            //aca va la logica del borradp
+            this.eliminarUsuario(id);
           }
         },
         {
@@ -315,5 +314,20 @@ export class AbmPage {
       ]
     });
     actionSheet.present();
+  }
+  eliminarUsuario(id) {
+    let datos = { "idUsuario": id }
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/bajaUsuario", datos).subscribe(
+      data => {
+        ///////////alert//////
+        let alert = this.alertCtrl.create({
+          title: 'Felicitaciones!',
+          subTitle: 'Usuario eliminado exitosamente!',
+          buttons: ['OK']
+        });
+        alert.present();
+
+        this.Volver()
+      });
   }
 }

@@ -77,8 +77,9 @@ export class EncuestaPage {
 
   LeerQr() {
     this.barcodeScanner.scan().then(barcodeData => {
-      this.idEncuesta = barcodeData.text;
-      this.traerInformacion(this.idEncuesta);
+      alert(barcodeData.text);
+      /*this.idEncuesta = barcodeData.text;
+      this.traerInformacion(this.idEncuesta);*/
     });
   }
   traerInformacion(idEncuesta) {
