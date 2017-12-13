@@ -211,8 +211,18 @@ export class EncuestaPage {
         {
           text: 'Modificar',
           handler: data => {
-            this.CambiarOpcionesEncuesta(id_encuesta, data.opcion1, data.opcion2)
-            //console.log("op1: " + data.opcion1 + " -op2: " + data.opcion2);
+            if (data.opcion1 == "" || data.opcion2 == "") {
+              ///////////alert//////
+              let alert = this.alertCtrl.create({
+                title: 'Datos incompletos!',
+                subTitle: 'Por favor complete los datos requeridos para proceder',
+                buttons: ['OK']
+              });
+              alert.present();
+            }
+            else {
+              this.CambiarOpcionesEncuesta(id_encuesta, data.opcion1, data.opcion2)
+            }
           }
         }
       ]
