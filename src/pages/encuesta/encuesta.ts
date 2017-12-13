@@ -73,75 +73,8 @@ export class EncuestaPage {
         this.encuestasProfesor = data.json()
         console.log(this.encuestasProfesor)
       });
-
-    /*let body: any = { "idProfesor": this.id };
-    this.http.post("http://www.estacionamiento.16mb.com/git/api/cursosPorProfesor", body)
-      .subscribe(data => {
-        this.cursos = data.json();
-        console.log(data['_body']);
-      }, error => {
-        console.log(error);
-      });*/
   }
 
-  VerResultado(id_encuesta, nombre_encuesta, opcion1, opcion2) {
-
-    let datos = { "idEncuesta": id_encuesta };
-    this.http.post("http://www.estacionamiento.16mb.com/git/api/mostrarDatosEncuestaPorId", datos).subscribe(
-      //data => console.log(data.json())
-      data => this.resultados = data.json()
-    );
-
-    /////////////
-    let confirm = this.alertCtrl.create({
-      title: 'Desea ver los resultados?',
-      message: '',
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Aceptar',
-          handler: () => {
-            this.resultados.forEach(element => {
-              //console.log('op2: ' + element.op2);
-              this.op1 = element.op1;
-              this.op2 = element.op2;
-              this.cantidadVotantes = element.TOTAL_VOTANTES
-            });
-            ////////////////
-            this.navCtrl.setRoot(GraficoEncuestaPage, {
-              "id": this.id,
-              "nombre": this.nombre,
-              "apellido": this.apellido,
-              "mail": this.mail,
-              "password": this.password,
-              "legajo": this.legajo,
-              "tipo": this.tipo,
-
-              "nombreEncuesta": nombre_encuesta,
-              "op1Nombre": opcion1,
-              "op2Nombre": opcion2,
-              "op1": this.op1,
-              "op2": this.op2,
-              "cantidadVotantes": this.cantidadVotantes
-            })
-            ////////////////////
-
-
-          }
-        }
-      ]
-    });
-    confirm.present();
-    ////////////////
-
-
-
-  }
   LeerQr() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.idEncuesta = barcodeData.text;
@@ -179,28 +112,55 @@ export class EncuestaPage {
     this.CrearEncuestaSiNO = false;
   }
 
-  ActivarEncuesta(id_encuesta) {
+  MenuEncuesta2(id_encuesta, nombre_encuesta, opcion1, opcion2) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Acciones de encuesta',
+      buttons: [
+        {
+          text: 'Ver Resultados',
+          handler: () => {
+            this.VerResultado(id_encuesta, nombre_encuesta, opcion1, opcion2)
+          }
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            this.EliminarEncuesta(id_encuesta)
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  MenuEncuesta(id_encuesta) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Acciones de encuesta',
       buttons: [
         {
           text: 'Activar',
-          role: 'destructive',
           handler: () => {
-            ////////activacion encuesta///////
-            let datos = { "idEncuesta": id_encuesta }
-            this.http.post("http://www.estacionamiento.16mb.com/git/api/activarEncuestaProfesor", datos).subscribe(
-              data => {
-                this.Volver()
-              });
-            //////////////////
+            this.ActivarEncuesta(id_encuesta)
           }
         }, {
           text: 'Modificar',
           handler: () => {
-            console.log('Archive clicked');
+            this.ModificarEncuesta(id_encuesta)
           }
         }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.EliminarEncuesta(id_encuesta)
+          }
+        },
+        {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
@@ -211,6 +171,66 @@ export class EncuestaPage {
     });
     actionSheet.present();
 
+  }
+  ActivarEncuesta(id_encuesta) {
+    let datos = { "idEncuesta": id_encuesta }
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/activarEncuestaProfesor", datos).subscribe(
+      data => {
+        this.Volver()
+      });
+  }
+  ModificarEncuesta(id_encuesta) {
+
+  }
+  EliminarEncuesta(id_encuesta) {
+
+  }
+  VerResultado(id_encuesta, nombre_encuesta, opcion1, opcion2) {
+
+    let datos = { "idEncuesta": id_encuesta };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/mostrarDatosEncuestaPorId", datos).subscribe(
+      data => this.resultados = data.json()
+    );
+    /////////////
+    let confirm = this.alertCtrl.create({
+      title: 'Desea ver los resultados?',
+      message: '',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.resultados.forEach(element => {
+              this.op1 = element.op1;
+              this.op2 = element.op2;
+              this.cantidadVotantes = element.TOTAL_VOTANTES
+            });
+            this.navCtrl.setRoot(GraficoEncuestaPage, {
+              "id": this.id,
+              "nombre": this.nombre,
+              "apellido": this.apellido,
+              "mail": this.mail,
+              "password": this.password,
+              "legajo": this.legajo,
+              "tipo": this.tipo,
+
+              "nombreEncuesta": nombre_encuesta,
+              "op1Nombre": opcion1,
+              "op2Nombre": opcion2,
+              "op1": this.op1,
+              "op2": this.op2,
+              "cantidadVotantes": this.cantidadVotantes
+            })
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   VerEncuestas() {
@@ -268,5 +288,4 @@ export class EncuestaPage {
       "tipo": this.tipo
     })
   }
-
 }
