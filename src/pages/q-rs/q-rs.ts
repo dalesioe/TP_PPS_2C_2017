@@ -25,7 +25,7 @@ export class QRsPage {
   mail: string;
   password: string;
   legajo: number;
-  tipo: number;
+  tipo: string;
   api: string;
   datos_qr: string;
   resultado_qr: number;
@@ -40,10 +40,10 @@ export class QRsPage {
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
     switch (this.tipo) {
-      case 4:
+      case "4":
         this.api = "http://www.estacionamiento.16mb.com/git/api/alumnoQr";
         break;
-      case 2:
+      case "2":
         this.api = "http://www.estacionamiento.16mb.com/git/api/profesorQr";
         break;
     }
