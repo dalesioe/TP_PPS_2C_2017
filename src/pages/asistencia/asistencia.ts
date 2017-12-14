@@ -431,6 +431,40 @@ export class AsistenciaPage {
       handler: data => {
         /////FALTAS 4A//////
         if (data == 4) {
+          for (let i = 0; i < 8; i++) {
+            this.labels[0] = this.asistenciaParaEstadistica[5].apellido + " " + this.asistenciaParaEstadistica[5].nombre
+            this.datas[0] = this.asistenciaParaEstadistica[5].faltas
+
+            this.labels[1] = this.asistenciaParaEstadistica[3].apellido + " " + this.asistenciaParaEstadistica[3].nombre
+            this.datas[1] = this.asistenciaParaEstadistica[3].faltas
+
+            this.labels[2] = this.asistenciaParaEstadistica[8].apellido + " " + this.asistenciaParaEstadistica[8].nombre
+            this.datas[2] = this.asistenciaParaEstadistica[8].faltas
+
+            this.labels[3] = this.asistenciaParaEstadistica[7].apellido + " " + this.asistenciaParaEstadistica[7].nombre
+            this.datas[3] = this.asistenciaParaEstadistica[7].faltas
+          }
+          this.cambioDePagina();
+        }
+        /////FALTAS 4B//////
+        else if (data == 33) {
+          for (let i = 0; i < 8; i++) {
+            this.labels[0] = this.asistenciaParaEstadistica[2].apellido + " " + this.asistenciaParaEstadistica[2].nombre
+            this.datas[0] = this.asistenciaParaEstadistica[2].faltas
+
+            this.labels[1] = this.asistenciaParaEstadistica[1].apellido + " " + this.asistenciaParaEstadistica[1].nombre
+            this.datas[1] = this.asistenciaParaEstadistica[1].faltas
+
+            this.labels[2] = this.asistenciaParaEstadistica[0].apellido + " " + this.asistenciaParaEstadistica[0].nombre
+            this.datas[2] = this.asistenciaParaEstadistica[0].faltas
+
+            this.labels[3] = this.asistenciaParaEstadistica[6].apellido + " " + this.asistenciaParaEstadistica[6].nombre
+            this.datas[3] = this.asistenciaParaEstadistica[6].faltas
+          }
+          this.cambioDePagina();
+        }
+        /////FALTAS 4A//////
+        /*if (data == 4) {
 
           for (let i = 0; i < 4; i++) {
             this.labels[i] = this.asistenciaParaEstadistica[i].apellido + " " + this.asistenciaParaEstadistica[i].nombre
@@ -446,10 +480,9 @@ export class AsistenciaPage {
             this.datas[i - 4] = this.asistenciaParaEstadistica[i].faltas
           }
           this.cambioDePagina();
-        }
+        }*/
         /////FALTAS TODOS//////
         else if (data == 0) {
-
           for (let i = 0; i < 8; i++) {
             this.labels[i] = this.asistenciaParaEstadistica[i].apellido + " " + this.asistenciaParaEstadistica[i].nombre
             this.datas[i] = this.asistenciaParaEstadistica[i].faltas
