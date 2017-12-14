@@ -18,6 +18,7 @@ export class ModificacionPage {
   id: number;
   nombre: string;
   apellido: string;
+  dni: number;
   mail: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
@@ -25,6 +26,7 @@ export class ModificacionPage {
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
     this.apellido = this.navParams.get('apellido');
+    this.dni = this.navParams.get('dni');
     this.mail = this.navParams.get('mail');
 
   }
@@ -34,6 +36,7 @@ export class ModificacionPage {
       "id": this.id,
       "nombre": this.nombre,
       "apellido": this.apellido,
+      "dni": this.dni,
       "mail": this.mail
     };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/modificarUsuario", datos).subscribe(

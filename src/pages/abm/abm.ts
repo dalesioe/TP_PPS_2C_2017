@@ -344,6 +344,7 @@ export class AbmPage {
           "id": element.id,
           "nombre": element.nombre,
           "apellido": element.apellido,
+          "dni": element.dni,
           "mail": element.mail
         })
       }
