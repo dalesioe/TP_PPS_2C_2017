@@ -52,6 +52,23 @@ export class ModificacionPage {
     this.Cancelar();
   }
 
+  restablecerPass() {
+    let datos = {
+      "id": this.id,
+      "pass": this.dni
+    };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/restablecerPass", datos).subscribe(
+      data => console.log(data)
+    );
+    ///////////alert//////
+    let alert = this.alertCtrl.create({
+      title: 'Felicitaciones!',
+      subTitle: 'Se reiniciado su contraseña de manera exitosa!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   Cancelar() {
     this.navCtrl.pop();
   }
