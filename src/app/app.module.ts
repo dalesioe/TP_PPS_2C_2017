@@ -12,6 +12,7 @@ import { DescargasPage } from '../pages/descargas/descargas';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
 import { ExcelPage } from '../pages/excel/excel';
 import { GraficoEncuestaPage } from '../pages/grafico-encuesta/grafico-encuesta';
+import { GraficoAsistenciaPage } from '../pages/grafico-asistencia/grafico-asistencia';
 import { MainPage } from '../pages/main/main';
 import { QRsPage } from '../pages/q-rs/q-rs';
 import { HomePage } from '../pages/home/home';
@@ -48,6 +49,7 @@ firebase.initializeApp(config)
     DescargasPage,
     EncuestaPage,
     GraficoEncuestaPage,
+    GraficoAsistenciaPage,
     MainPage,
     QRsPage,
     ExcelPage,
@@ -74,6 +76,7 @@ firebase.initializeApp(config)
     DescargasPage,
     EncuestaPage,
     GraficoEncuestaPage,
+    GraficoAsistenciaPage,
     MainPage,
     QRsPage,
     ExcelPage,

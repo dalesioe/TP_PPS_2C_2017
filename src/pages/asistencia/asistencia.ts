@@ -4,6 +4,7 @@ import { MainPage } from '../main/main';
 import { Http } from '@angular/http';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AdmPerfilPage } from '../adm-perfil/adm-perfil';
+import { GraficoAsistenciaPage } from '../grafico-asistencia/grafico-asistencia';
 import { Camera, CameraOptions } from '@ionic-native/Camera';
 import firebase from 'firebase'
 
@@ -67,6 +68,11 @@ export class AsistenciaPage {
   picurl: any;
   mypicref: any;
 
+  asistenciaParaEstadistica: any;
+  labels: any[] = [];
+  datas: any[] = [];
+
+
   constructor(public camara: Camera, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams, public http: Http, public alertCtrl: AlertController) {
     this.mypicref = firebase.storage().ref('/');
     this.id = this.navParams.get('id');
@@ -78,6 +84,15 @@ export class AsistenciaPage {
     this.tipo = this.navParams.get('tipo');
     this.mostrarHistorico = false;
     this.listadoHistorico = false;
+    /////////////ASISTENCIA PARA ESTADISTICA 4A///////////////
+    this.http.get("http://www.estacionamiento.16mb.com/git/api/estadisticaAsistenciaGlobal")
+      .subscribe(data => {
+        this.asistenciaParaEstadistica = data.json();
+        console.log(this.asistenciaParaEstadistica);
+      }, error => {
+        console.log(error);// Error getting the data
+      });
+
     /////////////TRAER MATERIAS Y AULAS///////////////
     this.http.get("http://www.estacionamiento.16mb.com/git/api/traerTodasLasMaterias")
       .subscribe(data => {
@@ -195,7 +210,7 @@ export class AsistenciaPage {
     this.barcodeScanner.scan().then(barcodeData => {
       this.test_aula = barcodeData.text;
       this.traerInformacion(this.test_aula);
-    }); 
+    });
 
   }
   traerInformacion(numeroAula) {
@@ -387,4 +402,55 @@ export class AsistenciaPage {
       })
   }
 
+  estadisticasAsistencia() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Lightsaber color');
+
+    alert.addInput({
+      type: 'radio',
+      label: '4A',
+      value: '4',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: '4B',
+      value: '33',
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        /////FALTAS 4A//////
+        if (data == 4) {
+
+          for (let i = 0; i < 4; i++) {
+            this.labels[i] = this.asistenciaParaEstadistica[i].apellido + " " + this.asistenciaParaEstadistica[i].nombre
+            this.datas[i] = this.asistenciaParaEstadistica[i].faltas
+          }
+          this.cambioDePagina();
+        }
+        /////FALTAS 4B//////
+        else if (data == 33) {
+
+          for (let i = 4; i < 8; i++) {
+            this.labels[i - 4] = this.asistenciaParaEstadistica[i].apellido + " " + this.asistenciaParaEstadistica[i].nombre
+            this.datas[i - 4] = this.asistenciaParaEstadistica[i].faltas
+          }
+          this.cambioDePagina();
+        }
+      }
+    });
+    alert.present();
+
+  }
+  cambioDePagina() {
+    ////VOY A LA PAGINA GRAFICO ASISTENCIA
+    this.navCtrl.push(GraficoAsistenciaPage, {
+      "labels": this.labels,
+      "datas": this.datas
+    })
+  }
 }

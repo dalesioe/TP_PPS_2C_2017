@@ -72,6 +72,7 @@
   <ion-content>
     <div *ngIf= "tipo == 3">
       <button ion-button full color="dark" (click)="listaAula()">Escanear QR Aula para tomar asistencia</button>
+      <button ion-button full color="secondary" (click)="estadisticasAsistencia()">Estadisticas asistencias</button>
       <button ion-button full color="primary" (click)="traerInformacionAsistencias()">Revisar asistencias</button>
       <img src="{{picurl}}"/>
       <div *ngIf= "mostrarHistorico == true">
