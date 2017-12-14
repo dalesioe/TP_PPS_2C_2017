@@ -47,6 +47,8 @@ export class EncuestaPage {
   encuestasProfesor: any;
   resultados: any;
 
+  testqr: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public http: Http, private datePicker: DatePicker, private barcodeScanner: BarcodeScanner, public actionSheetCtrl: ActionSheetController) {
 
@@ -77,13 +79,35 @@ export class EncuestaPage {
 
   LeerQr() {
     this.barcodeScanner.scan().then(barcodeData => {
-      alert(barcodeData.text);
-      /*this.idEncuesta = barcodeData.text;
-      this.traerInformacion(this.idEncuesta);*/
-    });
-  }
-  traerInformacion(idEncuesta) {
+      this.testqr = barcodeData.text;
 
+      //////SI ES PROFESOR///////
+      if (this.tipo == 2) {
+        this.encuestasProfesor.forEach(element => {
+          ////SI ENCUENTRA LA ENCUESTA Y PERTENECE AL PROFESOR LOGUEADO 
+          if (this.testqr == element.id_encuesta && this.id == element.id_profesor) {
+            this.VerResultado(element.id_encuesta, element.nombre_encuesta, element.opcion1, element.opcion2)
+          }
+          ////SI ENCUENTRA LA ENCUESTA Y NO PERTENECE AL PROFESOR LOGUEADO 
+          else if (this.testqr == element.id_encuesta && this.id != element.id_profesor && element.activa == 0) {
+            this.VerResultado(element.id_encuesta, element.nombre_encuesta, element.opcion1, element.opcion2)
+          }
+        });
+      }
+      ///////SI ES ALUMNO///////
+      else if (this.tipo == 4) {
+        this.encuestasAlumno.forEach(element => {
+          ///////SI ENCUENTRA UNA ENCUESTA FINALIZADA
+          if (this.testqr == element.id_encuesta && element.activa == 0) {
+            this.VerResultado(element.id_encuesta, element.nombre_encuesta, element.opcion1, element.opcion2)
+          }
+          /////////SI ENCUENTRA UNA ENCUESTA PARA VOTAR
+          else if (this.testqr == element.id_encuesta && element.activa == 1) {
+            this.Votar(element.id_encuesta, element.opcion1, element.opcion2)
+          }
+        });
+      }
+    });
   }
 
   CrearEncuesta() {

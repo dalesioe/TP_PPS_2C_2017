@@ -18,14 +18,8 @@
     <ion-checkbox color="dark" checked="true" [(ngModel)]="CrearEncuestaSiNO"></ion-checkbox>
   </ion-item>
 
-  <button *ngIf="tipo =='2'" ion-button color="dark" icon-end (click)="VerResultado()">
-    Ver Resultados
-  </button>
   <button ion-button color="danger" icon-end (click)="LeerQr()">
     Leer QR
-  </button>
-  <button *ngIf="tipo =='4'" ion-button color="dark" icon-end (click)="VerEncuestas()">
-    Ver Encuestas
   </button>
 
   <!-- VISUALIZA ENCUESTAS DEL ALUMNO -->
