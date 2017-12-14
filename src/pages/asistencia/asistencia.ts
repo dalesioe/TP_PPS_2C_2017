@@ -404,7 +404,7 @@ export class AsistenciaPage {
 
   estadisticasAsistencia() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Lightsaber color');
+    alert.setTitle('Ver grafico');
 
     alert.addInput({
       type: 'radio',
@@ -417,6 +417,12 @@ export class AsistenciaPage {
       type: 'radio',
       label: '4B',
       value: '33',
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Todos',
+      value: '0',
     });
 
     alert.addButton('Cancel');
@@ -438,6 +444,15 @@ export class AsistenciaPage {
           for (let i = 4; i < 8; i++) {
             this.labels[i - 4] = this.asistenciaParaEstadistica[i].apellido + " " + this.asistenciaParaEstadistica[i].nombre
             this.datas[i - 4] = this.asistenciaParaEstadistica[i].faltas
+          }
+          this.cambioDePagina();
+        }
+        /////FALTAS TODOS//////
+        else if (data == 0) {
+
+          for (let i = 0; i < 8; i++) {
+            this.labels[i] = this.asistenciaParaEstadistica[i].apellido + " " + this.asistenciaParaEstadistica[i].nombre
+            this.datas[i] = this.asistenciaParaEstadistica[i].faltas
           }
           this.cambioDePagina();
         }
