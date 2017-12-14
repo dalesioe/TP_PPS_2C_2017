@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Http } from '@angular/http';
 /**
  * Generated class for the ModificacionPage page.
  *
@@ -20,7 +20,8 @@ export class ModificacionPage {
   apellido: string;
   mail: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
+    public http: Http) {
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
     this.apellido = this.navParams.get('apellido');
@@ -29,7 +30,23 @@ export class ModificacionPage {
   }
 
   ModificarUsuario() {
-
+    let datos = {
+      "id": this.id,
+      "nombre": this.nombre,
+      "apellido": this.apellido,
+      "mail": this.mail
+    };
+    this.http.post("http://www.estacionamiento.16mb.com/git/api/modificarUsuario", datos).subscribe(
+      data => console.log(data)
+    );
+    ///////////alert//////
+    let alert = this.alertCtrl.create({
+      title: 'Felicitaciones!',
+      subTitle: 'Se han cambiado los datos del usuario de manera exitosa!',
+      buttons: ['OK']
+    });
+    alert.present();
+    this.Cancelar();
   }
 
   Cancelar() {
