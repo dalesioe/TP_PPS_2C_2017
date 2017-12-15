@@ -90,10 +90,10 @@ export class AbmPage {
   }
   definirApi() {
     switch (this.tipo) {
-      case "2":
+      case "3":
         this.api = "http://www.estacionamiento.16mb.com/git/api/altaAdministrativo";
         break;
-      case "3":
+      case "2":
         this.api = "http://www.estacionamiento.16mb.com/git/api/altaProfesor";
         break;
       case "4":
@@ -120,6 +120,72 @@ export class AbmPage {
       });
       alert.present();
     }
+  }
+
+  AltaConArchivoProfesor() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Elegir archivo');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Profesor',
+      value: 'Profesor',
+      checked: true
+    });
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Ok',
+      handler: data => {
+        console.log('Radio data:', data);
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+
+        if (data) {
+          switch (data) {
+            case 'Profesor':
+              this.archivo = 'Profesor1.csv';
+              this.ComprobarArchivo();
+              break;
+          }
+        }
+      }
+    });
+    alert.present().then(() => {
+      this.testRadioOpen = true;
+    });
+  }
+
+  AltaConArchivoAdminsitrativo() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Elegir archivo');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Administrativo',
+      value: 'Profesor',
+      checked: true
+    });
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Ok',
+      handler: data => {
+        console.log('Radio data:', data);
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+
+        if (data) {
+          switch (data) {
+            case 'Administrativo':
+              this.archivo = 'Administrativo1.csv';
+              this.ComprobarArchivo();
+              break;
+          }
+        }
+      }
+    });
+    alert.present().then(() => {
+      this.testRadioOpen = true;
+    });
   }
 
   AltaConArchivoAlumno() {
