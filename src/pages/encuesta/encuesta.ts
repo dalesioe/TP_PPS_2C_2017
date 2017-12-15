@@ -42,6 +42,7 @@ export class EncuestaPage {
   op1Nombre: string;
   op2Nombre: string;
   duracion: number;
+  existe: boolean;
 
   encuestasAlumno: any;
   encuestasProfesor: any;
@@ -59,7 +60,7 @@ export class EncuestaPage {
     this.password = this.navParams.get('password');
     this.legajo = this.navParams.get('legajo');
     this.tipo = this.navParams.get('tipo');
-
+    this.existe = false;
     //////////////TRER ENCUESTAS DE ALUMNOS/////
     let datos = { "idAlumno": this.id }
     this.http.post("http://www.estacionamiento.16mb.com/git/api/mostrarEncuestasPorAlumno", datos).subscribe(
@@ -80,32 +81,51 @@ export class EncuestaPage {
   LeerQr() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.testqr = barcodeData.text;
-
       //////SI ES PROFESOR///////
       if (this.tipo == 2) {
         this.encuestasProfesor.forEach(element => {
           ////SI ENCUENTRA LA ENCUESTA Y PERTENECE AL PROFESOR LOGUEADO 
           if (this.testqr == element.id_encuesta && this.id == element.id_profesor) {
+            this.existe = true;
             this.VerResultado(element.id_encuesta, element.nombre_encuesta, element.opcion1, element.opcion2)
           }
           ////SI ENCUENTRA LA ENCUESTA Y NO PERTENECE AL PROFESOR LOGUEADO 
           else if (this.testqr == element.id_encuesta && this.id != element.id_profesor && element.activa == 0) {
+            this.existe = true;
             this.VerResultado(element.id_encuesta, element.nombre_encuesta, element.opcion1, element.opcion2)
           }
         });
+        if (!this.existe) {
+          let alert = this.alertCtrl.create({
+            title: 'Error!',
+            subTitle: 'El codigo QR escaneado no se corresponde con encuestas',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
       }
       ///////SI ES ALUMNO///////
       else if (this.tipo == 4) {
         this.encuestasAlumno.forEach(element => {
           ///////SI ENCUENTRA UNA ENCUESTA FINALIZADA
           if (this.testqr == element.id_encuesta && element.activa == 0) {
+            this.existe = true;
             this.VerResultado(element.id_encuesta, element.nombre_encuesta, element.opcion1, element.opcion2)
           }
           /////////SI ENCUENTRA UNA ENCUESTA PARA VOTAR
           else if (this.testqr == element.id_encuesta && element.activa == 1) {
+            this.existe = true;
             this.Votar(element.id_encuesta, element.opcion1, element.opcion2)
           }
         });
+      }
+      if (!this.existe) {
+        let alert = this.alertCtrl.create({
+          title: 'Error!',
+          subTitle: 'El codigo QR escaneado no se corresponde con encuestas',
+          buttons: ['OK']
+        });
+        alert.present();
       }
     });
   }
