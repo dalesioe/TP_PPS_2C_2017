@@ -61,6 +61,7 @@ export class QRsPage {
     })
   }
   QrAula() {
+    this.alumnos = null;
     this.barcodeScanner.scan().then(barcodeData => {
       this.datos_qr = barcodeData.text;
       this.ProcesarQrAula(this.datos_qr);

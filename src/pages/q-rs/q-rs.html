@@ -17,6 +17,24 @@
     <button ion-button full (click)="QrAula()">Escanear Aula</button>
   </div>
   <div *ngIf="this.alumnos!=null">
+      <ion-grid *ngFor ="let aux of datos">
+          <ion-row>
+            <ion-col>
+                Comision:{{aux.Comision}}
+            </ion-col>
+            <ion-col>
+                Materia: {{aux.Materia}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              Profesor:{{aux.nombre_prof}} {{aux.ape_prof}}
+            </ion-col>
+            <ion-col>
+              Aula: {{aux.aula}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
     <ion-grid>
       <ion-row>
         <ion-col>
