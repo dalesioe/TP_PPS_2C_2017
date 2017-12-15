@@ -29,6 +29,7 @@ export class QRsPage {
   api: string;
   datos_qr: string;
   resultado_qr: number;
+  exite: number=0;
 
 
   constructor(private alertCtrl: AlertController, public http: Http, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
@@ -61,6 +62,7 @@ export class QRsPage {
     })
   }
   QrAula() {
+    this.datos=null;
     this.alumnos = null;
     this.barcodeScanner.scan().then(barcodeData => {
       this.datos_qr = barcodeData.text;
@@ -90,6 +92,7 @@ export class QRsPage {
     body = { "aula": aula };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/traerCursoPorDiaAula", body)
       .subscribe(data => {
+        this.exite=1;
         this.datos = data.json();
         try {
           this.traerAlumnos(this.datos[0].id_curso);
