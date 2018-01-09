@@ -13,6 +13,7 @@ import { MenuController, AlertController, ActionSheetController } from 'ionic-an
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { ExcelPage } from '../excel/excel';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the MainPage page.
  *

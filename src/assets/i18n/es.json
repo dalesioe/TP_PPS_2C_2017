@@ -1,0 +1,17 @@
+{
+    "HELLO": "Hola",
+    "WELCOME": "Bienvenido",
+    "GREETING": "Hola, {{ value }}",
+    "menu":"Menu",
+    "ABMalumno": "ABM Alumno",
+    "ABMprofesor": "ABM Profesor",
+    "ABMadministrativo": "ABM Administrativo",
+    "asistencia": "Asistencia",
+    "importardescargar":"Importar - Descargar Excel",
+    "cursadas":"Cursadas",
+    "encuesta":"Encuestas",
+    "lectorqr":"Lector QR",
+    "descarga":"Descarga",
+    "perfil":"Perfil",
+    "salir":"Salir"
+}

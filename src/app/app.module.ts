@@ -25,6 +25,15 @@ import { Camera } from '@ionic-native/Camera';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { DatePicker } from '@ionic-native/date-picker';
+//idiomas
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -63,7 +72,15 @@ firebase.initializeApp(config)
     HttpModule,
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

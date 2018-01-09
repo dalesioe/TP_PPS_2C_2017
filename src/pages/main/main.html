@@ -5,7 +5,7 @@
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>
-      Menu
+      {{ 'menu' | translate }}
     </ion-title>
   </ion-navbar>
 
@@ -18,96 +18,56 @@
     </ion-list>
 
     <button *ngIf="tipoUsuario =='1' || tipoUsuario =='3'" ion-item (click)="openPage('abm','4')">
-      ABM Alumno
+      {{ 'ABMalumno' | translate }}
     </button>
 
     <button *ngIf="tipoUsuario =='1'" ion-item (click)="openPage('abm','2')">
-      ABM Profesor
+      {{ 'ABMprofesor' | translate }}
     </button>
 
     <button *ngIf="tipoUsuario  =='1' " ion-item (click)="openPage('abm','3')">
-      ABM Administrativo
+      {{ 'ABMadministrativo' | translate }}
     </button>
 
     <button *ngIf="tipoUsuario  =='3' " ion-item (click)="openPage('asistencia')">
-      Asistencia
+      {{ 'asistencia' | translate }}
     </button>
 
     <button *ngIf="tipoUsuario =='1' || tipoUsuario =='3'" ion-item (click)="openPage('excel')">
-      Importar/Descargar Excel
+      {{ 'importardescargar' | translate }}
     </button>
 
     <button ion-item (click)="openPage('cursadas')">
-      Cursadas
+      {{ 'cursadas' | translate }}
     </button>
 
     <button *ngIf="tipoUsuario=='2' || tipoUsuario =='4'" ion-item (click)="openPage('encuesta')">
-      Encuesta
+      {{ 'encuesta' | translate }}
     </button>
 
     <button ion-item (click)="openPage('qrs')">
-      Lector QR
+      {{ 'lectorqr' | translate }}
     </button>
 
     <button ion-item (click)="openPage('descarga')">
-      Descarga
+      {{ 'descarga' | translate }}
     </button>
 
     <button ion-item (click)="openPage('perfil')">
-      Perfil
-    </button>
-
-    <button ion-item (click)="closeMenu()">
-      Close Menu
+      {{ 'perfil' | translate }}
     </button>
 
   </ion-list>
 </ion-content>
 
 <ion-footer>
-  <button *ngIf="tipo=='2'" ion-button full color="secondary" icon-end (click)="EnviarMensaje()">
+
+  <!--<button *ngIf="tipo=='2'" ion-button full color="secondary" icon-end (click)="EnviarMensaje()">
     Mensaje de Importancia
-  </button>
+  </button>-->
   <button ion-button full color="primary" icon-end (click)="Volver()">
-    Salir
+    {{ 'salir' | translate }}
   </button>
 </ion-footer>
-<!--
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
 
-      <button *ngIf="usuario=='admin' || usuario=='administrativo'" ion-item (click)="openPage('abm')">
-        Altas
-      </button>
-      <button ion-item (click)="openPage('asistencia')">
-        Asistencia
-      </button>
-      <button ion-item (click)="openPage('cursadas')">
-        Cursadas
-      </button>
-      <button *ngIf="usuario=='profe'" ion-item (click)="openPage('encuesta')">
-        Encuesta
-      </button>
-      <button ion-item (click)="openPage('qrs')">
-        Lector QR
-      </button>
-      <button ion-item (click)="openPage('descarga')">
-        Descarga
-      </button>
-      <button ion-item (click)="openPage('perfil')">
-        Perfil
-      </button>
-      <button ion-item (click)="closeMenu()">
-        Close Menu
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
--->
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>

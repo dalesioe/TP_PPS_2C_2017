@@ -3,8 +3,7 @@ import { NavController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { ApiabmProvider } from '../../providers/apiabm/apiabm';
 import { Http } from '@angular/http';
-
-
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'page-home',
@@ -19,7 +18,9 @@ export class HomePage {
 
   correcto: boolean;
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  idioms: any[] = [];
+
+  constructor(public navCtrl: NavController, public http: Http, public translateService: TranslateService) {
     this.correcto = false;
     /////////////TRAER USUARIOS///////////////
     this.http.get("http://www.estacionamiento.16mb.com/git/api/todoslosUsuarios")
@@ -37,7 +38,24 @@ export class HomePage {
           //console.log(data)
         });
     }
-    //////////////////////
+    ///////////ELEGIR IDIOMA///////////
+    this.idioms = [
+      {
+        value: 'es',
+        label: 'Español'
+      },
+      {
+        value: 'en',
+        label: 'Ingles'
+      },
+      {
+        value: 'pt',
+        label: 'Portugués'
+      }
+    ];
+  }
+  choose(lang) {
+    this.translateService.use(lang);
   }
   login() {
     this.usuarios.forEach(element => {
