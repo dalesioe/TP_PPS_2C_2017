@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Ingreso</ion-title>
+    <ion-title>{{ 'ingreso' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,17 +12,17 @@
   <ion-list>
 
     <ion-item color="danger">
-      <ion-label>Es usuario?</ion-label>
+      <ion-label>{{ 'esusuario' | translate }}</ion-label>
       <ion-toggle value="foo" checked="true" [(ngModel)]="esUsuario"></ion-toggle>
     </ion-item>
 
     <ion-item color="danger">
-        <ion-label>Escoge el idioma</ion-label>
-        <ion-select (ionChange)="choose($event)" >
-          <ion-option *ngFor="let item of idioms" [value]="item.value">
-            {{ item.label }}
-          </ion-option>
-        </ion-select>
+      <ion-label>{{ 'elegiridioma' | translate }}</ion-label>
+      <ion-select (ionChange)="choose($event)">
+        <ion-option *ngFor="let item of idioms" [value]="item.value">
+          {{ item.label }}
+        </ion-option>
+      </ion-select>
     </ion-item>
 
   </ion-list>
@@ -38,7 +38,7 @@
     <br>
 
     <button ion-button color="primary" icon-end (click)="login()">
-      Ingresar
+      {{ 'ingresar' | translate }}
       <ion-icon name='arrow-forward'></ion-icon>
     </button>
 
@@ -66,7 +66,7 @@
     <br>
     <button ion-button color="secondary" icon-start (click)="registrar()">
       <ion-icon name='people'></ion-icon>
-      Registrar
+      {{ 'registrar' | translate }}
     </button>
 
   </div>

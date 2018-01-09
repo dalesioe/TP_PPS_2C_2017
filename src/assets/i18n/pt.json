@@ -2,6 +2,13 @@
     "HELLO": "Olá",
     "WELCOME": "Bem-vindo",
     "GREETING": "oi, {{ value }}",
+
+    "ingreso":"Renda",
+    "esusuario":"É um usuário?",
+    "elegiridioma":"Escolha o idioma",
+    "ingresar":"Entre",
+    "registrar":"Registre-se",
+
     "menu":"Menu",
     "ABMalumno": "ABM Estudante",
     "ABMprofesor": "ABM Professor",

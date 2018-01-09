@@ -2,6 +2,13 @@
     "HELLO": "Hello",
     "WELCOME": "Welcome",
     "GREETING": "Hi, {{ value }}",
+
+    "ingreso":"Entry",
+    "esusuario":"Is it a user?",
+    "elegiridioma":"Choose the language",
+    "ingresar":"Enter",
+    "registrar":"To register",
+
     "menu":"Menu",
     "ABMalumno": "ABM Student",
     "ABMprofesor": "ABM Teacher",
