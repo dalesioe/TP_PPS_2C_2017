@@ -36,5 +36,10 @@
     "masculino":"Masculino",
     "alta":"Alta",
     "altaconarchivo":"Alta con archivo",
-    "volver":"Volver"
+    "volver":"Volver",
+
+    "datosperfil":"Datos Perfil",
+    "legajo":"Legajo",
+    "aceptar":"Aceptar",
+    "cambiarpass":"Cambiar Contraseña"
 }

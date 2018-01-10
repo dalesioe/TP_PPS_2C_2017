@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/Camera';
 import firebase from 'firebase'
 import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the AdmPerfilPage page.
  *

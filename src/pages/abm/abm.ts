@@ -70,7 +70,7 @@ export class AbmPage {
     switch (this.idioma) {
       case "es":
         this.accionesusuario = "Acciones de usuario";
-        this.aceptar="Aceptar";
+        this.aceptar = "Aceptar";
         this.borrar = "Borrar";
         this.modificar = "Modificar";
         this.cancelar = "Cancelar";
@@ -86,7 +86,7 @@ export class AbmPage {
         break;
       case "en":
         this.accionesusuario = "User Actions";
-        this.aceptar="To accept";
+        this.aceptar = "To accept";
         this.borrar = "Delete";
         this.modificar = "Modify";
         this.cancelar = "Cancel";
@@ -102,7 +102,7 @@ export class AbmPage {
         break;
       case "pt":
         this.accionesusuario = "Ações do usuário";
-        this.aceptar="Aceitar";
+        this.aceptar = "Aceitar";
         this.borrar = "Excluir";
         this.modificar = "Borrar";
         this.cancelar = "Cancelar";

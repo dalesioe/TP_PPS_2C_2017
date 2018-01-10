@@ -7,7 +7,7 @@
 <ion-header>
     
       <ion-navbar>
-        <ion-title>AdmPerfil</ion-title>
+        <ion-title>{{ 'perfil' | translate }}</ion-title>
       </ion-navbar>
     
     </ion-header>
@@ -30,37 +30,37 @@
             {{nombre}} {{apellido}}
           </ion-card-title>
           <p>
-            Datos Perfil
+            {{ 'datosperfil' | translate }}
           </p>
         </ion-card-content>
     
         <ion-item>
           <ion-icon name='mail' item-start style="color: #d12020"></ion-icon>
-          Mail: {{mail}}
+          {{ 'email' | translate }}: {{mail}}
         </ion-item>
     
         <ion-item>
           <ion-icon name='attach' item-start style="color: #55acee"></ion-icon>
-          Legajo: {{legajo}}
+          {{ 'legajo' | translate }}: {{legajo}}
         </ion-item>
     
         <ion-item>
           <ion-buttons end>
-            <button ion-button outline icon-only (click)="Cambiar()">Cambiar Contraseña
+            <button ion-button outline icon-only (click)="Cambiar()">{{ 'cambiarpass' | translate }}
               <ion-icon name='body' style="color: #43d120"></ion-icon>
             </button>
           </ion-buttons>
         </ion-item>
         <div *ngIf="cambiar == true">
-          <label>Modificar Password</label>
-          <input type="password" [(ngModel)]="pw1">
-          <label>Reingrese Password</label>
+          <label>{{ 'pass' | translate }}</label>
+          <input type="password" [(ngModel)]="pw1"><br>
+          <label>{{ 'confirmarpass' | translate }}</label>
           <input type="password" [(ngModel)]="pw2">
           <div *ngIf="pw1 != pw2 || pw1 =='' ">
-              <button ion-button full (click)="CambiarPW(pw1,pw2)" disabled>Confirmar</button>
+              <button ion-button full (click)="CambiarPW(pw1,pw2)" disabled>{{ 'aceptar' | translate }}</button>
           </div>
           <div *ngIf="pw1 == pw2">
-              <button ion-button full (click)="CambiarPW(pw1,pw2)">Confirmar</button>
+              <button ion-button full (click)="CambiarPW(pw1,pw2)">{{ 'aceptar' | translate }}</button>
           </div>
           
         </div>
@@ -69,6 +69,6 @@
     </ion-content>
     <ion-footer>
       <button ion-button full color="primary" icon-end (click)="Volver()">
-        Volver
+        {{ 'volver' | translate }}
       </button>
     </ion-footer>

@@ -36,5 +36,10 @@
     "masculino":"Male",
     "alta":"Create",
     "altaconarchivo":"Create with file",
-    "volver":"Back"
+    "volver":"Back",
+
+    "datosperfil":"Data Profile",
+    "legajo":"Docket",
+    "aceptar":"To accept",
+    "cambiarpass":"Change Password"
 }

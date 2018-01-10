@@ -36,5 +36,10 @@
     "masculino":"Masculino",
     "alta":"Criar Usuário",
     "altaconarchivo":"Criar usuário com arquivo",
-    "volver":"Voltar"
+    "volver":"Voltar",
+
+    "datosperfil":"Perfil de Dados",
+    "legajo":"Arquivo",
+    "aceptar":"Aceitar",
+    "cambiarpass":"Alterar senha"
 }
