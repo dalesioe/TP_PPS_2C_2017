@@ -6,6 +6,10 @@
     "ingreso":"Entry",
     "esusuario":"Is it a user?",
     "elegiridioma":"Choose the language",
+    "usuario":"User",
+    "pass":"Password",
+    "email":"Email",
+    "confirmarpass":"Confirm Password",
     "ingresar":"Enter",
     "registrar":"To register",
 

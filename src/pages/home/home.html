@@ -29,11 +29,11 @@
 
   <div *ngIf="esUsuario">
     <ion-item class="fondo2">
-      <ion-input type="text" placeholder="Mail" [(ngModel)]="mail"></ion-input>
+      <ion-input type="text" placeholder="{{ 'usuario' | translate }}" [(ngModel)]="mail"></ion-input>
     </ion-item>
 
     <ion-item class="fondo2">
-      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+      <ion-input type="password" placeholder="{{ 'pass' | translate }}" [(ngModel)]="password"></ion-input>
     </ion-item>
     <br>
 
@@ -49,19 +49,19 @@
   <div *ngIf="!esUsuario">
 
     <ion-item class="fondo3">
-      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario"></ion-input>
+      <ion-input type="text" placeholder="{{ 'usuario' | translate }}" [(ngModel)]="usuario"></ion-input>
     </ion-item>
 
     <ion-item class="fondo3">
-      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+      <ion-input type="email" placeholder="{{ 'email' | translate }}" [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item class="fondo3">
-      <ion-input type="password" placeholder="Password" [(ngModel)]="pass1"></ion-input>
+      <ion-input type="password" placeholder="{{ 'pass' | translate }}" [(ngModel)]="pass1"></ion-input>
     </ion-item>
 
     <ion-item class="fondo3">
-      <ion-input type="password" placeholder="Confirme su Password" [(ngModel)]="pass2"></ion-input>
+      <ion-input type="password" placeholder="{{ 'confirmarpass' | translate }}" [(ngModel)]="pass2"></ion-input>
     </ion-item>
     <br>
     <button ion-button color="secondary" icon-start (click)="registrar()">
