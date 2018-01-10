@@ -24,5 +24,17 @@
     "lectorqr":"Lector QR",
     "descarga":"Descarga",
     "perfil":"Perfil",
-    "salir":"Salir"
+    "salir":"Salir",
+
+    "abm":"ABM",
+    "tituloabm":"Alta/Baja-Modificacion",
+    "nombre":"Nombre",
+    "apellido":"Apellido",
+    "dni":"DNI",
+    "sexo":"Sexo",
+    "femenino":"Femenino",
+    "masculino":"Masculino",
+    "alta":"Alta",
+    "altaconarchivo":"Alta con archivo",
+    "volver":"Volver"
 }

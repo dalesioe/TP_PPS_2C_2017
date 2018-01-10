@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { ApiabmProvider } from '../../providers/apiabm/apiabm';
 import { Http } from '@angular/http';
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-home',
@@ -31,7 +31,7 @@ export class HomePage {
         console.log(error);
       });
     //////////////////ACTUALIZACION ENCUESTAS/////////////
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 20; i++) {
       let datos = { "idEncuesta": i }
       this.http.post("http://www.estacionamiento.16mb.com/git/api/updateEstadoEncuesta", datos).subscribe(
         data => {

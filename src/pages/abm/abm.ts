@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 import { MainPage } from '../main/main';
 import { Http } from '@angular/http';
 import { File } from '@ionic-native/file';
+import { TranslateService } from '@ngx-translate/core';
 import { AlertController } from 'ionic-angular';
 import { ModificacionPage } from '../modificacion/modificacion';
 import * as papa from 'papaparse';

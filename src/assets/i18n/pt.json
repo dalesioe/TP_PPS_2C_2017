@@ -24,5 +24,17 @@
     "lectorqr":"Leitor QR",
     "descarga":"Download",
     "perfil":"Perfil",
-    "salir":"Sair"
+    "salir":"Sair",
+
+    "abm":"ABM",
+    "tituloabm":"Alta/Baixa modificação",
+    "nombre":"Nome",
+    "apellido":"Sobrenome",
+    "dni":"Identidade",
+    "sexo":"Sexo",
+    "femenino":"Feminino",
+    "masculino":"Masculino",
+    "alta":"Criar Usuário",
+    "altaconarchivo":"Criar usuário com arquivo",
+    "volver":"Voltar"
 }

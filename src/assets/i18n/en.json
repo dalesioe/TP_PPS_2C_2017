@@ -24,5 +24,17 @@
     "lectorqr":"QR Reader",
     "descarga":"Download",
     "perfil":"Profile",
-    "salir":"Exit"
+    "salir":"Exit",
+
+    "abm":"CRUD",
+    "tituloabm":"Create, Read, Update and Delete",
+    "nombre":"First Name",
+    "apellido":"Last name",
+    "dni":"Identification Document",
+    "sexo":"Sex",
+    "femenino":"Female",
+    "masculino":"Male",
+    "alta":"Create",
+    "altaconarchivo":"Create with file",
+    "volver":"Back"
 }

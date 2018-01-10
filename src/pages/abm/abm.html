@@ -6,64 +6,64 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>ABM</ion-title>
+    <ion-title>{{ 'abm' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item color="danger">
-    <ion-label>Alta/Baja-Modificacion</ion-label>
+    <ion-label>{{ 'tituloabm' | translate }}</ion-label>
     <ion-toggle value="foo" checked="true" [(ngModel)]="AltaBaja"></ion-toggle>
   </ion-item>
 
   <div *ngIf="AltaBaja==true">
     <ion-item no-lines>
       <ion-label>
-        E-Mail:
+        {{ 'email' | translate }}:
       </ion-label>
       <ion-input type="email" [(ngModel)]="mail"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label>
-        Nombre:
+        {{ 'nombre' | translate }}:
       </ion-label>
       <ion-input type="text" [(ngModel)]="nombre"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label>
-        Apellido:
+        {{ 'apellido' | translate }}:
       </ion-label>
       <ion-input type="text" [(ngModel)]="apellido"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label>
-        DNI:
+        {{ 'dni' | translate }}:
       </ion-label>
       <ion-input type="number" [(ngModel)]="dni"></ion-input>
     </ion-item>
     <ion-item no-lines>
-      <ion-label>Sexo:</ion-label>
+      <ion-label>{{ 'sexo' | translate }}:</ion-label>
       <ion-select [(ngModel)]="sexo">
-        <ion-option value="f">Femenino</ion-option>
-        <ion-option value="m">Masculino</ion-option>
+        <ion-option value="f">{{ 'femenino' | translate }}</ion-option>
+        <ion-option value="m">{{ 'masculino' | translate }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item no-lines>
       <button ion-button full color="secondary" icon-start (click)="Alta()">
         <ion-icon name='people'></ion-icon>
-        Alta
+        {{ 'alta' | translate }}
       </button>
     </ion-item>
 
     <ion-item no-lines>
       <button *ngIf="tipo==4" ion-button full color="primary" (click)=" AltaConArchivoAlumno()">
-        Alta con archivo
+        {{ 'altaconarchivo' | translate }}
       </button>
       <button *ngIf="tipo==2" ion-button full color="primary" (click)=" AltaConArchivoProfesor()">
-        Alta con archivo
+        {{ 'altaconarchivo' | translate }}
       </button>
       <button *ngIf="tipo==3" ion-button full color="primary" (click)=" AltaConArchivoAdminsitrativo()">
-        Alta con archivo
+        {{ 'altaconarchivo' | translate }}
       </button>
     </ion-item>
   </div>
@@ -89,6 +89,6 @@
 
 <ion-footer>
   <button ion-button full color="primary" icon-end (click)="Volver()">
-    Volver
+    {{ 'volver' | translate }}
   </button>
 </ion-footer>
