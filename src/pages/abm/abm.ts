@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AlertController } from 'ionic-angular';
 import { ModificacionPage } from '../modificacion/modificacion';
 import * as papa from 'papaparse';
+import { Select } from 'ionic-angular/components/select/select';
 //import 'rxjs/add/operator/map';
 /**
  * Generated class for the AbmPage page.
@@ -46,8 +47,37 @@ export class AbmPage {
   api: string;
   AltaBaja: boolean = true;
 
+  idioma: string;
+  accionesusuario: string;
+  borrar: string;
+  modificar: string;
+  cancelar: string;
+
   constructor(private alertCtrl: AlertController, public file: File, public navCtrl: NavController, public navParams: NavParams
-    , public actionSheetCtrl: ActionSheetController, public http: Http) {
+    , public actionSheetCtrl: ActionSheetController, public http: Http, public traductor: TranslateService) {
+    ////////IDIOMA//////////////
+    this.idioma = this.traductor.currentLang;
+    switch (this.idioma) {
+      case "es":
+        this.accionesusuario = "Acciones de usuario";
+        this.borrar="Borrar";
+        this.modificar="Modificar";
+        this.cancelar="Cancelar";
+        break;
+      case "en":
+        this.accionesusuario = "User Actions";
+        this.borrar="Delete";
+        this.modificar="Modify";
+        this.cancelar="Cancel";
+        break;
+      case "pt":
+        this.accionesusuario = "Ações do usuário";
+        this.borrar="Excluir";
+        this.modificar="Borrar";
+        this.cancelar="Cancelar";
+        break;
+    }
+    ///////////////////////////////
     this.usuario = this.navParams.get('usuario');
     this.pass = this.navParams.get('pass');
     this.tipo = this.navParams.get('tipo');
@@ -363,23 +393,23 @@ export class AbmPage {
   menu(id) {
     console.log(id);
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Acciones de Usuario ',
+      title: this.accionesusuario,
       buttons: [
         {
-          text: 'Borrar',
+          text: this.borrar,
           role: 'destructive',
           handler: () => {
             this.eliminarUsuario(id);
           }
         },
         {
-          text: 'Modificar',
+          text: this.modificar,
           handler: () => {
             this.modificarUsuario(id);
           }
         },
         {
-          text: 'Cancelar',
+          text: this.cancelar,
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
