@@ -62,6 +62,8 @@ export class AbmPage {
   archivoduplicado: string;
   archivoagregado: string;
   procesofinalizado: string;
+  felicitaciones: string;
+  usuarioeliminado: string;
 
   constructor(private alertCtrl: AlertController, public file: File, public navCtrl: NavController, public navParams: NavParams
     , public actionSheetCtrl: ActionSheetController, public http: Http, public traductor: TranslateService) {
@@ -83,6 +85,8 @@ export class AbmPage {
         this.archivoduplicado = "Archivo duplicado";
         this.archivoagregado = "El archivo fue agregado exitosamente!";
         this.procesofinalizado = "Proceso finalizado";
+        this.felicitaciones = "Felicitaciones!";
+        this.usuarioeliminado = "Usuario eliminado exitosamente";
         break;
       case "en":
         this.accionesusuario = "User Actions";
@@ -99,12 +103,14 @@ export class AbmPage {
         this.archivoduplicado = "Duplicate file";
         this.archivoagregado = "The file was added successfully!";
         this.procesofinalizado = "Ended process";
+        this.felicitaciones = "Congratulations!";
+        this.usuarioeliminado = "User successfully deleted";
         break;
       case "pt":
         this.accionesusuario = "Ações do usuário";
         this.aceptar = "Aceitar";
         this.borrar = "Excluir";
-        this.modificar = "Borrar";
+        this.modificar = "Modificar";
         this.cancelar = "Cancelar";
         this.agregado = "Adicionado";
         this.exito = "Sucesso ao adicionar o usuário";
@@ -115,6 +121,8 @@ export class AbmPage {
         this.archivoduplicado = "Arquivo duplicado";
         this.archivoagregado = "O arquivo foi adicionado com sucesso!";
         this.procesofinalizado = "Processo concluído";
+        this.felicitaciones = "Parabéns!";
+        this.usuarioeliminado = "Usuário excluído com êxito";
         break;
     }
     ///////////////////////////////
@@ -465,8 +473,8 @@ export class AbmPage {
       data => {
         ///////////alert//////
         let alert = this.alertCtrl.create({
-          title: 'Felicitaciones!',
-          subTitle: 'Usuario eliminado exitosamente!',
+          title: this.felicitaciones,
+          subTitle: this.usuarioeliminado,
           buttons: ['OK']
         });
         alert.present();
