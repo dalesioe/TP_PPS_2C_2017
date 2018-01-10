@@ -68,11 +68,11 @@
     </ion-item>
   </div>
   <table border="1" class="data-table" style="overflow-x:auto;">
-    <th *ngIf="archivo != null && !existe">Nombre</th>
-    <th *ngIf="archivo != null && !existe">Apellido</th>
-    <th *ngIf="archivo != null && !existe">Mail</th>
-    <th *ngIf="archivo != null && !existe">DNI</th>
-    <th *ngIf="archivo != null && !existe">Sexo</th>
+    <th *ngIf="archivo != null && !existe">{{ 'nombre' | translate }}</th>
+    <th *ngIf="archivo != null && !existe">{{ 'apellido' | translate }}</th>
+    <th *ngIf="archivo != null && !existe">{{ 'email' | translate }}</th>
+    <th *ngIf="archivo != null && !existe">{{ 'dni' | translate }}</th>
+    <th *ngIf="archivo != null && !existe">{{ 'sexo' | translate }}</th>
     <tr *ngFor="let row of csvData; let i = index">
       <td *ngFor="let data of row; let j = index; trackBy: trackByFn">
         <ion-input type="text" [(ngModel)]="csvData[i][j]"></ion-input>

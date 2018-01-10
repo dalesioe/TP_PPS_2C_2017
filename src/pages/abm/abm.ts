@@ -49,9 +49,19 @@ export class AbmPage {
 
   idioma: string;
   accionesusuario: string;
+  aceptar: string;
   borrar: string;
   modificar: string;
   cancelar: string;
+  agregado: string;
+  exito: string;
+  error: string;
+  mensajeerror: string;
+  elegirarchivo: string;
+  archivoimportado: string;
+  archivoduplicado: string;
+  archivoagregado: string;
+  procesofinalizado: string;
 
   constructor(private alertCtrl: AlertController, public file: File, public navCtrl: NavController, public navParams: NavParams
     , public actionSheetCtrl: ActionSheetController, public http: Http, public traductor: TranslateService) {
@@ -60,21 +70,51 @@ export class AbmPage {
     switch (this.idioma) {
       case "es":
         this.accionesusuario = "Acciones de usuario";
-        this.borrar="Borrar";
-        this.modificar="Modificar";
-        this.cancelar="Cancelar";
+        this.aceptar="Aceptar";
+        this.borrar = "Borrar";
+        this.modificar = "Modificar";
+        this.cancelar = "Cancelar";
+        this.agregado = "Agregado";
+        this.exito = "Exito al agregar el usuario";
+        this.error = "Error";
+        this.mensajeerror = "Se produjo un error, vuelva a intentar";
+        this.elegirarchivo = "Elegir Archivo";
+        this.archivoimportado = "El archivo ya fue importado";
+        this.archivoduplicado = "Archivo duplicado";
+        this.archivoagregado = "El archivo fue agregado exitosamente!";
+        this.procesofinalizado = "Proceso finalizado";
         break;
       case "en":
         this.accionesusuario = "User Actions";
-        this.borrar="Delete";
-        this.modificar="Modify";
-        this.cancelar="Cancel";
+        this.aceptar="To accept";
+        this.borrar = "Delete";
+        this.modificar = "Modify";
+        this.cancelar = "Cancel";
+        this.agregado = "Added";
+        this.exito = "Success when adding the user";
+        this.error = "Error";
+        this.mensajeerror = "An error occurred, try again";
+        this.elegirarchivo = "Choose File";
+        this.archivoimportado = "The file has already been imported";
+        this.archivoduplicado = "Duplicate file";
+        this.archivoagregado = "The file was added successfully!";
+        this.procesofinalizado = "Ended process";
         break;
       case "pt":
         this.accionesusuario = "Ações do usuário";
-        this.borrar="Excluir";
-        this.modificar="Borrar";
-        this.cancelar="Cancelar";
+        this.aceptar="Aceitar";
+        this.borrar = "Excluir";
+        this.modificar = "Borrar";
+        this.cancelar = "Cancelar";
+        this.agregado = "Adicionado";
+        this.exito = "Sucesso ao adicionar o usuário";
+        this.error = "Erro";
+        this.mensajeerror = "Ocorreu um erro, tente novamente";
+        this.elegirarchivo = "Escolha o arquivo";
+        this.archivoimportado = "O arquivo já foi importado";
+        this.archivoduplicado = "Arquivo duplicado";
+        this.archivoagregado = "O arquivo foi adicionado com sucesso!";
+        this.procesofinalizado = "Processo concluído";
         break;
     }
     ///////////////////////////////
@@ -137,16 +177,16 @@ export class AbmPage {
   mostrarAlert(exito) {
     if (exito == 1) {
       let alert = this.alertCtrl.create({
-        title: 'Agregado',
-        subTitle: 'Exito al agregar el usuario',
-        buttons: ['Aceptar']
+        title: this.agregado,
+        subTitle: this.exito,
+        buttons: ["Aceptar"]
       });
       alert.present();
     }
     else {
       let alert = this.alertCtrl.create({
-        title: 'Error',
-        subTitle: 'Se produjo un error, vuelva a intentar',
+        title: this.error,
+        subTitle: this.mensajeerror,
         buttons: ['Cancelar']
       });
       alert.present();
@@ -155,7 +195,7 @@ export class AbmPage {
 
   AltaConArchivoProfesor() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Elegir archivo');
+    alert.setTitle(this.elegirarchivo);
 
     alert.addInput({
       type: 'radio',
@@ -165,7 +205,7 @@ export class AbmPage {
     });
     alert.addButton('Cancel');
     alert.addButton({
-      text: 'Ok',
+      text: this.aceptar,
       handler: data => {
         console.log('Radio data:', data);
         this.testRadioOpen = false;
@@ -188,7 +228,7 @@ export class AbmPage {
 
   AltaConArchivoAdminsitrativo() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Elegir archivo');
+    alert.setTitle(this.elegirarchivo);
 
     alert.addInput({
       type: 'radio',
@@ -198,7 +238,7 @@ export class AbmPage {
     });
     alert.addButton('Cancel');
     alert.addButton({
-      text: 'Ok',
+      text: this.aceptar,
       handler: data => {
         console.log('Radio data:', data);
         this.testRadioOpen = false;
@@ -221,7 +261,7 @@ export class AbmPage {
 
   AltaConArchivoAlumno() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Elegir archivo');
+    alert.setTitle(this.elegirarchivo);
 
     alert.addInput({
       type: 'radio',
@@ -231,7 +271,7 @@ export class AbmPage {
     });
     alert.addButton('Cancel');
     alert.addButton({
-      text: 'Ok',
+      text: this.aceptar,
       handler: data => {
         console.log('Radio data:', data);
         this.testRadioOpen = false;
@@ -265,7 +305,7 @@ export class AbmPage {
     if (!this.existe) {
       this.readCsvData();
     } else {
-      this.AlertMensaje("El archivo ya fue importado", "Archivo duplicado");
+      this.AlertMensaje(this.archivoimportado, this.archivoduplicado);
       this.existe = false;
     }
   }
@@ -308,7 +348,7 @@ export class AbmPage {
       );
     }
     this.existe = false;
-    this.AlertMensaje("El archivo fue agregado exitosamente!", "Proceso finalizado");
+    this.AlertMensaje(this.archivoagregado, this.procesofinalizado);
     this.archivotitulo = this.archivo;
     this.http.get("http://www.estacionamiento.16mb.com/git/api/traerArchivos")
       .subscribe(data => {
@@ -379,7 +419,7 @@ export class AbmPage {
       message: mens,
       buttons: [
         {
-          text: "Aceptar",
+          text: this.aceptar,
           handler: data => {
             console.log('Mensaje de Alerta');
           }
