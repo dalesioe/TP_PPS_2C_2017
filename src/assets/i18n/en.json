@@ -41,5 +41,10 @@
     "datosperfil":"Data Profile",
     "legajo":"Docket",
     "aceptar":"To accept",
-    "cambiarpass":"Change Password"
+    "cambiarpass":"Change Password",
+
+    "modificacionusuarios":"User Modification",
+    "modificar":"Modify",
+    "cancelar":"Cancel",
+    "restablecerpass":"Restore password"
 }

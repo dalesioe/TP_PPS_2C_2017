@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Modificacion de Usuarios</ion-title>
+    <ion-title>{{ 'modificacionusuarios' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,22 +15,22 @@
   <ion-list>
 
     <ion-item>
-      <ion-label stacked>Nombre</ion-label>
+      <ion-label stacked>{{ 'nombre' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="nombre"> </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Apellido</ion-label>
+      <ion-label stacked>{{ 'apellido' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="apellido"> </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>DNI</ion-label>
+      <ion-label stacked>{{ 'dni' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="dni"> </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Mail</ion-label>
+      <ion-label stacked>{{ 'email' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="mail"> </ion-input>
     </ion-item>
 
@@ -39,17 +39,17 @@
 
     <button ion-button color="secondary" icon-start (click)="ModificarUsuario()">
       <ion-icon name='people'></ion-icon>
-      Modificar
+      {{ 'modificar' | translate }}
     </button>
 
     <button ion-button color="danger" icon-start (click)="Cancelar()">
       <ion-icon name='close'></ion-icon>
-      Cancelar
+      {{ 'cancelar' | translate }}
     </button>
 
     <button ion-button color="dark" icon-start (click)="restablecerPass()">
       <ion-icon name='bookmarks'></ion-icon>
-      Restablecer Contraseña
+      {{ 'restablecerpass' | translate }}
     </button>
 
   </ion-list>
@@ -57,6 +57,6 @@
 
 <ion-footer>
   <button ion-button full color="primary" icon-end (click)="Cancelar()">
-    Volver
+    {{ 'volver' | translate }}
   </button>
 </ion-footer>

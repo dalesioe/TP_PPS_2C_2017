@@ -41,5 +41,10 @@
     "datosperfil":"Perfil de Dados",
     "legajo":"Arquivo",
     "aceptar":"Aceitar",
-    "cambiarpass":"Alterar senha"
+    "cambiarpass":"Alterar senha",
+
+    "modificacionusuarios":"User Modification",
+    "modificar":"Modificar",
+    "cancelar":"Cancelar",
+    "restablecerpass":"Redefinir Senha"
 }

@@ -41,5 +41,10 @@
     "datosperfil":"Datos Perfil",
     "legajo":"Legajo",
     "aceptar":"Aceptar",
-    "cambiarpass":"Cambiar Contraseña"
+    "cambiarpass":"Cambiar Contraseña",
+
+    "modificacionusuarios":"Modificacion de Usuarios",
+    "modificar":"Modificar",
+    "cancelar":"Cancelar",
+    "restablecerpass":"Restablecer Contraseña"
 }
