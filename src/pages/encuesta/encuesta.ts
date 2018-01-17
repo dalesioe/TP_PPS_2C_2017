@@ -6,6 +6,7 @@ import { Http } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
 import { DatePicker } from '@ionic-native/date-picker';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the EncuestaPage page.
  *
@@ -50,8 +51,100 @@ export class EncuestaPage {
 
   testqr: string;
 
+  idioma: string;
+  errorqr: string;
+  encuestacreada: string;
+  accionesencuesta: string;
+  verresultados: string;
+  eliminar: string;
+  cancelar: string;
+  modificacion: string;
+  modificar: string;
+  activar: string;
+  encuestaactivada: string;
+  ingreseopciones: string;
+  datosincompletos: string;
+  completedatos: string;
+  felicitaciones: string;
+  encuestamodificada: string;
+  encuestaeliminada: string;
+  deseaverresultados: string;
+  aceptar: string;
+  elijaopcion: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-    public http: Http, private datePicker: DatePicker, private barcodeScanner: BarcodeScanner, public actionSheetCtrl: ActionSheetController) {
+    public http: Http, private datePicker: DatePicker, private barcodeScanner: BarcodeScanner,
+    public actionSheetCtrl: ActionSheetController, public traductor: TranslateService) {
+
+    ////////IDIOMA//////////////
+    this.idioma = this.traductor.currentLang;
+    switch (this.idioma) {
+      case "es":
+        this.errorqr = "El codigo QR escaneado no se corresponde con encuestas"
+        this.encuestacreada = 'Su encuesta fue creada con exito!'
+        this.accionesencuesta = "Acciones de encuesta"
+        this.verresultados = "Ver Resultados"
+        this.eliminar = "Eliminar"
+        this.cancelar = "Cancelar"
+        this.modificacion = "Modificacion"
+        this.modificar = "Modificar"
+        this.activar = "Activar"
+        this.encuestaactivada = "Su encuesta fue activada con exito!"
+        this.ingreseopciones = "Ingrese las nuevas opciones"
+        this.datosincompletos = "Datos incompletos!"
+        this.completedatos = "Por favor complete los datos requeridos para proceder"
+        this.felicitaciones = "Felicitaciones!"
+        this.encuestamodificada = "Encuesta modificada con exito!"
+        this.encuestaeliminada = "Encuesta eliminada con exito!"
+        this.deseaverresultados = "Desea ver los resultados?"
+        this.aceptar = "Aceptar"
+        this.elijaopcion = "Elija su opcion"
+        break;
+      case "en":
+        this.errorqr = "The scanned QR code does not correspond to surveys"
+        this.encuestacreada = "Your survey was created successfully!"
+        this.accionesencuesta = "Survey actions"
+        this.verresultados = "See results"
+        this.eliminar = "Delete"
+        this.cancelar = "Cancel"
+        this.modificacion = "Modification"
+        this.modificar = "Modify"
+        this.activar = "Activate"
+        this.encuestaactivada = "Your survey was activated successfully!"
+        this.ingreseopciones = "Enter the new options"
+        this.datosincompletos = "Incomplete data!"
+        this.completedatos = "Please complete the information required to proceed"
+        this.felicitaciones = "Congratulations!"
+        this.encuestamodificada = "Survey modified with success!"
+        this.encuestaeliminada = "Survey deleted successfully!"
+        this.deseaverresultados = "Do you want to see the results?"
+        this.aceptar = "To accept"
+        this.elijaopcion = "Choose your option"
+        break;
+      case "pt":
+        this.errorqr = "O código QR escaneado não corresponde a pesquisas"
+        this.encuestacreada = "Sua pesquisa foi criada com sucesso!"
+        this.accionesencuesta = "Ações de levantamento"
+        this.verresultados = "Ver resultados"
+        this.eliminar = "Excluir"
+        this.cancelar = "Cancelar"
+        this.modificacion = "Modificação"
+        this.modificar = "Modificar"
+        this.activar = "Ativar"
+        this.encuestaactivada = "Sua pesquisa foi ativada com sucesso!"
+        this.ingreseopciones = "Digite as novas opções"
+        this.datosincompletos = "Dados incompletos!"
+        this.completedatos = "Complete as informações necessárias para prosseguir"
+        this.felicitaciones = "Parabéns!"
+        this.encuestamodificada = "Pesquisa modificada com sucesso!"
+        this.encuestaeliminada = "Pesquisa removida com sucesso!"
+        this.deseaverresultados = "Você quer ver os resultados?"
+        this.aceptar = "Aceitar"
+        this.elijaopcion = "Escolha sua opção"
+
+        break;
+    }
+    ///////////////////////////////
 
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
@@ -98,7 +191,7 @@ export class EncuestaPage {
         if (!this.existe) {
           let alert = this.alertCtrl.create({
             title: 'Error!',
-            subTitle: 'El codigo QR escaneado no se corresponde con encuestas',
+            subTitle: this.errorqr,
             buttons: ['OK']
           });
           alert.present();
@@ -122,7 +215,7 @@ export class EncuestaPage {
       if (!this.existe) {
         let alert = this.alertCtrl.create({
           title: 'Error!',
-          subTitle: 'El codigo QR escaneado no se corresponde con encuestas',
+          subTitle: this.errorqr,
           buttons: ['OK']
         });
         alert.present();
@@ -143,8 +236,8 @@ export class EncuestaPage {
     );
     ///////////alert//////
     let alert = this.alertCtrl.create({
-      title: 'Felicitaciones!',
-      subTitle: 'Su encuesta fue creada con exito!',
+      title: this.felicitaciones,
+      subTitle: this.encuestacreada,
       buttons: ['OK']
     });
     alert.present();
@@ -159,22 +252,22 @@ export class EncuestaPage {
 
   MenuEncuesta2(id_encuesta, nombre_encuesta, opcion1, opcion2) {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Acciones de encuesta',
+      title: this.accionesencuesta,
       buttons: [
         {
-          text: 'Ver Resultados',
+          text: this.verresultados,
           handler: () => {
             this.VerResultado(id_encuesta, nombre_encuesta, opcion1, opcion2)
           }
         },
         {
-          text: 'Eliminar',
+          text: this.eliminar,
           handler: () => {
             this.EliminarEncuesta(id_encuesta)
           }
         },
         {
-          text: 'Cancelar',
+          text: this.cancelar,
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
@@ -187,26 +280,26 @@ export class EncuestaPage {
 
   MenuEncuesta(id_encuesta, nombre_encuesta, opcion1, opcion2) {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Acciones de encuesta',
+      title: this.accionesencuesta,
       buttons: [
         {
-          text: 'Activar',
+          text: this.activar,
           handler: () => {
             this.ActivarEncuesta(id_encuesta)
           }
         }, {
-          text: 'Modificar',
+          text: this.modificar,
           handler: () => {
             this.ModificarEncuesta(id_encuesta, nombre_encuesta, opcion1, opcion2)
           }
         }, {
-          text: 'Eliminar',
+          text: this.eliminar,
           handler: () => {
             this.EliminarEncuesta(id_encuesta)
           }
         },
         {
-          text: 'Cancelar',
+          text: this.cancelar,
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
@@ -223,8 +316,8 @@ export class EncuestaPage {
       data => {
         ///////////alert//////
         let alert = this.alertCtrl.create({
-          title: 'Felicitaciones!',
-          subTitle: 'Su encuesta fue activada con exito!',
+          title: this.felicitaciones,
+          subTitle: this.encuestaactivada,
           buttons: ['OK']
         });
         alert.present();
@@ -234,8 +327,8 @@ export class EncuestaPage {
   }
   ModificarEncuesta(id_encuesta, nombre_encuesta, opcion1, opcion2) {
     let prompt = this.alertCtrl.create({
-      title: 'Modificacion',
-      message: "Ingrese las nuevas opciones",
+      title: this.modificacion,
+      message: this.ingreseopciones,
       inputs: [
         {
           name: 'opcion1',
@@ -248,19 +341,19 @@ export class EncuestaPage {
       ],
       buttons: [
         {
-          text: 'Cancelar',
+          text: this.cancelar,
           handler: data => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Modificar',
+          text: this.modificar,
           handler: data => {
             if (data.opcion1 == "" || data.opcion2 == "") {
               ///////////alert//////
               let alert = this.alertCtrl.create({
-                title: 'Datos incompletos!',
-                subTitle: 'Por favor complete los datos requeridos para proceder',
+                title: this.datosincompletos,
+                subTitle: this.completedatos,
                 buttons: ['OK']
               });
               alert.present();
@@ -287,8 +380,8 @@ export class EncuestaPage {
       });
     ///////////alert//////
     let alert = this.alertCtrl.create({
-      title: 'Felicitaciones!',
-      subTitle: 'Su encuesta fue modificada con exito!',
+      title: this.felicitaciones,
+      subTitle: this.encuestamodificada,
       buttons: ['OK']
     });
     alert.present();
@@ -301,8 +394,8 @@ export class EncuestaPage {
       data => {
         ///////////alert//////
         let alert = this.alertCtrl.create({
-          title: 'Felicitaciones!',
-          subTitle: 'Su encuesta fue eliminada con exito!',
+          title: this.felicitaciones,
+          subTitle: this.encuestaeliminada,
           buttons: ['OK']
         });
         alert.present();
@@ -318,17 +411,17 @@ export class EncuestaPage {
     );
     /////////////
     let confirm = this.alertCtrl.create({
-      title: 'Desea ver los resultados?',
+      title: this.deseaverresultados,
       message: '',
       buttons: [
         {
-          text: 'Cancelar',
+          text: this.cancelar,
           handler: () => {
             console.log('Disagree clicked');
           }
         },
         {
-          text: 'Aceptar',
+          text: this.aceptar,
           handler: () => {
             this.resultados.forEach(element => {
               this.op1 = element.op1;
@@ -364,7 +457,7 @@ export class EncuestaPage {
   Votar(id_encuesta, opcion1, opcion2) {
 
     let alert = this.alertCtrl.create();
-    alert.setTitle('Elija su opcion');
+    alert.setTitle(this.elijaopcion);
 
     alert.addInput({
       type: 'radio',
