@@ -25,11 +25,15 @@ import { Camera } from '@ionic-native/Camera';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { DatePicker } from '@ionic-native/date-picker';
-//idiomas
+/////idiomas/////
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { IdiomaesDirective } from '../directives/idiomaes/idiomaes';
+import { IdiomaenDirective } from '../directives/idiomaen/idiomaen';
+import { IdiomaptDirective } from '../directives/idiomapt/idiomapt';
+///////////////
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -62,7 +66,10 @@ firebase.initializeApp(config)
     MainPage,
     QRsPage,
     ExcelPage,
-    ModificacionPage
+    ModificacionPage,
+    IdiomaesDirective,
+    IdiomaenDirective,
+    IdiomaptDirective,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +115,10 @@ firebase.initializeApp(config)
     DatePicker,
     AngularFireDatabase,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ApiabmProvider
+    ApiabmProvider,
+    IdiomaesDirective,
+    IdiomaenDirective,
+    IdiomaptDirective
   ]
 })
 export class AppModule { }
