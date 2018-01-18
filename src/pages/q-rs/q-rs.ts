@@ -4,7 +4,9 @@ import { MainPage } from '../main/main';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Http } from '@angular/http';
 import { TranslateService } from '@ngx-translate/core';
-
+import { IdiomaesDirective } from '../../directives/idiomaes/idiomaes';
+import { IdiomaenDirective } from '../../directives/idiomaen/idiomaen';
+import { IdiomaptDirective } from '../../directives/idiomapt/idiomapt';
 /**
  * Generated class for the QRsPage page.
  *
@@ -30,10 +32,30 @@ export class QRsPage {
   api: string;
   datos_qr: string;
   resultado_qr: number;
-  exite: number=0;
+  exite: number = 0;
 
+  idioma: any;
 
-  constructor(private alertCtrl: AlertController, public http: Http, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController, public http: Http, private barcodeScanner: BarcodeScanner,
+    public navCtrl: NavController, public navParams: NavParams, public traductor: TranslateService,
+    public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
+
+    ////////IDIOMA//////////////
+    switch (this.traductor.currentLang) {
+      case "es":
+        this.idioma = es;
+        break;
+
+      case "en":
+        this.idioma = en;
+        break;
+
+      case "pt":
+        this.idioma = pt;
+        break;
+    }
+    ///////////////////////////////
+
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
     this.apellido = this.navParams.get('apellido');
@@ -63,7 +85,7 @@ export class QRsPage {
     })
   }
   QrAula() {
-    this.datos=null;
+    this.datos = null;
     this.alumnos = null;
     this.barcodeScanner.scan().then(barcodeData => {
       this.datos_qr = barcodeData.text;
@@ -79,7 +101,7 @@ export class QRsPage {
         if (this.resultado_qr > 0) {
           this.traerInformacion(aula);
         } else {
-          this.AlertMensaje("No le corresponde esta aula", "Verifique su aula en administracion");
+          this.AlertMensaje(this.idioma.nocorrespondeaula , this.idioma.verifiqueaula); 
         }
       }, error => {
         console.log(error);// Error getting the data
@@ -93,13 +115,13 @@ export class QRsPage {
     body = { "aula": aula };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/traerCursoPorDiaAula", body)
       .subscribe(data => {
-        this.exite=1;
+        this.exite = 1;
         this.datos = data.json();
         try {
           this.traerAlumnos(this.datos[0].id_curso);
         }
         catch (error) {
-          this.AlertMensaje("No se encontraron cursos", "Dirigase a administracion");;
+          this.AlertMensaje(this.idioma.noseencontraroncursos, this.idioma.dirijaseadmin);;
         }
       });
   }
@@ -109,7 +131,7 @@ export class QRsPage {
       message: mens,
       buttons: [
         {
-          text: "Aceptar",
+          text: this.idioma.aceptar,
           handler: data => {
             console.log('Mensaje de Alerta');
           }

@@ -30,6 +30,11 @@ export class IdiomaenDirective {
   deseaverresultados: string;
   aceptar: string;
   elijaopcion: string;
+  /////pagina QR/////
+  nocorrespondeaula: string;
+  verifiqueaula: string;
+  noseencontraroncursos: string;
+  dirijaseadmin: string;
 
   constructor() {
     console.log('Hello IdiomaenDirective Directive');
@@ -53,7 +58,11 @@ export class IdiomaenDirective {
     this.deseaverresultados = "Do you want to see the results?"
     this.aceptar = "To accept"
     this.elijaopcion = "Choose your option"
-    //////////
+    /////pagina QR/////
+    this.nocorrespondeaula = "This classroom does not belong"
+    this.verifiqueaula = "Verify your classroom in administration"
+    this.noseencontraroncursos = "No courses were found"
+    this.dirijaseadmin = "Address to administration"
   }
 
 }

@@ -11,6 +11,7 @@ import { Directive } from '@angular/core';
 })
 export class IdiomaesDirective {
 
+  ////pagina encuesta////
   errorqr: string;
   encuestacreada: string;
   accionesencuesta: string;
@@ -30,6 +31,11 @@ export class IdiomaesDirective {
   deseaverresultados: string;
   aceptar: string;
   elijaopcion: string;
+  /////pagina QR/////
+  nocorrespondeaula: string;
+  verifiqueaula: string;
+  noseencontraroncursos: string;
+  dirijaseadmin: string;
 
   constructor() {
     console.log('Hello IdiomaesDirective Directive');
@@ -53,7 +59,11 @@ export class IdiomaesDirective {
     this.deseaverresultados = "Desea ver los resultados?"
     this.aceptar = "Aceptar"
     this.elijaopcion = "Elija su opcion"
-    //////////
+    /////pagina QR/////
+    this.nocorrespondeaula = "No le corresponde esta aula"
+    this.verifiqueaula = "Verifique su aula en administracion"
+    this.noseencontraroncursos = "No se encontraron cursos"
+    this.dirijaseadmin = "Diríjase a administración"
   }
 
 }

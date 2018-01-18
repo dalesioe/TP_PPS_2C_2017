@@ -30,6 +30,11 @@ export class IdiomaptDirective {
   deseaverresultados: string;
   aceptar: string;
   elijaopcion: string;
+  /////pagina QR/////
+  nocorrespondeaula: string;
+  verifiqueaula: string;
+  noseencontraroncursos: string;
+  dirijaseadmin: string;
 
   constructor() {
     console.log('Hello IdiomaptDirective Directive');
@@ -53,7 +58,11 @@ export class IdiomaptDirective {
     this.deseaverresultados = "Você quer ver os resultados?"
     this.aceptar = "Aceitar"
     this.elijaopcion = "Escolha sua opção"
-    ///////////////
+    /////pagina QR/////
+    this.nocorrespondeaula = "Esta sala de aula não pertence"
+    this.verifiqueaula = "Verifique sua sala de aula na administração"
+    this.noseencontraroncursos = "Nenhum curso foi encontrado"
+    this.dirijaseadmin = "Endereço para administração"
   }
 
 }

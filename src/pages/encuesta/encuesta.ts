@@ -55,7 +55,7 @@ export class EncuestaPage {
 
   testqr: string;
 
-  idiomaseleccionado: string;
+  //idiomaseleccionado: string;
   idioma: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
@@ -64,8 +64,8 @@ export class EncuestaPage {
     public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
 
     ////////IDIOMA//////////////
-    this.idiomaseleccionado = this.traductor.currentLang;
-    switch (this.idiomaseleccionado) {
+    //this.idiomaseleccionado = this.traductor.currentLang;
+    switch (this.traductor.currentLang) {
       case "es":
         this.idioma = es;
         break;
