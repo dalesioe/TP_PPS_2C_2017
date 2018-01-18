@@ -46,5 +46,17 @@
     "modificacionusuarios":"Modificacion de Usuarios",
     "modificar":"Modificar",
     "cancelar":"Cancelar",
-    "restablecerpass":"Restablecer Contraseña"
+    "restablecerpass":"Restablecer Contraseña",
+
+    "crearencuesta":"Crear Encuesta",
+    "finalizada":"Finalizada",
+    "yavoto":"Ya voto",
+    "aunnovoto":"Aun no voto",
+    "encurso":"En curso",
+    "activar":"Activar",
+    "nombresolo":"Nombre",
+    "op1":"Opcion 1",
+    "op2":"Opcion 2",
+    "duracion":"Duracion",
+    "tipo":"Tipo"
 }

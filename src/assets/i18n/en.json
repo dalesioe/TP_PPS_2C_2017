@@ -46,5 +46,17 @@
     "modificacionusuarios":"User Modification",
     "modificar":"Modify",
     "cancelar":"Cancel",
-    "restablecerpass":"Restore password"
+    "restablecerpass":"Restore password",
+
+    "crearencuesta":"Create Poll",
+    "finalizada":"Completed",
+    "yavoto":"I already vote",
+    "aunnovoto":"I still do not vote",
+    "encurso":"In progress",
+    "activar":"Activate",
+    "nombresolo":"Name",
+    "op1":"Option 1",
+    "op2":"Option 2",
+    "duracion":"Duration",
+    "tipo":"Type"
 }
