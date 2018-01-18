@@ -10,25 +10,38 @@ import { Directive } from '@angular/core';
   selector: '[idiomaen]' // Attribute selector
 })
 export class IdiomaenDirective {
-
+  ///pagina abm////
+  accionesusuario: string;
+  aceptar: string;
+  borrar: string;
+  modificar: string;
+  cancelar: string;
+  agregado: string;
+  exito: string;
+  error: string;
+  mensajeerror: string;
+  elegirarchivo: string;
+  archivoimportado: string;
+  archivoduplicado: string;
+  archivoagregado: string;
+  procesofinalizado: string;
+  felicitaciones: string;
+  usuarioeliminado: string;
+  ////pagina encuesta////
   errorqr: string;
   encuestacreada: string;
   accionesencuesta: string;
   verresultados: string;
   eliminar: string;
-  cancelar: string;
   modificacion: string;
-  modificar: string;
   activar: string;
   encuestaactivada: string;
   ingreseopciones: string;
   datosincompletos: string;
   completedatos: string;
-  felicitaciones: string;
   encuestamodificada: string;
   encuestaeliminada: string;
   deseaverresultados: string;
-  aceptar: string;
   elijaopcion: string;
   /////pagina QR/////
   nocorrespondeaula: string;
@@ -38,25 +51,38 @@ export class IdiomaenDirective {
 
   constructor() {
     console.log('Hello IdiomaenDirective Directive');
+    ////pagina abm////
+    this.accionesusuario = "User Actions";
+    this.aceptar = "To accept";
+    this.borrar = "Delete";
+    this.modificar = "Modify";
+    this.cancelar = "Cancel";
+    this.agregado = "Added";
+    this.exito = "Success when adding the user";
+    this.error = "Error";
+    this.mensajeerror = "An error occurred, try again";
+    this.elegirarchivo = "Choose File";
+    this.archivoimportado = "The file has already been imported";
+    this.archivoduplicado = "Duplicate file";
+    this.archivoagregado = "The file was added successfully!";
+    this.procesofinalizado = "Ended process";
+    this.felicitaciones = "Congratulations!";
+    this.usuarioeliminado = "User successfully deleted";
     ////pagina encuesta////
     this.errorqr = "The scanned QR code does not correspond to surveys"
     this.encuestacreada = "Your survey was created successfully!"
-    this.accionesencuesta = "Survey actions"
+    this.accionesencuesta = "Poll actions"
     this.verresultados = "See results"
     this.eliminar = "Delete"
-    this.cancelar = "Cancel"
     this.modificacion = "Modification"
-    this.modificar = "Modify"
     this.activar = "Activate"
     this.encuestaactivada = "Your survey was activated successfully!"
     this.ingreseopciones = "Enter the new options"
     this.datosincompletos = "Incomplete data!"
     this.completedatos = "Please complete the information required to proceed"
-    this.felicitaciones = "Congratulations!"
     this.encuestamodificada = "Survey modified with success!"
     this.encuestaeliminada = "Survey deleted successfully!"
     this.deseaverresultados = "Do you want to see the results?"
-    this.aceptar = "To accept"
     this.elijaopcion = "Choose your option"
     /////pagina QR/////
     this.nocorrespondeaula = "This classroom does not belong"

@@ -3,11 +3,14 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 import { MainPage } from '../main/main';
 import { Http } from '@angular/http';
 import { File } from '@ionic-native/file';
-import { TranslateService } from '@ngx-translate/core';
 import { AlertController } from 'ionic-angular';
 import { ModificacionPage } from '../modificacion/modificacion';
 import * as papa from 'papaparse';
 import { Select } from 'ionic-angular/components/select/select';
+import { TranslateService } from '@ngx-translate/core';
+import { IdiomaesDirective } from '../../directives/idiomaes/idiomaes';
+import { IdiomaenDirective } from '../../directives/idiomaen/idiomaen';
+import { IdiomaptDirective } from '../../directives/idiomapt/idiomapt';
 //import 'rxjs/add/operator/map';
 /**
  * Generated class for the AbmPage page.
@@ -47,82 +50,24 @@ export class AbmPage {
   api: string;
   AltaBaja: boolean = true;
 
-  idioma: string;
-  accionesusuario: string;
-  aceptar: string;
-  borrar: string;
-  modificar: string;
-  cancelar: string;
-  agregado: string;
-  exito: string;
-  error: string;
-  mensajeerror: string;
-  elegirarchivo: string;
-  archivoimportado: string;
-  archivoduplicado: string;
-  archivoagregado: string;
-  procesofinalizado: string;
-  felicitaciones: string;
-  usuarioeliminado: string;
+  idioma: any;
 
-  constructor(private alertCtrl: AlertController, public file: File, public navCtrl: NavController, public navParams: NavParams
-    , public actionSheetCtrl: ActionSheetController, public http: Http, public traductor: TranslateService) {
+  constructor(private alertCtrl: AlertController, public file: File, public navCtrl: NavController, public navParams: NavParams,
+    public actionSheetCtrl: ActionSheetController, public http: Http, public traductor: TranslateService,
+    public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
+
     ////////IDIOMA//////////////
-    this.idioma = this.traductor.currentLang;
-    switch (this.idioma) {
+    switch (this.traductor.currentLang) {
       case "es":
-        this.accionesusuario = "Acciones de usuario";
-        this.aceptar = "Aceptar";
-        this.borrar = "Borrar";
-        this.modificar = "Modificar";
-        this.cancelar = "Cancelar";
-        this.agregado = "Agregado";
-        this.exito = "Exito al agregar el usuario";
-        this.error = "Error";
-        this.mensajeerror = "Se produjo un error, vuelva a intentar";
-        this.elegirarchivo = "Elegir Archivo";
-        this.archivoimportado = "El archivo ya fue importado";
-        this.archivoduplicado = "Archivo duplicado";
-        this.archivoagregado = "El archivo fue agregado exitosamente!";
-        this.procesofinalizado = "Proceso finalizado";
-        this.felicitaciones = "Felicitaciones!";
-        this.usuarioeliminado = "Usuario eliminado exitosamente";
+        this.idioma = es;
         break;
+
       case "en":
-        this.accionesusuario = "User Actions";
-        this.aceptar = "To accept";
-        this.borrar = "Delete";
-        this.modificar = "Modify";
-        this.cancelar = "Cancel";
-        this.agregado = "Added";
-        this.exito = "Success when adding the user";
-        this.error = "Error";
-        this.mensajeerror = "An error occurred, try again";
-        this.elegirarchivo = "Choose File";
-        this.archivoimportado = "The file has already been imported";
-        this.archivoduplicado = "Duplicate file";
-        this.archivoagregado = "The file was added successfully!";
-        this.procesofinalizado = "Ended process";
-        this.felicitaciones = "Congratulations!";
-        this.usuarioeliminado = "User successfully deleted";
+        this.idioma = en;
         break;
+
       case "pt":
-        this.accionesusuario = "Ações do usuário";
-        this.aceptar = "Aceitar";
-        this.borrar = "Excluir";
-        this.modificar = "Modificar";
-        this.cancelar = "Cancelar";
-        this.agregado = "Adicionado";
-        this.exito = "Sucesso ao adicionar o usuário";
-        this.error = "Erro";
-        this.mensajeerror = "Ocorreu um erro, tente novamente";
-        this.elegirarchivo = "Escolha o arquivo";
-        this.archivoimportado = "O arquivo já foi importado";
-        this.archivoduplicado = "Arquivo duplicado";
-        this.archivoagregado = "O arquivo foi adicionado com sucesso!";
-        this.procesofinalizado = "Processo concluído";
-        this.felicitaciones = "Parabéns!";
-        this.usuarioeliminado = "Usuário excluído com êxito";
+        this.idioma = pt;
         break;
     }
     ///////////////////////////////
@@ -185,16 +130,16 @@ export class AbmPage {
   mostrarAlert(exito) {
     if (exito == 1) {
       let alert = this.alertCtrl.create({
-        title: this.agregado,
-        subTitle: this.exito,
+        title: this.idioma.agregado,
+        subTitle: this.idioma.exito,
         buttons: ["Aceptar"]
       });
       alert.present();
     }
     else {
       let alert = this.alertCtrl.create({
-        title: this.error,
-        subTitle: this.mensajeerror,
+        title: this.idioma.error,
+        subTitle: this.idioma.mensajeerror,
         buttons: ['Cancelar']
       });
       alert.present();
@@ -203,7 +148,7 @@ export class AbmPage {
 
   AltaConArchivoProfesor() {
     let alert = this.alertCtrl.create();
-    alert.setTitle(this.elegirarchivo);
+    alert.setTitle(this.idioma.elegirarchivo);
 
     alert.addInput({
       type: 'radio',
@@ -213,7 +158,7 @@ export class AbmPage {
     });
     alert.addButton('Cancel');
     alert.addButton({
-      text: this.aceptar,
+      text: this.idioma.aceptar,
       handler: data => {
         console.log('Radio data:', data);
         this.testRadioOpen = false;
@@ -236,7 +181,7 @@ export class AbmPage {
 
   AltaConArchivoAdminsitrativo() {
     let alert = this.alertCtrl.create();
-    alert.setTitle(this.elegirarchivo);
+    alert.setTitle(this.idioma.elegirarchivo);
 
     alert.addInput({
       type: 'radio',
@@ -246,7 +191,7 @@ export class AbmPage {
     });
     alert.addButton('Cancel');
     alert.addButton({
-      text: this.aceptar,
+      text: this.idioma.aceptar,
       handler: data => {
         console.log('Radio data:', data);
         this.testRadioOpen = false;
@@ -269,7 +214,7 @@ export class AbmPage {
 
   AltaConArchivoAlumno() {
     let alert = this.alertCtrl.create();
-    alert.setTitle(this.elegirarchivo);
+    alert.setTitle(this.idioma.elegirarchivo);
 
     alert.addInput({
       type: 'radio',
@@ -279,7 +224,7 @@ export class AbmPage {
     });
     alert.addButton('Cancel');
     alert.addButton({
-      text: this.aceptar,
+      text: this.idioma.aceptar,
       handler: data => {
         console.log('Radio data:', data);
         this.testRadioOpen = false;
@@ -313,7 +258,7 @@ export class AbmPage {
     if (!this.existe) {
       this.readCsvData();
     } else {
-      this.AlertMensaje(this.archivoimportado, this.archivoduplicado);
+      this.AlertMensaje(this.idioma.archivoimportado, this.idioma.archivoduplicado);
       this.existe = false;
     }
   }
@@ -356,7 +301,7 @@ export class AbmPage {
       );
     }
     this.existe = false;
-    this.AlertMensaje(this.archivoagregado, this.procesofinalizado);
+    this.AlertMensaje(this.idioma.archivoagregado, this.idioma.procesofinalizado);
     this.archivotitulo = this.archivo;
     this.http.get("http://www.estacionamiento.16mb.com/git/api/traerArchivos")
       .subscribe(data => {
@@ -427,7 +372,7 @@ export class AbmPage {
       message: mens,
       buttons: [
         {
-          text: this.aceptar,
+          text: this.idioma.aceptar,
           handler: data => {
             console.log('Mensaje de Alerta');
           }
@@ -441,23 +386,23 @@ export class AbmPage {
   menu(id) {
     console.log(id);
     let actionSheet = this.actionSheetCtrl.create({
-      title: this.accionesusuario,
+      title: this.idioma.accionesusuario,
       buttons: [
         {
-          text: this.borrar,
+          text: this.idioma.borrar,
           role: 'destructive',
           handler: () => {
             this.eliminarUsuario(id);
           }
         },
         {
-          text: this.modificar,
+          text: this.idioma.modificar,
           handler: () => {
             this.modificarUsuario(id);
           }
         },
         {
-          text: this.cancelar,
+          text: this.idioma.cancelar,
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
@@ -473,8 +418,8 @@ export class AbmPage {
       data => {
         ///////////alert//////
         let alert = this.alertCtrl.create({
-          title: this.felicitaciones,
-          subTitle: this.usuarioeliminado,
+          title: this.idioma.felicitaciones,
+          subTitle: this.idioma.usuarioeliminado,
           buttons: ['OK']
         });
         alert.present();

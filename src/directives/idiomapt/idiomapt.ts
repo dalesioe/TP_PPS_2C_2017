@@ -10,25 +10,38 @@ import { Directive } from '@angular/core';
   selector: '[idiomapt]' // Attribute selector
 })
 export class IdiomaptDirective {
-
+  ///pagina abm////
+  accionesusuario: string;
+  aceptar: string;
+  borrar: string;
+  modificar: string;
+  cancelar: string;
+  agregado: string;
+  exito: string;
+  error: string;
+  mensajeerror: string;
+  elegirarchivo: string;
+  archivoimportado: string;
+  archivoduplicado: string;
+  archivoagregado: string;
+  procesofinalizado: string;
+  felicitaciones: string;
+  usuarioeliminado: string;
+  ////pagina encuesta////
   errorqr: string;
   encuestacreada: string;
   accionesencuesta: string;
   verresultados: string;
   eliminar: string;
-  cancelar: string;
   modificacion: string;
-  modificar: string;
   activar: string;
   encuestaactivada: string;
   ingreseopciones: string;
   datosincompletos: string;
   completedatos: string;
-  felicitaciones: string;
   encuestamodificada: string;
   encuestaeliminada: string;
   deseaverresultados: string;
-  aceptar: string;
   elijaopcion: string;
   /////pagina QR/////
   nocorrespondeaula: string;
@@ -38,25 +51,38 @@ export class IdiomaptDirective {
 
   constructor() {
     console.log('Hello IdiomaptDirective Directive');
+    ////pagina abm////
+    this.accionesusuario = "Ações do usuário";
+    this.aceptar = "Aceitar";
+    this.borrar = "Excluir";
+    this.modificar = "Modificar";
+    this.cancelar = "Cancelar";
+    this.agregado = "Adicionado";
+    this.exito = "Sucesso ao adicionar o usuário";
+    this.error = "Erro";
+    this.mensajeerror = "Ocorreu um erro, tente novamente";
+    this.elegirarchivo = "Escolha o arquivo";
+    this.archivoimportado = "O arquivo já foi importado";
+    this.archivoduplicado = "Arquivo duplicado";
+    this.archivoagregado = "O arquivo foi adicionado com sucesso!";
+    this.procesofinalizado = "Processo concluído";
+    this.felicitaciones = "Parabéns!";
+    this.usuarioeliminado = "Usuário excluído com êxito";
     ////pagina encuesta////
     this.errorqr = "O código QR escaneado não corresponde a pesquisas"
     this.encuestacreada = "Sua pesquisa foi criada com sucesso!"
-    this.accionesencuesta = "Ações de levantamento"
+    this.accionesencuesta = "Ações de Pesquisa"
     this.verresultados = "Ver resultados"
     this.eliminar = "Excluir"
-    this.cancelar = "Cancelar"
     this.modificacion = "Modificação"
-    this.modificar = "Modificar"
     this.activar = "Ativar"
     this.encuestaactivada = "Sua pesquisa foi ativada com sucesso!"
     this.ingreseopciones = "Digite as novas opções"
     this.datosincompletos = "Dados incompletos!"
     this.completedatos = "Complete as informações necessárias para prosseguir"
-    this.felicitaciones = "Parabéns!"
     this.encuestamodificada = "Pesquisa modificada com sucesso!"
     this.encuestaeliminada = "Pesquisa removida com sucesso!"
     this.deseaverresultados = "Você quer ver os resultados?"
-    this.aceptar = "Aceitar"
     this.elijaopcion = "Escolha sua opção"
     /////pagina QR/////
     this.nocorrespondeaula = "Esta sala de aula não pertence"
