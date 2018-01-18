@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { Chart } from 'chart.js';
 import { NgModuleCompileResult } from '@angular/compiler/src/ng_module_compiler';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the GraficoEncuestaPage page.
  *

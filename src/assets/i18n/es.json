@@ -73,5 +73,8 @@
     "cancelarasistencia":"Cancelar Asistencia",
 
     "graficoasistencia":"Grafico Asistencia",
-    "faltasporcurso":"Inasistencias por curso"
+    "faltasporcurso":"Inasistencias por curso",
+
+    "graficobarras":"Grafico de Barras",
+    "graficocircular":"Grafico Circular"
 }
