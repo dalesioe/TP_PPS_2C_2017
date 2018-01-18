@@ -7,31 +7,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>QRs</ion-title>
+    <ion-title>{{ 'lectorqr' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
   <div *ngIf="tipo == 4|| tipo==2">
-    <button ion-button full (click)="QrAula()">Escanear Aula</button>
+    <button ion-button full (click)="QrAula()">{{ 'escanearaula' | translate }}</button>
   </div>
   <div *ngIf="datos!=null">
     <ion-grid *ngFor="let aux of datos">
       <ion-row>
         <ion-col>
-          Comision:{{aux.Comision}}
+          {{ 'comision' | translate }}:{{aux.Comision}}
         </ion-col>
         <ion-col>
-          Materia: {{aux.Materia}}
+          {{ 'materia' | translate }}: {{aux.Materia}}
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          Profesor:{{aux.nombre_prof}} {{aux.ape_prof}}
+          {{ 'profesor' | translate }}:{{aux.nombre_prof}} {{aux.ape_prof}}
         </ion-col>
         <ion-col>
-          Aula: {{aux.aula}}
+          {{ 'aula' | translate }}: {{aux.aula}}
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -41,13 +41,13 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          Legajo
+          {{ 'legajo' | translate }}
         </ion-col>
         <ion-col>
-          Apellido
+          {{ 'apellido' | translate }}
         </ion-col>
         <ion-col>
-          Nombre
+          {{ 'nombre' | translate }}
         </ion-col>
       </ion-row>
       <div *ngFor="let aux of alumnos">
@@ -68,6 +68,6 @@
 </ion-content>
 <ion-footer>
   <button ion-button full color="primary" icon-end (click)="Volver()">
-    Volver
+    {{ 'volver' | translate }}
   </button>
 </ion-footer>

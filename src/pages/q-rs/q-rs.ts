@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { MainPage } from '../main/main';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Http } from '@angular/http';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the QRsPage page.
