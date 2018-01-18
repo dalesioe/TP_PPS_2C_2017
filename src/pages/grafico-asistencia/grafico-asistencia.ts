@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { NgModuleCompileResult } from '@angular/compiler/src/ng_module_compiler';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the GraficoAsistenciaPage page.
  *
@@ -40,7 +41,7 @@ export class GraficoAsistenciaPage {
       data: {
         labels: this.labels,
         datasets: [{
-          label: 'Inasistencias',
+          label: '',
           data: this.datas,
           backgroundColor: [
             'rgba(100, 200, 144, 0.2)',

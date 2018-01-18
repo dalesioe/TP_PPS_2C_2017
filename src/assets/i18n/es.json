@@ -58,5 +58,20 @@
     "op1":"Opcion 1",
     "op2":"Opcion 2",
     "duracion":"Duracion",
-    "tipo":"Tipo"
+    "tipo":"Tipo",
+
+    "escanearqraulaasistencia":"Escanear QR Aula para tomar asistencia",
+    "estadisticaasistencia":"Estadisticas asistencias",
+    "revisarasistencia":"Revisar asistencias",
+    "presente":"Presente",
+    "comision":"Comision",
+    "materia":"Materia",
+    "profesor":"Profesor",
+    "aula":"Aula",
+    "listadodealumnos":"Listado de Alumnos",
+    "confirmarasistencia":"Confirmar Asistencia",
+    "cancelarasistencia":"Cancelar Asistencia",
+
+    "graficoasistencia":"Grafico Asistencia",
+    "faltasporcurso":"Inasistencias por curso"
 }

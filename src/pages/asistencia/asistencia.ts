@@ -6,7 +6,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AdmPerfilPage } from '../adm-perfil/adm-perfil';
 import { GraficoAsistenciaPage } from '../grafico-asistencia/grafico-asistencia';
 import { Camera, CameraOptions } from '@ionic-native/Camera';
-import firebase from 'firebase'
+import firebase from 'firebase';
+import { TranslateService } from '@ngx-translate/core';
 
 
 //import { File } from '@ionic-native/File';

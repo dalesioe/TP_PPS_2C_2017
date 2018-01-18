@@ -58,5 +58,20 @@
     "op1":"Option 1",
     "op2":"Option 2",
     "duracion":"Duration",
-    "tipo":"Type"
+    "tipo":"Type",
+
+    "escanearqraulaasistencia":"Scan QR Classroom to take assistance",
+    "estadisticaasistencia":"Assists statistics",
+    "revisarasistencia":"Review assistance",
+    "presente":"Present",
+    "comision":"Commission",
+    "materia":"Matter",
+    "profesor":"Teacher",
+    "aula":"Classroom",
+    "listadodealumnos":"List of Students",
+    "confirmarasistencia":"Confirm assistance",
+    "cancelarasistencia":"Cancel Assistance",
+
+    "graficoasistencia":"Assistance Chart",
+    "faltasporcurso":"Absences per course"
 }
