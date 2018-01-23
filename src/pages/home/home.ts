@@ -51,6 +51,10 @@ export class HomePage {
       {
         value: 'pt',
         label: 'Portugués'
+      },
+      {
+        value: 'al',
+        label: 'Aleman'
       }
     ];
   }

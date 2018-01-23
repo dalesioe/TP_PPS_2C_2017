@@ -33,6 +33,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IdiomaesDirective } from '../directives/idiomaes/idiomaes';
 import { IdiomaenDirective } from '../directives/idiomaen/idiomaen';
 import { IdiomaptDirective } from '../directives/idiomapt/idiomapt';
+import { IdiomaalDirective } from '../directives/idiomaal/idiomaal';
 ///////////////
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -70,6 +71,7 @@ firebase.initializeApp(config)
     IdiomaesDirective,
     IdiomaenDirective,
     IdiomaptDirective,
+    IdiomaalDirective,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +120,8 @@ firebase.initializeApp(config)
     ApiabmProvider,
     IdiomaesDirective,
     IdiomaenDirective,
-    IdiomaptDirective
+    IdiomaptDirective,
+    IdiomaalDirective
   ]
 })
 export class AppModule { }

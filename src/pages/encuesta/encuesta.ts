@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IdiomaesDirective } from '../../directives/idiomaes/idiomaes';
 import { IdiomaenDirective } from '../../directives/idiomaen/idiomaen';
 import { IdiomaptDirective } from '../../directives/idiomapt/idiomapt';
+import { IdiomaalDirective } from '../../directives/idiomaal/idiomaal';
 /**
  * Generated class for the EncuestaPage page.
  *
@@ -61,7 +62,7 @@ export class EncuestaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
     public http: Http, private datePicker: DatePicker, private barcodeScanner: BarcodeScanner,
     public actionSheetCtrl: ActionSheetController, public traductor: TranslateService,
-    public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
+    public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective, public al: IdiomaalDirective) {
 
     ////////IDIOMA//////////////
     //this.idiomaseleccionado = this.traductor.currentLang;
@@ -76,6 +77,10 @@ export class EncuestaPage {
 
       case "pt":
         this.idioma = pt;
+        break;
+
+      case "al":
+        this.idioma = al;
         break;
     }
     ///////////////////////////////

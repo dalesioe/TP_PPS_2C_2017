@@ -47,6 +47,11 @@ export class ModificacionPage {
         this.cambiodedatos = "Os dados do usuário foram alterados com sucesso!";
         this.reiniciopass = "Sua senha foi reiniciada com sucesso!";
         break;
+      case "al":
+        this.felicitaciones = "Herzlichen Glückwunsch!";
+        this.cambiodedatos = "Die Benutzerdaten wurden erfolgreich geändert!";
+        this.reiniciopass = "Ihr Passwort wurde erfolgreich neu gestartet!";
+        break;
     }
     ///////////////////////////////
     this.id = this.navParams.get('id');

@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IdiomaesDirective } from '../../directives/idiomaes/idiomaes';
 import { IdiomaenDirective } from '../../directives/idiomaen/idiomaen';
 import { IdiomaptDirective } from '../../directives/idiomapt/idiomapt';
+import { IdiomaalDirective } from '../../directives/idiomaal/idiomaal';
 /**
  * Generated class for the QRsPage page.
  *
@@ -38,7 +39,7 @@ export class QRsPage {
 
   constructor(private alertCtrl: AlertController, public http: Http, private barcodeScanner: BarcodeScanner,
     public navCtrl: NavController, public navParams: NavParams, public traductor: TranslateService,
-    public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
+    public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective, public al: IdiomaalDirective) {
 
     ////////IDIOMA//////////////
     switch (this.traductor.currentLang) {
@@ -52,6 +53,10 @@ export class QRsPage {
 
       case "pt":
         this.idioma = pt;
+        break;
+        
+      case "al":
+        this.idioma = al;
         break;
     }
     ///////////////////////////////
@@ -101,7 +106,7 @@ export class QRsPage {
         if (this.resultado_qr > 0) {
           this.traerInformacion(aula);
         } else {
-          this.AlertMensaje(this.idioma.nocorrespondeaula , this.idioma.verifiqueaula); 
+          this.AlertMensaje(this.idioma.nocorrespondeaula, this.idioma.verifiqueaula);
         }
       }, error => {
         console.log(error);// Error getting the data

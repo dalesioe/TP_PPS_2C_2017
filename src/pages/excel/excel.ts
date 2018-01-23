@@ -17,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IdiomaesDirective } from '../../directives/idiomaes/idiomaes';
 import { IdiomaenDirective } from '../../directives/idiomaen/idiomaen';
 import { IdiomaptDirective } from '../../directives/idiomapt/idiomapt';
+import { IdiomaalDirective } from '../../directives/idiomaal/idiomaal';
 /**
  * Generated class for the ExcelPage page.
  *
@@ -53,7 +54,7 @@ export class ExcelPage {
   idioma: any;
 
   constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: Http,
-    public traductor: TranslateService, public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
+    public traductor: TranslateService, public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective, public al: IdiomaalDirective) {
 
     ////////IDIOMA//////////////
     switch (this.traductor.currentLang) {
@@ -67,6 +68,10 @@ export class ExcelPage {
 
       case "pt":
         this.idioma = pt;
+        break;
+
+      case "al":
+        this.idioma = al;
         break;
     }
     ///////////////////////////////
