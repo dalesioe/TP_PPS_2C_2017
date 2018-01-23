@@ -51,6 +51,10 @@ export class IdiomaptDirective {
   /////pagina ADMINISTRACION PERFIL/////
   cambiopass: string;
   cambioexitoso: string;
+  /////pagina EXCEL/////
+  listaduplicada: string;
+  listaimportada: string;
+  listaagregada: string;
 
   constructor() {
     console.log('Hello IdiomaptDirective Directive');
@@ -95,6 +99,10 @@ export class IdiomaptDirective {
     /////pagina ADMINISTRACION PERFIL/////
     this.cambiopass = "Mudança de senha"
     this.cambioexitoso = "Modificação bem-sucedida! por favor registe-se"
+    /////pagina EXCEL/////
+    this.listaimportada = "Esta lista já foi importada"
+    this.listaduplicada = "Lista duplicada"
+    this.listaagregada = "A lista foi adicionada com sucesso!"
   }
 
 }

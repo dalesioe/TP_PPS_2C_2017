@@ -51,7 +51,10 @@ export class IdiomaesDirective {
   /////pagina ADMINISTRACION PERFIL/////
   cambiopass: string;
   cambioexitoso: string;
-
+  /////pagina EXCEL/////
+  listaduplicada: string;
+  listaimportada: string;
+  listaagregada: string;
 
   constructor() {
     console.log('Hello IdiomaesDirective Directive');
@@ -96,6 +99,11 @@ export class IdiomaesDirective {
     /////pagina ADMINISTRACION PERFIL/////
     this.cambiopass = "Cambio de Contraseña"
     this.cambioexitoso = "Modificacion exitosa! por favor vuelva a iniciar sesion."
+    /////pagina EXCEL/////
+    this.listaimportada = "Esta lista ya fue importada"
+    this.listaduplicada = "Lista duplicada"
+    this.listaagregada = "La lista fue agregada exitosamente!"
+
   }
 
 }

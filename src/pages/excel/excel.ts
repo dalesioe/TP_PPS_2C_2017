@@ -13,7 +13,10 @@ import { MenuController } from 'ionic-angular';
 import * as papa from 'papaparse';
 import { Http } from '@angular/http';
 import { MainPage } from '../main/main';
-
+import { TranslateService } from '@ngx-translate/core';
+import { IdiomaesDirective } from '../../directives/idiomaes/idiomaes';
+import { IdiomaenDirective } from '../../directives/idiomaen/idiomaen';
+import { IdiomaptDirective } from '../../directives/idiomapt/idiomapt';
 /**
  * Generated class for the ExcelPage page.
  *
@@ -47,9 +50,26 @@ export class ExcelPage {
   existe: boolean = false;
   tipo: string;
   tipoUsuario: string;
+  idioma: any;
 
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: Http,
+    public traductor: TranslateService, public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
 
-  constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+    ////////IDIOMA//////////////
+    switch (this.traductor.currentLang) {
+      case "es":
+        this.idioma = es;
+        break;
+
+      case "en":
+        this.idioma = en;
+        break;
+
+      case "pt":
+        this.idioma = pt;
+        break;
+    }
+    ///////////////////////////////
     this.nombre = navParams.get("nombre");
     this.tipoUsuario = navParams.get("tipoUsuario");
     this.http.get("http://www.estacionamiento.16mb.com/git/api/traerArchivos")
@@ -62,7 +82,7 @@ export class ExcelPage {
 
   AltaConArchivo() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Elegir archivo');
+    alert.setTitle(this.idioma.elegirarchivo);
 
     alert.addInput({
       type: 'radio',
@@ -116,7 +136,7 @@ export class ExcelPage {
     if (!this.existe) {
       this.readCsvData();
     } else {
-      this.AlertMensaje("Esta lista ya fue importada", "Lista duplicada");
+      this.AlertMensaje(this.idioma.listaimportada, this.idioma.listaduplicada);
       this.existe = false;
     }
   }
@@ -157,8 +177,7 @@ export class ExcelPage {
     this.traerInformacion(aula);
     //guardamos los Alumnos importados
   }
-  alertDescarga()
-  {
+  alertDescarga() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Elegir archivo');
 
@@ -220,7 +239,7 @@ export class ExcelPage {
     a.click();
     document.body.removeChild(a);
   }
- 
+
   trackByFn(index: any, item: any) {
     return index;
   }
@@ -231,13 +250,12 @@ export class ExcelPage {
     this.http.post("http://www.estacionamiento.16mb.com/git/api/traerCursoPorDiaAula", body)
       .subscribe(data => {
         this.test_data = data.json();
-        }
+      }
       , error => {
         console.log(error);// Error getting the data
       });
   }
-  guardarAlumnos()
-  {
+  guardarAlumnos() {
 
     for (var index = 0; index < this.csvData.length - 1; index++) {
       var element = this.csvData[index];
@@ -251,15 +269,15 @@ export class ExcelPage {
       );
     }
     this.existe = false;
-    this.AlertMensaje("La lista fue agregada exitosamente!", "Proceso finalizado");
+    this.AlertMensaje(this.idioma.listaagregada, this.idioma.procesofinalizado);
     this.http.get("http://www.estacionamiento.16mb.com/git/api/traerArchivos")
-    .subscribe(data => {
-      this.archivos = data.json();
-    }, error => {
-      console.log(error);
-    });
+      .subscribe(data => {
+        this.archivos = data.json();
+      }, error => {
+        console.log(error);
+      });
   }
-  
+
   AlertMensaje(titulo: string, mens: string) {
 
     let ventana = this.alertCtrl.create({
@@ -267,7 +285,7 @@ export class ExcelPage {
       message: mens,
       buttons: [
         {
-          text: "Aceptar",
+          text: this.idioma.aceptar,
           handler: data => {
             console.log('Mensaje de Alerta');
           }
@@ -283,7 +301,7 @@ export class ExcelPage {
   }
 
   Volver() {
-    this.navCtrl.setRoot(MainPage, {"nombre":this.nombre, "tipo": this.tipoUsuario} );
+    this.navCtrl.setRoot(MainPage, { "nombre": this.nombre, "tipo": this.tipoUsuario });
   }
 
   ionViewDidLoad() {

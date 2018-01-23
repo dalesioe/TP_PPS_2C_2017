@@ -78,5 +78,11 @@
     "graficobarras":"Bar graphic",
     "graficocircular":"Pie chart",
 
-    "escanearaula":"Classroom Scan"
+    "escanearaula":"Classroom Scan",
+
+    "importar":"Import / Export Excel",
+    "csv":"CSV file",
+    "presionarboton":"Press the + button to choose a file",
+    "nombreapellido":"Name and surname",
+    "horario":"Schedule"
 }

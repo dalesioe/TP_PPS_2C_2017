@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Importar/Exportar Excels</ion-title>
+    <ion-title>{{ 'importar' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,7 +17,7 @@
   <div>
     <div id="login-access">
       <h2>
-        <i class="glyphicon glyphicon-log-in"></i> Importar/Exportar Excels</h2>
+        <i class="glyphicon glyphicon-log-in"></i> {{ 'importar' | translate }}</h2>
     </div>
 
   </div>
@@ -30,7 +30,7 @@
       </button>
     </ion-buttons>
     <ion-title>
-      CSV Data
+      {{ 'csv' | translate }}
     </ion-title>
     <ion-buttons end>
       <!-- <button ion-button icon-only (click)="alertDescarga()">
@@ -41,30 +41,30 @@
     </ion-buttons>
   </ion-navbar>
 
-  <p *ngIf="archivo == null">Presiona el botón + para elegir un archivo</p>
+  <p *ngIf="archivo == null">{{ 'presionarboton' | translate }}</p>
 
   <ion-grid *ngFor ="let aux of test_data">
     <ion-row>
       <ion-col>
-          Comision:{{aux.Comision}}
+        {{ 'comision' | translate }}:{{aux.Comision}}
       </ion-col>
       <ion-col>
-          Materia: {{aux.Materia}}
+        {{ 'materia' | translate }}: {{aux.Materia}}
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        Profesor:{{aux.nombre_prof}} {{aux.ape_prof}}
+        {{ 'profesor' | translate }}:{{aux.nombre_prof}} {{aux.ape_prof}}
       </ion-col>
       <ion-col>
-        Aula: {{aux.aula}}
+        {{ 'aula' | translate }}: {{aux.aula}}
       </ion-col>
     </ion-row>
   </ion-grid>
   <table border="1" class="data-table" style="overflow-x:auto;">
-    <th *ngIf="archivo != null && !existe">Legajo</th>
-    <th *ngIf="archivo != null && !existe">Nombre y apellido</th>
-    <th *ngIf="archivo != null && !existe">Horario</th>
+    <th *ngIf="archivo != null && !existe">{{ 'legajo' | translate }}</th>
+    <th *ngIf="archivo != null && !existe">{{ 'nombreapellido' | translate }}</th>
+    <th *ngIf="archivo != null && !existe">{{ 'horario' | translate }}</th>
     <tr *ngFor="let row of csvData; let i = index">
       <td *ngFor="let data of row; let j = index; trackBy: trackByFn">
         <ion-input type="text" [(ngModel)]="csvData[i][j]"></ion-input>
@@ -74,6 +74,6 @@
 </ion-content>
 <ion-footer>
   <button ion-button full color="primary" icon-end (click)="Volver()">
-    Salir
+    {{ 'volver' | translate }}
   </button>
 </ion-footer>

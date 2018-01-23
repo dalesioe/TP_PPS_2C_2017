@@ -78,5 +78,11 @@
     "graficobarras":"Gráfico de barras",
     "graficocircular":"Grafico Circular",
 
-    "escanearaula":"Digitalização em sala de aula"
+    "escanearaula":"Digitalização em sala de aula",
+
+    "importar":"Importar / Exportar Excel",
+    "csv":"Arquivo CSV",
+    "presionarboton":"Pressione o botão + para escolher um arquivo",
+    "nombreapellido":"Nome e sobrenome",
+    "horario":"Horário"
 }

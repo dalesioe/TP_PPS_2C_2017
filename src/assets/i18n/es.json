@@ -78,5 +78,11 @@
     "graficobarras":"Grafico de Barras",
     "graficocircular":"Grafico Circular",
 
-    "escanearaula":"Escanear Aula"
+    "escanearaula":"Escanear Aula",
+
+    "importar":"Importar/Exportar Excel",
+    "csv":"Archivo CSV",
+    "presionarboton":"Presiona el botón + para elegir un archivo",
+    "nombreapellido":"Nombre y Apellido",
+    "horario":"Horario"
 }
