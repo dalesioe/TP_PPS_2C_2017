@@ -132,7 +132,7 @@ export class AbmPage {
       let alert = this.alertCtrl.create({
         title: this.idioma.agregado,
         subTitle: this.idioma.exito,
-        buttons: ["Aceptar"]
+        buttons: [this.idioma.aceptar]
       });
       alert.present();
     }
@@ -140,7 +140,7 @@ export class AbmPage {
       let alert = this.alertCtrl.create({
         title: this.idioma.error,
         subTitle: this.idioma.mensajeerror,
-        buttons: ['Cancelar']
+        buttons: [this.idioma.cancelar]
       });
       alert.present();
     }

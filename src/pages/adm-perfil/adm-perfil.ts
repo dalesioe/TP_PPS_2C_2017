@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { Camera, CameraOptions } from '@ionic-native/Camera';
 import firebase from 'firebase'
 import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
 import { TranslateService } from '@ngx-translate/core';
+import { IdiomaesDirective } from '../../directives/idiomaes/idiomaes';
+import { IdiomaenDirective } from '../../directives/idiomaen/idiomaen';
+import { IdiomaptDirective } from '../../directives/idiomapt/idiomapt';
 /**
  * Generated class for the AdmPerfilPage page.
  *
@@ -39,8 +42,27 @@ export class AdmPerfilPage {
   picurl: any;
   mypicref: any;
 
-  constructor( public http: Http,public navCtrl: NavController, public navParams: NavParams, public camara: Camera, ) {
-    this.mypicref=firebase.storage().ref('/');
+  idioma: any;
+
+  constructor(public http: Http, public navCtrl: NavController, public navParams: NavParams, public camara: Camera, public alertCtrl: AlertController,
+    public traductor: TranslateService, public es: IdiomaesDirective, public en: IdiomaenDirective, public pt: IdiomaptDirective) {
+
+    ////////IDIOMA//////////////
+    switch (this.traductor.currentLang) {
+      case "es":
+        this.idioma = es;
+        break;
+
+      case "en":
+        this.idioma = en;
+        break;
+
+      case "pt":
+        this.idioma = pt;
+        break;
+    }
+    ///////////////////////////////
+    this.mypicref = firebase.storage().ref('/');
     this.id = this.navParams.get('id');
     this.nombre = this.navParams.get('nombre');
     this.apellido = this.navParams.get('apellido');
@@ -60,7 +82,7 @@ export class AdmPerfilPage {
       "password": this.password,
       "legajo": this.legajo,
       "tipo": this.tipo,
-      "mensaje":null
+      "mensaje": null
     });
   }
 
@@ -84,12 +106,12 @@ export class AdmPerfilPage {
       .putString(this.picdata, 'base64', { contentType: 'image/jpeg' })
       .then(savepic => {
         this.picurl = savepic.downloadURL
-      }).then(sarasa =>{
+      }).then(sarasa => {
         this.updateFoto();
       })
-      
+
   }
-  traerImagen(id){
+  traerImagen(id) {
     let body: any;
     body = { "id": this.id };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/imagenUsuario", body)
@@ -100,34 +122,41 @@ export class AdmPerfilPage {
         console.log(error);// Error getting the data
       });
   }
-  CambiarPW(pw1,pw2){
+  CambiarPW(pw1, pw2) {
     let body: any;
-    body = { "id": this.id,"pw": pw1 };
-    console.log(this.id+"ID");
-    console.log("PW",pw1);
+    body = { "id": this.id, "pw": pw1 };
+    console.log(this.id + "ID");
+    console.log("PW", pw1);
     this.http.post("http://www.estacionamiento.16mb.com/git/api/CambiarPassword", body)
       .subscribe(data => {
         this.respuesta = data['_body'];
         console.log(data.json());
-        if (this.respuesta){
-          alert("Cambio exitoso, por favor vuelva a iniciar sesion.");
+        if (this.respuesta) {
+
+          let alert = this.alertCtrl.create({
+            title: this.idioma.cambiopass,
+            subTitle: this.idioma.cambioexitoso,
+            buttons: ['OK']
+          });
+          alert.present();
+
           this.cambiar = !this.cambiar;
           this.navCtrl.setRoot(HomePage);
-        }else{
+        } else {
           alert("error al realizar cambio de clave");
         }
       }, error => {
         console.log(error);// Error getting the data
       });
   }
-  Cambiar(){
+  Cambiar() {
     this.cambiar = !this.cambiar;
   }
-  updateFoto(){
+  updateFoto() {
     let body: any;
     var lastPart = this.picurl.split("/").pop();
-    lastPart = lastPart.replace('&','&amp;');
-    body = { "foto": lastPart , "id": this.id };
+    lastPart = lastPart.replace('&', '&amp;');
+    body = { "foto": lastPart, "id": this.id };
     this.http.post("http://www.estacionamiento.16mb.com/git/api/guardarImagenUsuario", body)
       .subscribe(data => {
         console.log(data['_body']);

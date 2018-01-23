@@ -405,7 +405,7 @@ export class AsistenciaPage {
 
   estadisticasAsistencia() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Ver grafico');
+    alert.setTitle('');
 
     alert.addInput({
       type: 'radio',

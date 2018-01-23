@@ -48,6 +48,9 @@ export class IdiomaptDirective {
   verifiqueaula: string;
   noseencontraroncursos: string;
   dirijaseadmin: string;
+  /////pagina ADMINISTRACION PERFIL/////
+  cambiopass: string;
+  cambioexitoso: string;
 
   constructor() {
     console.log('Hello IdiomaptDirective Directive');
@@ -89,6 +92,9 @@ export class IdiomaptDirective {
     this.verifiqueaula = "Verifique sua sala de aula na administração"
     this.noseencontraroncursos = "Nenhum curso foi encontrado"
     this.dirijaseadmin = "Endereço para administração"
+    /////pagina ADMINISTRACION PERFIL/////
+    this.cambiopass = "Mudança de senha"
+    this.cambioexitoso = "Modificação bem-sucedida! por favor registe-se"
   }
 
 }

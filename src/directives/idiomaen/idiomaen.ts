@@ -48,6 +48,9 @@ export class IdiomaenDirective {
   verifiqueaula: string;
   noseencontraroncursos: string;
   dirijaseadmin: string;
+  /////pagina ADMINISTRACION PERFIL/////
+  cambiopass: string;
+  cambioexitoso: string;
 
   constructor() {
     console.log('Hello IdiomaenDirective Directive');
@@ -89,6 +92,9 @@ export class IdiomaenDirective {
     this.verifiqueaula = "Verify your classroom in administration"
     this.noseencontraroncursos = "No courses were found"
     this.dirijaseadmin = "Address to administration"
+    /////pagina ADMINISTRACION PERFIL/////
+    this.cambiopass = "Change of password"
+    this.cambioexitoso = "Successful modification! please re-login."
   }
 
 }

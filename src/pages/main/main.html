@@ -36,11 +36,11 @@
     <button *ngIf="tipoUsuario =='1' || tipoUsuario =='3'" ion-item (click)="openPage('excel')">
       {{ 'importardescargar' | translate }}
     </button>
-
+    <!--
     <button ion-item (click)="openPage('cursadas')">
       {{ 'cursadas' | translate }}
     </button>
-
+    -->
     <button *ngIf="tipoUsuario=='2' || tipoUsuario =='4'" ion-item (click)="openPage('encuesta')">
       {{ 'encuesta' | translate }}
     </button>
@@ -48,11 +48,11 @@
     <button ion-item (click)="openPage('qrs')">
       {{ 'lectorqr' | translate }}
     </button>
-
+    <!--
     <button ion-item (click)="openPage('descarga')">
       {{ 'descarga' | translate }}
     </button>
-
+    -->
     <button ion-item (click)="openPage('perfil')">
       {{ 'perfil' | translate }}
     </button>
